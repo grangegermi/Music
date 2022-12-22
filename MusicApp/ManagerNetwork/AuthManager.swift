@@ -83,7 +83,7 @@ final class AuthManager {
     }
         
   // RefreshToken
-    func getRefreshToken (completion:@escaping ((Bool) -> Void)) {
+    func getRefreshToken(completion:@escaping ((Bool) -> Void)) {
         
         guard let urlToken = URL(string: Constants.tokenAPIURL) else {
             return
@@ -121,7 +121,7 @@ final class AuthManager {
                var result = try JSONDecoder().decode(AuthResponse.self, from: data)
                
                 self.token = result.access_token
-                print(result)
+//                print(result)
                 completion(true)
                
             }catch let error {

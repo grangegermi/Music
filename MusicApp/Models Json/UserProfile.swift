@@ -18,7 +18,7 @@ struct User:Decodable {
     }
     
 struct APIImage: Decodable {
-    var url: String = ""
+    var url:URL 
 }
 
 
