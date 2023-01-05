@@ -10,21 +10,28 @@ import UIKit
 class RecomendationCell: UICollectionViewCell {
     
     static let id = "Recomendation"
-   
+    
     let imageView = UIImageView()
     let namePlaylist = UILabel()
     let nameArtist = UILabel()
-   
-  
+    
+    
     override init(frame:CGRect){
         super.init(frame:frame)
-    
+        
         contentView.addSubview(imageView)
         contentView.addSubview(namePlaylist)
         contentView.addSubview(nameArtist)
         
-
+        namePlaylist.font = UIFont(name: "Noto Sans Kannada Bold", size: 14)
+        nameArtist.font = UIFont(name: "Noto Sans Kannada Regular", size: 12)
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 6
+        imageView.layer.masksToBounds = true
+        namePlaylist.numberOfLines = 0
+        namePlaylist.textColor = .white
+        nameArtist.numberOfLines = 0
+        nameArtist.textColor = .white
         createConstraints()
     }
     
@@ -34,27 +41,24 @@ class RecomendationCell: UICollectionViewCell {
     
     func createConstraints() {
         imageView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(80)
+            make.top.equalTo(contentView.snp.top)
+            make.width.equalTo(contentView.snp.width)
+            make.height.equalTo(200)
         }
         
         namePlaylist.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).inset(10)
-            make.right.equalToSuperview()
-            make.height.equalTo(30)
-            make.width.equalTo(200)
+            make.top.equalTo(contentView.snp.top).inset(210)
+            make.height.equalTo(40)
+            make.width.equalTo(contentView.snp.width)
         }
         
+        
+        
         nameArtist.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).inset(40)
-            make.right.equalToSuperview()
-            make.height.equalTo(30)
-            make.width.equalTo(200)
+            make.top.equalTo(contentView.snp.top).inset(240)
+            make.height.equalTo(40)
+            make.width.equalTo(contentView.snp.width)
         }
+        
     }
-    
 }

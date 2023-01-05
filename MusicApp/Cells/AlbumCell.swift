@@ -11,10 +11,12 @@ import SnapKit
 class AlbumCell: UICollectionViewCell {
     
     static let id = "album"
+    
     let imageView = UIImageView()
     let nameAlbums = UILabel()
     let nameArtist = UILabel()
     let countTracks = UILabel()
+  
   
     override init(frame:CGRect){
         super.init(frame:frame)
@@ -22,40 +24,48 @@ class AlbumCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         contentView.addSubview(nameAlbums)
         contentView.addSubview(nameArtist)
-        contentView.addSubview(countTracks)
-
+       
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 6
+        imageView.layer.masksToBounds = true
+      
+        nameArtist.font = UIFont(name: "Noto Sans Kannada Bold", size: 14)
+        nameArtist.textColor = .white
+        
+        nameAlbums.font = UIFont(name: "Noto Sans Kannada Regular", size: 12)
+        nameAlbums.textColor = .white
+        nameArtist.numberOfLines = 0
         createConstraints()
+        
+    
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+ 
+    
     func createConstraints() {
         imageView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(80)
-        }
-        
-        nameAlbums.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).inset(10)
-            make.right.equalToSuperview()
-            make.height.equalTo(30)
-            make.width.equalTo(200)
-        }
-        
+            make.top.equalTo(contentView.snp.top).inset(10)
+            make.width.equalTo(contentView.snp.width)
+            make.height.equalTo(80)
+ 
         nameArtist.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).inset(40)
-            make.right.equalToSuperview()
-            make.height.equalTo(30)
-            make.width.equalTo(200)
+
+                make.height.equalTo(30)
+                make.width.equalTo(120)
+                make.top.equalTo(contentView.snp.top).inset(100)
+            }
+            
+        nameAlbums.snp.makeConstraints { make in
+               
+                make.height.equalTo(30)
+                make.width.equalTo(250)
+                make.top.equalTo(contentView.snp.top).inset(130)
+            }
         }
+
     }
-    
-    
 }

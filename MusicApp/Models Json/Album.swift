@@ -17,14 +17,28 @@ struct AlbumsResponse: Decodable{
 }
 
 struct Album: Decodable {
-    let album_type: String = ""
-    let available_markets: [String] = []
-    let id: String = ""
-    var images: [APIImage]  = []
-    let name: String = ""
-    let release_date: String = ""
-    let total_tracks: Int = 0
-    let artists: [Artist] = []
+    let album_type: String
+    let available_markets: [String]
+    let id: String
+    var images: [APIImage]
+    let name: String
+    let release_date: String
+    let total_tracks: Int
+    let artists: [Artist]
+    init(album_type: String, available_markets: [String], id: String, images: [APIImage], name: String, release_date: String, total_tracks: Int, artists: [Artist]) {
+        self.album_type = album_type
+        self.available_markets = available_markets
+        self.id = id
+        self.images = images
+        self.name = name
+        self.release_date = release_date
+        self.total_tracks = total_tracks
+        self.artists = artists
+    }
+    
+//    static var main: Album {
+//        .init(album_type: "", available_markets: [], id: "35u3WfLl0hcDvs7pZknwro", images: [], name: "", release_date: "", total_tracks: 0, artists: [])
+//    }
   
 }
 
@@ -32,7 +46,7 @@ struct Artist: Decodable {
     let id: String
     let name: String
     let type: String
-//    let images: [APIImage]?
+//    let images: [PIImage]?
 //    let external_urls: [String: String]
 }
 
@@ -244,6 +258,7 @@ struct Artist: Decodable {
 //                };
 //                href = "https://api.spotify.com/v1/albums/35u3WfLl0hcDvs7pZknwro";
 //                id = 35u3WfLl0hcDvs7pZknwro;
+
 //                images =                 (
 //                                        {
 //                        height = 640;

@@ -44,7 +44,9 @@ class CellForSettings: UITableViewCell {
     
     func createStyleLabels() {
         labelTitle.font = UIFont(name: "Optima Regular", size: 18)
+        labelTitle.textColor = .white
         labelSubTitle.font = UIFont(name: "Optima Regular", size: 14)
+        labelSubTitle.textColor = .white
     }
     
     required init?(coder: NSCoder) {

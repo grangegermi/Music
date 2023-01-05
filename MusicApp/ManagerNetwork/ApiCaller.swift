@@ -12,7 +12,7 @@ final class ApiCaller{
     static let sharedCaller = ApiCaller()
     
     private init(){
-       
+        
     }
     
     struct Constants {
@@ -21,232 +21,474 @@ final class ApiCaller{
         
     }
     
-   
-    var result = User()
-    var recommendations = GenresRecomendation()
-    var playlist:Playlist = Playlist(playlists: Items(items: []))
-  
-//
+    
+    //    var result = User()
+    //    var recommendations = GenresRecomendation()
+    //    var album: [AlbumsResponse] = []
+    //    var playlist = Playlist(playlists: ItemsPlaylist(items: []))
+    //    var recomendationTrack = TracksRecomendation(tracks: [])
+    //
+    //    var group = DispatchGroup()
     
     
-    func getUser() {
+    func getUser(completion:@escaping((Result<User, Error>)) -> Void) {
         
-        AuthManager.shared.getRefreshToken { _ in
-            
-            guard let url = URL(string: Constants.basicURlApi + "/me") else {return}
-            
-            var request = URLRequest(url: url)
-            
-            request.httpMethod = "GET"
-            request.setValue("Bearer \(AuthManager.shared.token)", forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+        AuthManager.shared.getRefreshToken { token in
+            switch token {
+            case .success(let tokenRefresh):
                 
-                guard let data = data else {return}
+                guard let url = URL(string: Constants.basicURlApi + "/me") else {return}
                 
-                do {
-                    self.result = try JSONDecoder().decode(User.self, from: data)
-
-                }
+                var request = URLRequest(url: url)
                 
-                catch let error {
-                    print(error)
-                }
-            }
-            
-            task.resume()
-        }
-    }
-
-    func getNewReleases() {
-
-        AuthManager.shared.getRefreshToken { _ in
-
-            guard let url = URL(string:Constants.basicURlApi + "/browse/new-releases?limit=10") else {return}
-
-            var request = URLRequest(url: url)
-
-            request.httpMethod = "GET"
-            request.setValue("Bearer \(AuthManager.shared.token)", forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            let task = URLSession.shared.dataTask(with: request) { data, error,  response in
-
-                guard let data = data else {return}
-
-                do {
-                    let  finalData = try JSONDecoder().decode(NewReleasesResponse.self, from: data)
-
-                }catch let error {
-
-                    print(error)
-                }
-            }
-
-            task.resume()
-        }
-    }
-
-    
-    func getRecommendationsGenres() {
-
-        AuthManager.shared.getRefreshToken { _ in
-
-            guard let url = URL(string:Constants.basicURlApi + "/recommendations/available-genre-seeds") else {return}
-
-            var request = URLRequest(url: url)
-
-            request.httpMethod = "GET"
-            request.setValue("Bearer \(AuthManager.shared.token)", forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            let task = URLSession.shared.dataTask(with: request) { data, error,  response in
-
-                guard let data = data else {return}
-
-                do {
-                    self.recommendations = try JSONDecoder().decode(GenresRecomendation.self, from: data)
-
-                }catch let error {
-
-                    print(error)
-                }
-            }
-
-            task.resume()
-        }
-    }
-
-    
-    func getRecommendations() {
-
-        AuthManager.shared.getRefreshToken { _ in
-
-            guard let url = URL(string:Constants.basicURlApi + "/recommendations?limit=10&seed_genres=electro,deep-house,detroit-techno,techno,trance") else {return}
-
-            var request = URLRequest(url: url)
-
-            request.httpMethod = "GET"
-            request.setValue("Bearer \(AuthManager.shared.token)", forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            let task = URLSession.shared.dataTask(with: request) { data, error,  response in
-
-                guard let data = data else {return}
-
-            do {
-                    let recomendation = try JSONDecoder().decode(TracksRecomendation.self, from: data)
-//                    print (recomendation)
-
-                } catch let error {
-                    print(error)
-                }
-            }
-            task.resume()
-        }
-    }
-
-    func getAlbum() {
-
-        AuthManager.shared.getRefreshToken { _ in
-
-            guard let url = URL(string:Constants.basicURlApi + "/me/albums") else {return}
-
-            var request = URLRequest(url: url)
-
-            request.httpMethod = "GET"
-            request.setValue("Bearer \(AuthManager.shared.token)", forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            let task = URLSession.shared.dataTask(with: request) { data, error,  response in
-
-                guard let data = data else {return}
-
-                do {
+                request.httpMethod = "GET"
+                request.setValue("Bearer \(tokenRefresh)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
                     
-                    let album = try JSONDecoder().decode(MyAlbum.self, from: data)
-
-                } catch let error {
-                    print(error)
+                    guard let data = data else {return}
+                    
+                    do {
+                        let user = try JSONDecoder().decode(User.self, from: data)
+                        //                        print(user)
+                        completion(.success(user))
+                        
+                    }
+                    
+                    catch let error {
+                        completion(.failure(error))
+                    }
                 }
+                
+                task.resume()
+            case .failure(let error):
+                print(error)
             }
-
-            task.resume()
+            
         }
-    }
- 
-    func getFeaturedPlaylists()   {
         
-        AuthManager.shared.getRefreshToken { _ in
+    }
+    
+    func getNewReleases(completion:@escaping((Result<NewReleasesResponse, Error>)) -> Void){
+        
+        AuthManager.shared.getRefreshToken { token in
             
-            guard let url = URL(string:Constants.basicURlApi + "/browse/featured-playlists?limit=20") else
-            {return}
-            
-            var request = URLRequest(url: url)
-            
-            request.httpMethod = "GET"
-            request.setValue("Bearer \(AuthManager.shared.token)", forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-          
-            let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+            switch token{
+            case .success( let refreshToken):
                 
-                guard let data = data else {return}
+                guard let url = URL(string:Constants.basicURlApi + "/browse/new-releases?limit=20") else {return}
                 
-                do {
-                    self.playlist = try JSONDecoder().decode(Playlist.self, from: data)
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "GET"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
                     
+                    guard let data = data else {return}
                     
-                    print(self.playlist)
+                    do {
+                        let album = try JSONDecoder().decode(NewReleasesResponse.self, from: data)
+//                                                print(album)
+                        completion(.success(album))
+                        
+                        
+                    }catch let error {
+                        completion(.failure(error))
+                    }
                     
                 }
                 
-                catch let error {
-                    print(error)
-                }
-
-            }
-            
-            task.resume()
-        }
-        
-    }
-    
-    func getPlaylists()   {
-        
-        AuthManager.shared.getRefreshToken { _ in
-            
-        guard let url = URL(string:Constants.basicURlApi + "/playlists/" ) else {return}
-        
-        var request = URLRequest(url: url)
-        
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(AuthManager.shared.token)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: request) { data, error,  response in
-            
-            guard let data = data else {return}
-         
-            
-            do {
-                let audioPlaylist = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                   let audio = try JSONDecoder().decode(Playlist.self, from: data)
-                
-                print (audioPlaylist)
-                
-            }
-            
-            catch let error {
+                task.resume()
+            case .failure(let error):
                 print(error)
             }
         }
         
-        task.resume()
     }
- 
-}
     
-}
+    
+    
+    
+    func getAlbumsDetail (album: Album, completion :@escaping((Result<AlbumDetail,Error>))-> Void){
+        
+        AuthManager.shared.getRefreshToken { token in
+            switch token {
+                
+            case .success(let refreshToken):
+                
+                guard let url = URL(string:Constants.basicURlApi +  "/albums/" + album.id) else {return}
+                
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "GET"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                    
+                    guard let data = data else {return}
+                    
+                    do {
+//                        let v = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+//                        print(v)
+                        let albumDetails = try JSONDecoder().decode(AlbumDetail.self, from: data)
+                        
+//                        albumDetails.tracks.items.filter({ item in
+//                            return item.preview_url != nil
+//                        })
+                        
+                        print(albumDetails)
+                        completion(.success(albumDetails))
+                    }catch let error {
+                        print(error)
+                        completion(.failure(error))
+                    }
+                }
+                task.resume()
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+        
+    
+        
+        
+        func getRecommendationsGenres(completion:@escaping((Result<GenresRecomendation, Error>)) -> Void) {
+            
+            AuthManager.shared.getRefreshToken { token in
+                
+                switch token{
+                case .success(let refreshToken):
+                    
+                    guard let url = URL(string:Constants.basicURlApi + "/recommendations/available-genre-seeds") else {return}
+                    
+                    var request = URLRequest(url: url)
+                    
+                    request.httpMethod = "GET"
+                    request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                        
+                        guard let data = data else {return}
+                        
+                        do {
+                            let recommendations = try JSONDecoder().decode(GenresRecomendation.self, from: data)
+                            completion(.success(recommendations))
+                            //                    print(self.recommendations)
+                            
+                        }catch let error {
+                            completion(.failure(error))
+                        }
+                    }
+                    
+                    task.resume()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+        }
+        
+        
+        func getRecommendations(completion:@escaping((Result<TracksRecomendation, Error>)) -> Void) {
+            
+            AuthManager.shared.getRefreshToken { token in
+                
+                switch token{
+                case .success(let refreshToken):
+                    
+                    guard let url = URL(string:Constants.basicURlApi + "/recommendations?limit=10&seed_genres=electro,deep-house,detroit-techno,techno,trance") else {return}
+                    
+                    var request = URLRequest(url: url)
+                    
+                    request.httpMethod = "GET"
+                    request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                        
+                        guard let data = data else {return}
+                        
+                        do {
+                            
+                            let recomendationTrack = try JSONDecoder().decode(TracksRecomendation.self, from: data)
+                            //                        print(recomendationTrack)
+                            completion(.success(recomendationTrack))
+                            
+                            
+                        } catch let error {
+                            completion(.failure(error))
+                        }
+                    }
+                    task.resume()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+        }
+    
+    
+    func getRecommendationsTrack(track:Tracks, completion:@escaping((Result<TracksRecomendation, Error>)) -> Void) {
+        
+        AuthManager.shared.getRefreshToken { token in
+            
+            switch token{
+            case .success(let refreshToken):
+                
+                guard let url = URL(string:Constants.basicURlApi + "/tracks/" + track.id) else {return}
+                
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "GET"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                    
+                    guard let data = data else {return}
+                    
+                    do {
+                        let track = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+//                        let recomendationTrack = try JSONDecoder().decode(TracksRecomendation.self, from: data)
+                            print(track)
+//                        completion(.success(recomendationTrack))
+                        
+                        
+                    } catch let error {
+                        completion(.failure(error))
+                    }
+                }
+                task.resume()
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+        
+        func getAlbum (completion:@escaping((Result<MyAlbum, Error>)) -> Void) {
+            
+            AuthManager.shared.getRefreshToken { token in
+                
+                switch token{
+                case .success(let refreshToken):
+                    guard let url = URL(string:Constants.basicURlApi + "/tracks?limit=10") else {return}
+                    
+                    var request = URLRequest(url: url)
+                    
+                    request.httpMethod = "GET"
+                    request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                        
+                        guard let data = data else {return}
+                        print(String(data: data, encoding: .utf8))
+                        do {
+                            let album = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                            print(album)
+//                            let album = try JSONDecoder().decode(MyAlbum.self, from: data)
+//                            completion(.success(album))
+                        } catch let error {
+                            completion(.failure(error))
+                        }
+                    }
+                    
+                    task.resume()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+        }
+        
+        func getFeaturedPlaylists(completion:@escaping((Result<Playlist, Error>)) -> Void)   {
+            
+            AuthManager.shared.getRefreshToken { token in
+                
+                switch token{
+                case .success(let refreshToken):
+                    
+                    guard let url = URL(string:Constants.basicURlApi + "/browse/featured-playlists?limit=30") else
+                    {return}
+                    
+                    var request = URLRequest(url: url)
+                    
+                    request.httpMethod = "GET"
+                    request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                        
+                        guard let data = data else {return}
+                        
+                        do {
+                            let playlist = try JSONDecoder().decode(Playlist.self, from: data)
+                            
+                            completion(.success(playlist))
+                            
+                        }
+                        
+                        catch let error {
+                            completion(.failure(error))
+                        }
+                        
+                    }
+                    
+                    task.resume()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+            
+            
+        }
+        
+    func getPlaylists(playlist:Item, comletion: @escaping ((Result<PlaylistDetails, Error>)) -> Void)   {
+            
+            AuthManager.shared.getRefreshToken { token in
+                
+                switch token{
+                case .success(let refreshToken):
+                    
+                    guard let url = URL(string:Constants.basicURlApi + "/playlists/" + playlist.id ) else {return}
+                    
+                    var request = URLRequest(url: url)
+                    
+                    request.httpMethod = "GET"
+                    request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                        
+                        guard let data = data else {return}
+                        
+                        
+                        do {
+//                            var audioPlaylist = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                            var audioPlaylist = try JSONDecoder().decode(PlaylistDetails.self, from: data)
+                            print(audioPlaylist)
+                            comletion(.success(audioPlaylist))
+//                            print(audioPlaylist)
+                            
+                        }
+                        
+                        catch let error {
+                            print(error)
+                            comletion(.failure(error))
+                        }
+                    }
+                    
+                    task.resume()
+                case .failure(let error):
+                    print(error)
+                    comletion(.failure(error))
+                }
+            }
+    
+        }
+    
+    
+    func getCategory(completion:@escaping ((Result<Categories,Error>)) -> Void) {
+        
+        AuthManager.shared.getRefreshToken { token in
+            
+            switch token{
+            case .success(let refreshToken):
+                
+                guard let url = URL(string:Constants.basicURlApi + "/browse/categories?limit=50" ) else {return}
+                
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "GET"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                    
+                    guard let data = data else {return}
+                
+                    do {
+//                            var category = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                        var category = try JSONDecoder().decode(Categories.self, from: data)
+                        completion(.success(category))
+//                        comletion(.success(audioPlaylist))
+//                        print(category)
+                        
+                    }
+                    
+                    catch let error {
+                        print(error)
+                        completion(.failure(error))
+                    }
+                }
+                
+                task.resume()
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
 
+        
+    }
+    
+    
+    func getCategoryDetails(category:ItemsCategory, completion:@escaping ((Result<CategoryDetails,Error>)) -> Void) {
+        
+        AuthManager.shared.getRefreshToken { token in
+            
+            switch token{
+            case .success(let refreshToken):
+                
+                guard let url = URL(string:Constants.basicURlApi + "/browse/categories/\(category.id)/playlists?limit=50") else {return}
+                
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "GET"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                    
+                    guard let data = data else {return}
+                
+                    do {
+//                            var category = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                        var category = try JSONDecoder().decode(CategoryDetails.self, from: data)
+                        print(category)
+                        completion(.success(category))
+                     
+                        
+                    }
+                    
+                    catch let error {
+                        print(error)
+                        completion(.failure(error))
+                    }
+                }
+                
+                task.resume()
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
+
+        
+    }
+    
+        
+    }
 

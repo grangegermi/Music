@@ -19,7 +19,7 @@ class HeaderCollectionViewCell: UICollectionViewCell {
        
         addSubview(label)
         createConstraints()
-        
+        label.textColor = .white
     }
 
     func createConstraints(){

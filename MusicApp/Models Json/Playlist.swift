@@ -8,11 +8,19 @@
 import Foundation
 
 struct Playlist:Decodable{
-    let playlists: Items 
+    let playlists: ItemsPlaylist
 }
-struct Items:Decodable{
+
+
+struct CategoryDetails: Decodable {
+    let playlists:ItemsPlaylist
+}
+
+
+struct ItemsPlaylist:Decodable{
     let items: [Item]
 }
+
 struct Item: Decodable {
     
     let  description:String
@@ -20,12 +28,16 @@ struct Item: Decodable {
     let  id:String
     let  images:[APIImage]
     let  name:String
+    
     init(description: String, id: String, images: [APIImage], name: String) {
         self.description = description
         self.id = id
         self.images = images
         self.name = name
     }
+    
+    
+//
 //    let  owner:UserForPlaylist
    
 }

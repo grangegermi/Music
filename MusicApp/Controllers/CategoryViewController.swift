@@ -1,22 +1,22 @@
 //
-//  SearchViewController.swift
+//  CategoryViewController.swift
 //  MusicApp
 //
-//  Created by Даша Волошина on 18.12.22.
+//  Created by Даша Волошина on 28.12.22.
 //
-
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class CategoryViewController: UIViewController {
 
+    var category = ItemsCategory(icons: [], id: "", name: "")
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view = UIVieww()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-    
-        navigationController?.navigationBar.topItem?.title = "Search"
+        view.backgroundColor = .cyan
+        ApiCaller.sharedCaller.getCategoryDetails(category: category) { result in
+            
+        }
     }
     
 
@@ -31,4 +31,3 @@ class SearchViewController: UIViewController {
     */
 
 }
-

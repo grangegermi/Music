@@ -17,23 +17,33 @@ class TabBarViewController:UITabBarController  {
         let  libraryVC = UINavigationController(rootViewController: LibraryViewController())
         
         homeVC.title = "Home"
+       
         searchVC.title = "Search"
         libraryVC.title = "Library"
         view.backgroundColor = .white
         
         homeVC.tabBarItem.image = UIImage(systemName: "house")
+        homeVC.navigationBar.barStyle = .black
+        
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        searchVC.navigationBar.barStyle = .black
+        
         libraryVC.tabBarItem.image = UIImage(systemName: "building.columns")
+        libraryVC.navigationBar.barStyle = .black
         
-        self.tabBar.tintColor = .gray
-        self.tabBar.backgroundColor = .white
+        self.tabBar.tintColor = .white
+        self.tabBar.barStyle = .black
+//        self.tabBar.backgroundColor = .black
+        
         self.setViewControllers([homeVC, searchVC, libraryVC], animated: false)
+     
         
-        ApiCaller.sharedCaller.getUser()
-        ApiCaller.sharedCaller.getNewReleases()
-        ApiCaller.sharedCaller.getRecommendationsGenres()
-        ApiCaller.sharedCaller.getRecommendations()
-        ApiCaller.sharedCaller.getAlbum()
+       
+    }
+ 
+    
+}
+       
        
         
         
@@ -48,6 +58,4 @@ class TabBarViewController:UITabBarController  {
 //        }
      
         
-    }
-   
-}
+

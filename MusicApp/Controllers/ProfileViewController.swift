@@ -26,17 +26,34 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         tableView.register(CellForSettings.self, forCellReuseIdentifier: CellForSettings.id)
         
         createConstraints()
-        createUserModel()
+       
+        some()
+    }
+    func some() {
+        ApiCaller.sharedCaller.getUser { [weak self] result in
+            DispatchQueue.main.async {
+                
+                switch result{
+                    
+                case .success(let model):
+                    self?.userModel.append("UserName: \(model.display_name)")
+                    self?.userModel.append("ID: \(model.id)")
+                    self?.userModel.append("Email: \(model.email)")
+                    self?.userModel.append("Product: \(model.product)")
+                    self?.tableView.reloadData()
+                case .failure(let error):
+                    print(error)
+                default: break
+                    
+                }
 
+            }
+        }
     }
-    
-    func createUserModel () {
-        userModel.append("UserName: \(ApiCaller.sharedCaller.result.display_name)")
-        userModel.append("ID: \(ApiCaller.sharedCaller.result.id)")
-        userModel.append("Email: \(ApiCaller.sharedCaller.result.email)")
-        userModel.append("Product: \(ApiCaller.sharedCaller.result.product)")
-        tableView.reloadData()
-    }
+//    func createUserModel () {
+////
+//        tableView.reloadData()
+//    }
     
     func createConstraints() {
         tableView.snp.makeConstraints { make in

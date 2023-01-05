@@ -13,7 +13,7 @@ final class AuthManager {
     
 //  var refreshingToken = false
     
-    var token = " "
+//    var token = " "
     
     struct Constants {
         
@@ -83,7 +83,7 @@ final class AuthManager {
     }
         
   // RefreshToken
-    func getRefreshToken(completion:@escaping ((Bool) -> Void)) {
+    func getRefreshToken(completion:@escaping ((Result<String,Error>)) -> Void) {
         
         guard let urlToken = URL(string: Constants.tokenAPIURL) else {
             return
@@ -106,7 +106,7 @@ final class AuthManager {
         let data = basicToken.data(using: .utf8)
         guard let base64String = data?.base64EncodedString() else {
             print("fail")
-            completion(false)
+       
             return
         }
 
@@ -119,13 +119,14 @@ final class AuthManager {
             
             do {
                var result = try JSONDecoder().decode(AuthResponse.self, from: data)
-               
-                self.token = result.access_token
-//                print(result)
-                completion(true)
+                var token = result.access_token
+//                self.token = result.access_token
+                completion(.success(token))
+              
+          
                
             }catch let error {
-                completion(false)
+                completion(.failure(error))
                 print(error)
             }
             

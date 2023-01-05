@@ -12,7 +12,7 @@ class TrackCell: UICollectionViewCell {
     static let id = "TrackCell"
  
     let imageView = UIImageView()
-    let namePlaylist = UILabel()
+    let nameDescription = UILabel()
     let nameArtist = UILabel()
    
   
@@ -20,11 +20,20 @@ class TrackCell: UICollectionViewCell {
         super.init(frame:frame)
     
         contentView.addSubview(imageView)
-        contentView.addSubview(namePlaylist)
+        contentView.addSubview(nameDescription)
         contentView.addSubview(nameArtist)
-        
+        nameArtist.textColor = .white
+        nameDescription.textColor = .white
 
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 6
+        imageView.layer.masksToBounds = true
+        nameArtist.numberOfLines = 0
+        nameDescription.numberOfLines = 0
+        
+        nameArtist.font = UIFont(name: "Noto Sans Kannada Bold", size: 14)
+        nameDescription.font = UIFont(name: "Noto Sans Kannada Regular", size: 12)
+        
         createConstraints()
     }
     
@@ -34,27 +43,24 @@ class TrackCell: UICollectionViewCell {
     
     func createConstraints() {
         imageView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(80)
-        }
-        
-        namePlaylist.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).inset(10)
-            make.right.equalToSuperview()
-            make.height.equalTo(30)
-            make.width.equalTo(200)
+            make.top.equalTo(contentView.snp.top)
+            make.width.equalTo(contentView.snp.width)
+            make.height.equalTo(200)
         }
         
         nameArtist.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).inset(40)
-            make.right.equalToSuperview()
-            make.height.equalTo(30)
-            make.width.equalTo(200)
+            make.top.equalTo(contentView.snp.top).inset(210)
+            make.height.equalTo(40)
+            make.width.equalTo(contentView.snp.width)
         }
+        
+        nameDescription.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.top).inset(250)
+            make.height.equalTo(40)
+            make.width.equalTo(contentView.snp.width)
+        }
+        
+       
     }
     
 }
