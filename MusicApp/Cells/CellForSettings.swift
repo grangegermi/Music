@@ -43,9 +43,9 @@ class CellForSettings: UITableViewCell {
     }
     
     func createStyleLabels() {
-        labelTitle.font = UIFont(name: "Optima Regular", size: 18)
+        labelTitle.font = UIFont(name: "Noto Sans Kannada Regular", size: 16)
         labelTitle.textColor = .white
-        labelSubTitle.font = UIFont(name: "Optima Regular", size: 14)
+        labelSubTitle.font = UIFont(name: "Noto Sans Kannada Regular", size: 16)
         labelSubTitle.textColor = .white
     }
     

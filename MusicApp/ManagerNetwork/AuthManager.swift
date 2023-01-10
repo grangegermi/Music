@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 final class AuthManager {
     
@@ -72,7 +73,7 @@ final class AuthManager {
                 
                 let result =  try JSONDecoder().decode(AuthResponse.self, from: data)
                 self.casheToken(result:result)
-//                print(result)
+                print(result)
                 completion(true)
             } catch{
                 completion(false)
@@ -118,7 +119,8 @@ final class AuthManager {
          
             
             do {
-               var result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                
+                var result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 var token = result.access_token
 //                self.token = result.access_token
                 completion(.success(token))
@@ -130,8 +132,6 @@ final class AuthManager {
                 print(error)
             }
             
-    
-            
         }
         task.resume()
         
@@ -142,27 +142,38 @@ final class AuthManager {
     }
     
     var accessToken: String? {
-        return UserDefaults.standard.string(forKey: "access_token")
+        
+        return KeychainWrapper.standard.string(forKey: "access_token")
+     
     }
     
         var refreshToken:String?{
-        return UserDefaults.standard.string(forKey: "refresh_token")
+          
+            return KeychainWrapper.standard.string(forKey: "refresh_token")
+
     }
     
         var tokenDate:Date?{
-        return UserDefaults.standard.object(forKey: "expires_in") as? Date
+           
+            return KeychainWrapper.standard.object(forKey: "expires_in") as? Date
+        
+
     }
     
  
     func casheToken(result:AuthResponse){
-        
-        UserDefaults.standard.set(result.access_token, forKey: "access_token")
-        if let refreshToken = result.refresh_token {
-            UserDefaults.standard.set(result.refresh_token, forKey: "refresh_token")
+       
+        KeychainWrapper.standard.set(result.access_token, forKey: "access_token")
+
+        if   result.refresh_token != nil {
+            KeychainWrapper.standard.set(result.refresh_token!, forKey: "refresh_token")
+
         }
         
-        UserDefaults.standard.set(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expires_in")
+        KeychainWrapper.standard.set(Double(Date().timeIntervalSinceNow) + Double(result.expires_in), forKey: "expires_in")
         
+//        KeychainWrapper.standard.set(Int(Date().addingTimeInterval(TimeInterval(result.expires_in))), forKey:"expires_in")
+
     }
 
 }

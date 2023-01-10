@@ -47,7 +47,7 @@ struct Artist: Decodable {
     let name: String
     let type: String
 //    let images: [PIImage]?
-//    let external_urls: [String: String]
+    let external_urls: [String: String]
 }
 
 //{

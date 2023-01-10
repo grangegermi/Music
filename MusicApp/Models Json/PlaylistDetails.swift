@@ -29,6 +29,7 @@ struct Items:Decodable{
 struct Owner:Decodable{
     let href:String
     let display_name:String
+    let id:String
 }
 struct Followers:Decodable{
     let total:Int

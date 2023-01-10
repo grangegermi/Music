@@ -156,10 +156,7 @@ final class ApiCaller{
         }
         
     }
-        
-    
-        
-        
+
         func getRecommendationsGenres(completion:@escaping((Result<GenresRecomendation, Error>)) -> Void) {
             
             AuthManager.shared.getRefreshToken { token in
@@ -467,7 +464,7 @@ final class ApiCaller{
                     do {
 //                            var category = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                         var category = try JSONDecoder().decode(CategoryDetails.self, from: data)
-                        print(category)
+//                        print(category)
                         completion(.success(category))
                      
                         
@@ -485,10 +482,53 @@ final class ApiCaller{
                 completion(.failure(error))
             }
         }
-
+    }
+    
+     
+    func search(query:String, completion: @escaping ((Result<Search,Error>)) -> Void) {
+        
+        AuthManager.shared.getRefreshToken { token in
+            
+            switch token{
+            case .success(let refreshToken):
+                
+                guard let url = URL(string:Constants.basicURlApi + "/search?limit=10&type=album,artist,playlist,track&q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")") else {return}
+                
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "GET"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                    
+                    guard let data = data else {return}
+                
+                    do {
+//                            var search = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                        var search = try JSONDecoder().decode(Search.self, from: data)
+                        print(search)
+                        completion(.success(search))
+                     
+                        
+                    }
+                    
+                    catch let error {
+                        print(error)
+                        completion(.failure(error))
+                    }
+                }
+                
+                task.resume()
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
+        
         
     }
     
-        
+    
     }
 

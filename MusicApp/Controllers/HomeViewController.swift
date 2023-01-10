@@ -99,7 +99,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             switch result{
             case .success(let model):
-                self?.tracksRecomendation.append(contentsOf: model.tracks.compactMap({$0}))
+                self?.tracksRecomendation.append(contentsOf: model.tracks.filter{$0.preview_url != nil}.compactMap({$0}))
             case .failure(let error):
                 print(error)
             default: break
@@ -178,7 +178,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if indexPath.section == 0 {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.id, for: indexPath) as! AlbumCell
-                
+        
            
             cell.nameAlbums.text = albums[indexPath.row].name
            
@@ -192,7 +192,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if indexPath.section == 1 {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackCell.id, for: indexPath) as! TrackCell
-            
+    
             cell.nameArtist.text = playlist[indexPath.row].name
             cell.imageView.sd_setImage(with: playlist[indexPath.row].images.first?.url)
             cell.nameDescription.text = playlist[indexPath.row].description
@@ -369,10 +369,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.section == 0 {
+            
             let vc = AlbumViewController()
-            navigationController?.pushViewController(vc, animated: true)
-            vc.modalPresentationStyle = .fullScreen
             vc.album = albums[indexPath.row].self
+            vc.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(vc, animated: true)
   
         }
         if indexPath.section == 1 {
@@ -382,11 +383,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             vc.playlist = playlist[indexPath.row].self
         }
         if indexPath.section == 2 {
+    
             let vc = PlayerViewController()
             navigationController?.pushViewController(vc, animated: true)
             vc.modalPresentationStyle = .fullScreen
             vc.trackItems.append(tracksRecomendation[indexPath.row].preview_url ?? "")
             vc.image.append((tracksRecomendation[indexPath.row].album?.images.first?.url)!)
+            vc.names.append(tracksRecomendation[indexPath.row].name)
 //          vc.trackRecomendation = tracksRecomendation[indexPath.row].self
             
            

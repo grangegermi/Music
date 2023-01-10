@@ -34,15 +34,11 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
         createConstraints()
         labelNameArtist.textColor = .white
         labelNameTrack.textColor = .white
-     
-        
-     
-
+  
     }
     
     func createConstraints() {
-    
-        
+
         imageView.snp.makeConstraints { make in
             make.left.equalTo(contentView.snp.left)
             make.right.equalTo(contentView.snp.right)

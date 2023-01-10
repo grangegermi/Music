@@ -16,7 +16,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     var albumDetails:[AudioTrack] = []
     var sortedAlbum:[AudioTrack] = []
-  
+    
+   
     var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
@@ -54,6 +55,15 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             case.success(let model):
               
                 self?.albumDetails.append(contentsOf: model.tracks.items.filter{$0.preview_url != nil}.compactMap({$0}))
+                
+                    if self?.albumDetails.isEmpty == true {
+                    var vc = UIAlertController(title: "Message", message: "Album not available", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .cancel)
+                    vc.addAction(action)
+                        self?.present(vc, animated: true)
+                        
+                }
+                
                 print(self?.albumDetails)
       
             case.failure(let error):
@@ -70,9 +80,9 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
-        return 2
-        
+  
+            return 2
+
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -82,12 +92,12 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         if section == 1 {
-            
+        
             return albumDetails.count
         }
+
         return section
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = UICollectionViewCell()
@@ -102,21 +112,21 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         if indexPath.section == 1 {
-            
+
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCellDetailsTraks.id, for: indexPath) as! AlbumCellDetailsTraks
            
-           
-            cell.labelNameArtist.text = albumDetails[indexPath.row].artists.first?.name
-            cell.labelNameTrack.text = albumDetails[indexPath.row].name
-            cell.labelNumber.text = "\((indexPath.row) + 1)"
-            
-         
-            let formatter = DateComponentsFormatter()
-            formatter.allowedUnits = [.minute, .second]
-            formatter.unitsStyle = .positional
-            cell.labelTime.text = formatter.string(from: TimeInterval(albumDetails[indexPath.row].duration_ms))
-            
-            
+          
+                cell.labelNameArtist.text = albumDetails[indexPath.row].artists.first?.name
+                cell.labelNameTrack.text = albumDetails[indexPath.row].name
+                cell.labelNumber.text = "\((indexPath.row) + 1)"
+                
+                
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.minute, .second]
+                formatter.unitsStyle = .positional
+                cell.labelTime.text = formatter.string(from: TimeInterval(albumDetails[indexPath.row].duration_ms))
+                
+       
             return cell
         }
         return cell
@@ -124,11 +134,18 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-        let vc = PlayerViewController()
+//        let vc = PlayerViewController()
+//        print("selected")
+//        navigationController?.pushViewController(vc, animated: true)
+//        vc.modalPresentationStyle = .fullScreen
+////        vc.items = albumDetails.self
+//        vc.trackItems.append(albumDetails[indexPath.row].preview_url!)
+//        vc.image.append((album.images.first!.url))
+//        vc.names.append(albumDetails[indexPath.row].name)
+        let vc = ViewController()
+        vc.itemArray.append(albumDetails[indexPath.row].preview_url!)
         navigationController?.pushViewController(vc, animated: true)
         vc.modalPresentationStyle = .fullScreen
-        vc.trackItems.append(albumDetails[indexPath.row].preview_url!)
-        vc.image.append((album.images.first!.url))
       
     }
      

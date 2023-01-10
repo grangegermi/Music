@@ -16,11 +16,10 @@ struct AuthResponse:Decodable {
     let token_type:String
 }
 
-//{
-//    "access_token" = "BQDpow6bGRvhkAVY6eAauT1k6R1Md8HwTLPW1xhirBgTle0ahBNncGeHtMTvv-ZqJpz_QgyqrwVXJlYSfxvp7fylANi4Pq4x7oOrKkJ0K0sxnPUlz17rFiQJxHD1p1spg76gNltqu1sH9HlGwiR_ZyZwyA3yFAIVxO-0v7v_cFCOiqPqOPycdfhsGQRgT4P5fjhsXomHiYeR_hk";
-//    "expires_in" = 3600;
-//    "refresh_token" = "AQCXC7xF-WOv82c48_lBxoZpR_Rd5Du-4bMH_NAkrrPNpF66k9TYcALa0MwraAG15VUha99qPrJqWqLwcQ9YfdoVmQZvxqX4l48nH_NnNQAQ5U3iK_-CFawy0jKrcbYz3O4";
-//    scope = "user-read-private";
-//    "token_type" = Bearer;
-//}
+//AuthResponse(
+//access_token: "BQAfeekVo0IstC-bcDN_XArHkfoDoIPLWs-w69Col7jS0Aew7F2wwuPbb2Q6Kf5sbwCMf7xXHItpBPr56oWRP8qeGsRPN1-KNeSS_-S2_DbnWvSU6-ZgevDlU6edJcX4oCi6z43eNUyBrTbMdt-8BjUPPUaQsaaSLb_k4Yrr_5SRzGeF2nUxKc3Hua7TTObVXu0IvW8_0lYLCQPto1QS8QCr6bWR6QM6agx65fcmT_7hxB1oRqBGc0SnhTU0L_6fezs83a3kVvk_PNIbahMm9Rk6l7iIA8OUX2t8kJhd-kDCB8-7Iw",
+//expires_in: 3600,
+//refresh_token:Optional("AQACR10DEPV14eBVMIfOx0RLliLwnSXiwoXlnkXhUm9iOYOLqgq-GLCiBqJpK-NjWBplhVLIL17kD09bRXsKd3Jsmx01dHODoHXTN6fu8gSqTl1RICUfCb7w_beykga6KQI"),
+//scope: "playlist-read-private user-library-read user-follow-read user-library-modify playlist-modify-private playlist-modify-public user-read-email user-read-private",
+//token_type: "Bearer")
 

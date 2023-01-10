@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundView = UIVieww()
         
         tableView.register(CellForSettings.self, forCellReuseIdentifier: CellForSettings.id)
         
@@ -78,5 +79,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundView = UIVieww()
+       
+    }
+    
 }
 
