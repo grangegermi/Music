@@ -118,7 +118,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.id, for: indexPath) as! CategoryCell
         
         cell.label.text = category[indexPath.row].name
-        cell.imageView.sd_setImage(with: (category[indexPath.row].icons.first?.url)!)
+        cell.imageView.sd_setImage(with: (category[indexPath.row].icons.first?.url))
         return cell
     }
 

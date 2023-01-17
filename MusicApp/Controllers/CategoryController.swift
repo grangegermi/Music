@@ -72,7 +72,7 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
      
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendationCell.id, for: indexPath) as! RecomendationCell
             cell.namePlaylist.text = categoryDetails[indexPath.row].name
-            cell.imageView.sd_setImage(with: categoryDetails[indexPath.row].images.first?.url)
+        cell.imageView.sd_setImage(with: categoryDetails[indexPath.row].images.first?.url)
             
             return cell
         

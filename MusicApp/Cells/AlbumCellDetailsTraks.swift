@@ -15,8 +15,9 @@ class AlbumCellDetailsTraks: UICollectionViewCell {
     let labelNameArtist = UILabel()
     let labelNameTrack = UILabel()
     let labelNumber = UILabel()
-    let labelTime = UILabel()
     let view = UIView()
+    let buttonLike = UIButton()
+    let buttonAdd = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,7 +37,9 @@ class AlbumCellDetailsTraks: UICollectionViewCell {
         view.addSubview(labelNumber)
         view.addSubview(labelNameTrack)
         view.addSubview(labelNameArtist)
-        view.addSubview(labelTime)
+        
+        contentView.addSubview(buttonLike)
+        contentView.addSubview(buttonAdd)
         
         labelNameArtist.font = UIFont(name: "Noto Sans Kannada Bold", size: 16)
         labelNameArtist.textColor = .white
@@ -47,14 +50,28 @@ class AlbumCellDetailsTraks: UICollectionViewCell {
         labelNumber.font = UIFont(name: "Noto Sans Kannada Regular", size: 16)
         labelNumber.textColor = .white
         
-        labelTime.font = UIFont(name: "Noto Sans Kannada Regular", size: 16)
-        labelTime.textColor = .white
+    
         view.layer.cornerRadius = 6
         view.layer.masksToBounds = true
         createConstraints()
+        createStyleForButtons()
     }
     
+    func createStyleForButtons() {
+        
+        var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+
+        buttonLike.setImage(imageLike, for: .normal)
+        buttonLike.tintColor = .white
+        
+        
+        var imagePlus = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
     
+        buttonAdd.setImage(imagePlus, for: .normal)
+        buttonAdd.tintColor = .white
+        
+        
+    }
     
     func createConstraints() {
         
@@ -73,13 +90,22 @@ class AlbumCellDetailsTraks: UICollectionViewCell {
           
         }
         
-        labelTime.snp.makeConstraints { make in
-            make.right.equalTo(view.snp.right).inset(10)
-            make.width.equalTo(80)
+        buttonLike.snp.makeConstraints { make in
+            make.right.equalTo(view.snp.right).inset(60)
+            make.width.equalTo(30)
             make.height.equalTo(30)
             make.centerY.equalTo(view.snp.centerY)
           
         }
+        
+        buttonAdd.snp.makeConstraints { make in
+            make.right.equalTo(view.snp.right).inset(30)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+            make.centerY.equalTo(view.snp.centerY)
+          
+        }
+        
         labelNameArtist.snp.makeConstraints { make in
             
             make.left.equalTo(view.snp.left).inset(60)

@@ -5,6 +5,7 @@
 //  Created by Даша Волошина on 28.12.22.
 //
 
+
 import UIKit
 import SnapKit
 
@@ -16,6 +17,8 @@ class PlaylistCell: UICollectionViewCell {
     let button = UIButton()
     let imageView = UIImageView()
     let labelDescription = UILabel()
+    let buttonLike = UIButton()
+    let buttonAdd = UIButton()
 
     override init(frame:CGRect){
         super.init(frame:frame)
@@ -24,6 +27,8 @@ class PlaylistCell: UICollectionViewCell {
         contentView.addSubview(label)
         contentView.addSubview(button)
         contentView.addSubview(labelDescription)
+        contentView.addSubview(buttonLike)
+        contentView.addSubview(buttonAdd)
         
         let image = UIImage(systemName: "play.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))
         
@@ -40,7 +45,22 @@ class PlaylistCell: UICollectionViewCell {
         labelDescription.numberOfLines = 0
         labelDescription.textColor = .white
         createConstraints()
+        createStyleForButtons()
+    }
+    
+    func createStyleForButtons() {
+        
+        var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
 
+        buttonLike.setImage(imageLike, for: .normal)
+        buttonLike.tintColor = .white
+        
+        
+        var imagePlus = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+    
+        buttonAdd.setImage(imagePlus, for: .normal)
+        buttonAdd.tintColor = .white
+ 
     }
      
     func createConstraints() {
@@ -64,12 +84,26 @@ class PlaylistCell: UICollectionViewCell {
             make.width.equalTo(200)
             make.top.equalTo(contentView.snp.bottom).inset(70)
         }
-//        
+//
         labelDescription.snp.makeConstraints { make in
             make.height.equalTo(60)
             make.width.equalTo(200)
             make.top.equalTo(contentView.snp.bottom).inset(50)
         }
+        
+       buttonLike.snp.makeConstraints { make in
+           make.top.equalTo(contentView.snp.bottom).inset(90)
+           make.right.equalTo(contentView.snp.right).inset(30)
+           make.width.equalTo(30)
+           make.height.equalTo(30)
+        }
+        
+        buttonAdd.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.bottom).inset(90)
+            make.right.equalTo(contentView.snp.right)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+         }
     }
     
     required init?(coder: NSCoder) {

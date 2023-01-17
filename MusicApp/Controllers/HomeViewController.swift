@@ -66,13 +66,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func getNeetworkData() {
        let group = DispatchGroup()
         group.enter()
-        ApiCaller.sharedCaller.getNewReleases(completion: { result in
+        ApiCaller.sharedCaller.getNewReleases(completion: {[weak self] result in
       
                 switch result {
                 case.success(let model):
-                    self.albums.append(contentsOf: model.albums.items.compactMap({$0}))
+                    self?.albums.append(contentsOf: model.albums.items.compactMap({$0}))
 //                    print(self.albums.count)
                 case.failure(let error):
+                    if error != nil {
+                        self?.collectionView.emptyView(title:"Ошибка", message: "Перезагрузите приложение")
+                    }
                     print(error)
                     
                 default: break
@@ -88,7 +91,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self?.playlist.append(contentsOf: model.playlists.items.compactMap({$0}))
            
             case .failure( let error):
+                
+                if error != nil {
+                    self?.collectionView.emptyView(title:"Ошибка", message: "Перезагрузите приложение")
+                }
+                
                 print(error)
+                
             default: break
             }
             group.leave()
@@ -101,6 +110,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             case .success(let model):
                 self?.tracksRecomendation.append(contentsOf: model.tracks.filter{$0.preview_url != nil}.compactMap({$0}))
             case .failure(let error):
+                
+                if error != nil {
+                    self?.collectionView.emptyView(title:"Ошибка", message: "Перезагрузите приложение")
+                }
+                
                 print(error)
             default: break
         }
@@ -396,4 +410,57 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
   
+}
+
+extension UICollectionView {
+    
+    func emptyView(title:String, message:String) {
+        
+        
+        var emptyView = UIView()
+        var titleLabel = UILabel()
+        var messageLabel = UILabel()
+      
+        emptyView.frame = CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height)
+        emptyView.addSubview(titleLabel)
+        emptyView.addSubview(messageLabel)
+        emptyView.backgroundColor = .gray
+     
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(emptyView.snp.centerX)
+            make.width.equalTo(200)
+            make.height.equalTo(60)
+            make.top.equalTo(emptyView.snp.top).inset(120)
+            
+        }
+        
+        messageLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(emptyView.snp.centerX)
+            make.width.equalTo(200)
+            make.height.equalTo(60)
+            make.top.equalTo(emptyView.snp.top).inset(200)
+            
+        }
+        
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont(name: "Noto Sans Kannada Bold", size: 18)
+        titleLabel.textColor = .white
+        titleLabel.textAlignment = .center
+        
+        messageLabel.numberOfLines = 0
+        messageLabel.font = UIFont(name: "Noto Sans Kannada Regular", size: 16)
+        messageLabel.textColor = .white
+        messageLabel .textAlignment = .center
+        
+        titleLabel.text = title
+        messageLabel.text = message
+
+        self.backgroundView = emptyView
+       
+    }
+    
+    func restore() {
+        self.backgroundView = nil
+     
+    }
 }

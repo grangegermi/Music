@@ -316,7 +316,7 @@ final class ApiCaller{
                 switch token{
                 case .success(let refreshToken):
                     
-                    guard let url = URL(string:Constants.basicURlApi + "/browse/featured-playlists?limit=30") else
+                    guard let url = URL(string:Constants.basicURlApi + "/browse/featured-playlists?limit=10") else
                     {return}
                     
                     var request = URLRequest(url: url)
@@ -528,6 +528,257 @@ final class ApiCaller{
         
         
     }
+    
+    
+    func getPlaylistUser(completion: @escaping((Result<[Item],Error>)) -> Void) {
+        
+        AuthManager.shared.getRefreshToken { token in
+            
+            switch token{
+            case .success(let refreshToken):
+                
+                guard let url = URL(string:Constants.basicURlApi + "/me/playlists/?limit=50") else {return}
+                
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "GET"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                    
+                    guard let data = data else {return}
+                    
+                    do {
+//                        var user =  try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+//                        print(user)
+                        var userPlaylist = try JSONDecoder().decode(LibraryPlaylist.self, from: data)
+                        print(userPlaylist)
+                        completion(.success(userPlaylist.items))
+                        print(userPlaylist)
+                    }
+                    
+                    catch let error {
+                        print(error)
+                        completion(.failure(error))
+                    }
+                }
+                
+                task.resume()
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func createUsersPlaylist(name:String, completion:@escaping (Bool) -> Void) {
+        getUser { user in
+            switch user {
+            case.success(let user):
+                
+                AuthManager.shared.getRefreshToken { token in
+                    
+                    switch token{
+                    case .success(let refreshToken):
+                        
+                        guard let url = URL(string:Constants.basicURlApi + "/users/\(user.id)/playlists") else {return}
+                        
+                        var request = URLRequest(url: url)
+                        
+                        request.httpMethod = "POST"
+                        request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                        
+                        let json = [
+                            "name": name
+                        ]
+                        
+                        request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
+                        
+                        let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                            
+                            guard let data = data else {return}
+                            
+                            
+                            do {
+                                var result = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                                
+                                if let response = result as? [String: Any], response["id"] as? String != nil {
+                                    completion(true)
+                                }
+                                
+                                print("created")
+                            }
+                            
+                            catch let error {
+                                print(error)
+                                completion(false)
+                            }
+                        }
+                        
+                        task.resume()
+                    case .failure(let error):
+                        print(error)
+                        completion(false)
+                    }
+                }
+                
+            case.failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+    func deletePlaylist(name:String, completion:@escaping (Bool) -> Void) {
+        getUser { user in
+            switch user {
+            case.success(let user):
+                
+                AuthManager.shared.getRefreshToken { token in
+                    
+                    switch token{
+                    case .success(let refreshToken):
+                        
+                        guard let url = URL(string:Constants.basicURlApi + "/users/\(user.id)/playlists") else {return}
+                        
+                        var request = URLRequest(url: url)
+                        
+                        request.httpMethod = "DELETE"
+                        request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                        
+//                        let json = [
+//                            "name": name
+//                        ]
+//
+//                        request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
+                        
+                        let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                            
+                            guard data != nil else {return}
+                            completion(true)
+ 
+                        }
+                        
+                        task.resume()
+                    case .failure(let error):
+                        print(error)
+                        completion(false)
+                    }
+                }
+                
+            case.failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+    
+    
+    func addTrackToPlaylist(track:AudioTrack, playlist:Item, completion:@escaping(Bool) -> Void) {
+        
+        AuthManager.shared.getRefreshToken { token in
+             switch token{
+            case .success(let refreshToken):
+                
+                guard let url = URL(string:Constants.basicURlApi + "/playlists/\(playlist.id)/tracks") else {return}
+                
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "POST"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                 let json = [
+                            "uris":["spotify:track:\(track.id)"]
+                            
+                            ]
+                 print(json)
+                 request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
+                 
+                 let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                    
+                    guard let data = data else {return}
+                    
+                    do {
+                        var result = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                        print(result)
+                        if let response = result as? [String: Any],
+                           response["snapshot_id"] as? String != nil {
+                            completion(true)
+                    }
+                    }
+                    
+                    catch let error {
+                        print(error)
+                        completion(false)
+                    }
+                }
+                
+                task.resume()
+            case .failure(let error):
+                print(error)
+                completion(false)
+            }
+        }
+    }
+    
+    
+    
+    
+    func deleteTrackFromPlaylist(track:AudioTrack,playlist:Item,completion: @escaping(Bool)-> Void) {
+        AuthManager.shared.getRefreshToken { token in
+             switch token{
+            case .success(let refreshToken):
+                
+                guard let url = URL(string:Constants.basicURlApi + "/playlists/\(playlist.id)/tracks") else {return}
+                
+                var request = URLRequest(url: url)
+                
+                request.httpMethod = "DELETE"
+                request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                 
+                 let json: [String:Any] = [
+                                        "tracks": [
+                                            [
+                                                "uri":"spotify:track:\(track.id)"
+                                            ]
+                                                    ]
+                                        ]
+                 
+                 request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
+                 
+                 let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+                    
+                    guard let data = data else {return}
+                    
+                    do {
+                        var result = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                        print(result)
+                        if let response = result as? [String: Any],
+                           response["snapshot_id"] as? String != nil {
+                            completion(true)
+                    }
+                    }
+                    
+                    catch let error {
+                        print(error)
+                        completion(false)
+                    }
+                }
+                
+                task.resume()
+            case .failure(let error):
+                print(error)
+                completion(false)
+            }
+        }
+    }
+        
+    
     
     
     }

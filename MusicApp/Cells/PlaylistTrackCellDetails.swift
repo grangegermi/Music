@@ -16,6 +16,8 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
     let labelNameTrack = UILabel()
     let imageView = UIImageView()
     let view = UIView()
+    let buttonLike = UIButton()
+    let buttonAdd = UIButton()
     
     override init(frame:CGRect){
         super.init(frame:frame)
@@ -25,16 +27,34 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
         contentView.addSubview(imageView)
         contentView.addSubview(labelNameTrack)
         contentView.addSubview(labelNameArtist)
+        contentView.addSubview(buttonLike)
+        contentView.addSubview(buttonAdd)
         
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         labelNameArtist.font = UIFont(name: "Noto Sans Kannada Bold", size: 16)
         labelNameTrack.font = UIFont(name: "Noto Sans Kannada Regular", size: 14)
-        createConstraints()
         labelNameArtist.textColor = .white
         labelNameTrack.textColor = .white
-  
+        
+        createConstraints()
+        createStyleForButtons()
+    }
+    
+    func createStyleForButtons() {
+        
+        var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+
+        buttonLike.setImage(imageLike, for: .normal)
+        buttonLike.tintColor = .white
+        
+        
+        var imagePlus = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+    
+        buttonAdd.setImage(imagePlus, for: .normal)
+        buttonAdd.tintColor = .white
+ 
     }
     
     func createConstraints() {
@@ -61,6 +81,22 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
             make.width.equalTo(120)
             make.height.equalTo(30)
         }
+        
+       buttonLike.snp.makeConstraints { make in
+            
+            make.right.equalTo(contentView.snp.right).inset(30)
+            make.top.equalTo(contentView.snp.top).inset(220)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
+        }
+        
+        buttonAdd.snp.makeConstraints { make in
+             
+             make.right.equalTo(contentView.snp.right)
+             make.top.equalTo(contentView.snp.top).inset(220)
+             make.width.equalTo(20)
+             make.height.equalTo(20)
+         }
       
     }
     

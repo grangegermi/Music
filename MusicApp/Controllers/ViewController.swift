@@ -38,25 +38,35 @@ class ViewController: UIViewController {
         createconstraints ()
         createPlayer ()
         
-        token = queuePlayer.observe(\.currentItem, changeHandler: { player, _ in
-            if self.queuePlayer.items().count == 1 {
-                self.createPlayer()
-            }
-        })
+   
+        
+//        token = queuePlayer.observe(\.currentItem, changeHandler: { player, _ in
+//            if self.queuePlayer.items().count == 1 {
+//                self.createPlayer()
+//            }
+//        })
     }
     
     func createPlayer () {
-//        avItem = AVPlayerItem(url: URL(string: item)!)
-//        queuePlayer = AVQueuePlayer(items: [avItem])
-//        queuePlayer.play()
         
-        for item in itemArray {
-            avItem = AVPlayerItem(url: URL(string:item)!)
-            queuePlayer.insert(avItem, after: queuePlayer.items().last)
-            queuePlayer.play()
+        DispatchQueue.main.async {
+            
+            self.avItem = AVPlayerItem(url: URL(string: self.itemArray[ self.index])!)
+            self.queuePlayer = AVQueuePlayer(items: [ self.avItem])
+            self.queuePlayer.play()
         }
+        
     }
-    
+       
+//      
+//            
+//            //        for item in itemArray {
+//            //            avItem = AVPlayerItem(url: URL(string:item)!)
+//            //            queuePlayer.insert(avItem, after: queuePlayer.items().last)
+//            //            queuePlayer.play()
+//            //        }
+//        }
+//    }
     @objc func tapToBack(_ sender:UIButton){
         print("back")
         

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct PlaylistDetails: Decodable{
     let description:String
     let followers:Followers

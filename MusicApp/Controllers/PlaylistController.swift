@@ -44,27 +44,31 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
         }
 
         func networkData () {
-             let group = DispatchGroup()
+            
+            let group = DispatchGroup()
+            
             group.enter()
-            ApiCaller.sharedCaller.getPlaylists(playlist: playlist) { [weak self] result in
-                switch result {
-                case .success(let model):
-                    
-                    self?.playlistDetails.append(contentsOf: model.tracks.items.filter{$0.track.preview_url != nil}.compactMap({$0}))
-                    
-                    if self?.playlistDetails.isEmpty == true {
-                    var vc = UIAlertController(title: "Message", message: "Playlist not available", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .cancel)
-                    vc.addAction(action)
-                        self?.present(vc, animated: true)
+       
+                ApiCaller.sharedCaller.getPlaylists(playlist: self.playlist) { [weak self] result in
+            
+                    switch result {
+                    case .success(let model):
                         
+                        self?.playlistDetails.append(contentsOf: model.tracks.items.filter{$0.track.preview_url != nil}.compactMap({$0}))
+                        if self?.playlistDetails.isEmpty == true {
+                        var vc = UIAlertController(title: "Message", message: "Playlist not available", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "Ok", style: .cancel)
+                        vc.addAction(action)
+                            self?.present(vc, animated: true)
+                            
+                    }
+                        
+                    case.failure(let error):
+                        print(error)
+                    }
+                    group.leave()
                 }
-                    
-                case.failure(let error):
-                    print(error)
-                }
-                group.leave()
-            }
+           
             group.notify(queue: .main){
                 self.collectionView.reloadData()
             }
@@ -109,7 +113,7 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaylistCell.id, for: indexPath) as! PlaylistCell
                
                 cell.label.text = playlist.name
-                cell.imageView.sd_setImage(with:playlist.images.first?.url)
+                cell.imageView.sd_setImage(with: playlist.images.first?.url)
                 cell.labelDescription.text = playlist.description
                 cell.button.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
                 
@@ -124,7 +128,7 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
 
                 cell.labelNameTrack.text = playlistDetails[indexPath.row].track.name
                 cell.labelNameArtist.text = playlistDetails[indexPath.row].track.artists.first?.name
-                cell.imageView.sd_setImage(with: playlistDetails[indexPath.row].track.album?.images.first?.url)
+                cell.imageView.sd_setImage(with: (playlistDetails[indexPath.row].track.album?.images.first?.url))
 
                 return cell
             }

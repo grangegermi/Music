@@ -64,7 +64,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
                         
                 }
                 
-                print(self?.albumDetails)
+//                print(self?.albumDetails)
       
             case.failure(let error):
                 print(error)
@@ -78,6 +78,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
        
     }
+    
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
   
@@ -119,19 +121,68 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
                 cell.labelNameArtist.text = albumDetails[indexPath.row].artists.first?.name
                 cell.labelNameTrack.text = albumDetails[indexPath.row].name
                 cell.labelNumber.text = "\((indexPath.row) + 1)"
-                
-                
-                let formatter = DateComponentsFormatter()
-                formatter.allowedUnits = [.minute, .second]
-                formatter.unitsStyle = .positional
-                cell.labelTime.text = formatter.string(from: TimeInterval(albumDetails[indexPath.row].duration_ms))
-                
-       
+                cell.buttonLike.addTarget(self, action: #selector(addToLike), for: .touchUpInside)
+                cell.buttonAdd.addTarget(self, action: #selector(addTrackToPlaylist), for: .touchUpInside)
+
             return cell
         }
         return cell
     }
+    
+    @objc func addToLike (_ sender:UIButton){
+        var index = 0
+        
+        let navVC = tabBarController?.viewControllers![2] as! UINavigationController
 
+        let vc = navVC.topViewController as! LibraryViewController
+
+//        vc.likesVC.likesTracks.append(contentsOf: albumDetails.filter{$0.name}.compactMap{$0})
+    
+        
+        vc.likesVC.likesTracks.append(contentsOf:  albumDetails.map({$0.name}))
+        vc.likesVC.likesSong.append(contentsOf:    albumDetails.map({$0.artists[index].name}))
+//        vc.likesVC.likesImages.append((album.images.first?.url)!)
+        print(vc.likesVC.likesTracks)
+        print(vc.likesVC.likesSong)
+//        print(vc.likesVC.likesImages)
+        
+//        print(arraySorted)
+    
+        UserDefaults.standard.setValue(vc.likesVC.likesTracks, forKey: "names")
+        UserDefaults.standard.setValue(vc.likesVC.likesSong, forKey: "songs")
+//        UserDefaults.standard.setValue(vc.likesVC.likesImages, forKey: "images")
+    
+        tabBarController?.selectedIndex = 2
+
+        
+    }
+    
+    @objc func addTrackToPlaylist(_ sender:UIButton){
+        var alert = UIAlertController(title: "Add" , message: "Add To Playlist", preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "ok", style: .default) { _ in
+            
+            var index = 0
+            DispatchQueue.main.async {
+                let vc = LibraryPlaylistVC()
+                vc.selectionHandler = { [weak self] playlist in
+                    ApiCaller.sharedCaller.addTrackToPlaylist(track: (self?.albumDetails[index])!, playlist: playlist) { succsses in
+                       print("adding")
+                       
+                    }
+                }
+                self.present(UINavigationController(rootViewController: vc),
+                              animated: true, completion: nil)
+                vc.modalPresentationStyle = .fullScreen
+               
+               
+            }
+       
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
+        
+        
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
 //        let vc = PlayerViewController()
