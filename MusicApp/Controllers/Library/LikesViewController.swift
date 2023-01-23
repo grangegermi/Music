@@ -70,7 +70,7 @@ class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let group = DispatchGroup()
+ 
         if editingStyle == .delete {
             print("Deleted")
             

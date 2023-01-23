@@ -167,9 +167,10 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         
         if indexPath.section == 3 {
             let vc = PlayerViewController()
-            vc.trackItems.append(searchTracks[indexPath.row].preview_url ?? "")
-            vc.image.append((searchTracks[indexPath.row].album?.images.first?.url)!)
+            vc.itemArray.append(searchTracks[indexPath.row].preview_url ?? "")
+            vc.imageView.append((searchTracks[indexPath.row].album?.images.first?.url)!)
             vc.names.append(searchTracks[indexPath.row].name)
+            vc.namesTrack.append(searchTracks[indexPath.row].artists.first!.name)
             
             vc.modalPresentationStyle = .overFullScreen
             navigationController?.pushViewController(vc, animated: true)

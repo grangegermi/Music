@@ -316,7 +316,7 @@ final class ApiCaller{
                 switch token{
                 case .success(let refreshToken):
                     
-                    guard let url = URL(string:Constants.basicURlApi + "/browse/featured-playlists?limit=10") else
+                    guard let url = URL(string:Constants.basicURlApi + "/browse/featured-playlists?limit=20") else
                     {return}
                     
                     var request = URLRequest(url: url)

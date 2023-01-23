@@ -8,7 +8,10 @@
 import UIKit
 import SnapKit
 
+
 class AlbumCell: UICollectionViewCell {
+    
+    var selectionHandler: ((Item) -> Void)?
     
     static let id = "album"
     
@@ -35,6 +38,7 @@ class AlbumCell: UICollectionViewCell {
         nameAlbums.font = UIFont(name: "Noto Sans Kannada Regular", size: 12)
         nameAlbums.textColor = .white
         nameArtist.numberOfLines = 0
+        nameAlbums.numberOfLines = 0
         createConstraints()
         
     
@@ -54,7 +58,7 @@ class AlbumCell: UICollectionViewCell {
  
         nameArtist.snp.makeConstraints { make in
 
-                make.height.equalTo(30)
+                make.height.equalTo(50)
                 make.width.equalTo(120)
                 make.top.equalTo(contentView.snp.top).inset(100)
             }

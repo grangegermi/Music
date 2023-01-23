@@ -11,7 +11,7 @@ import SnapKit
 class AlbumCellDetails: UICollectionViewCell {
  
     static let id = "AlbumCellDetails"
-    
+
     let label = UILabel()
     let imageView = UIImageView()
     let labelDescription = UILabel()
@@ -40,11 +40,15 @@ class AlbumCellDetails: UICollectionViewCell {
         labelDescription.numberOfLines = 0
         labelDescription.textColor = .white
         
+    
+       
+        
         createConstraints()
         createStyleForButtons()
         
         
     }
+    
     
     func createStyleForButtons() {
         

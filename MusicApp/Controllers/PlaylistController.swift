@@ -114,7 +114,7 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
                
                 cell.label.text = playlist.name
                 cell.imageView.sd_setImage(with: playlist.images.first?.url)
-                cell.labelDescription.text = playlist.description
+//                cell.labelDescription.text = playlist.description
                 cell.button.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
                 
                 
@@ -147,8 +147,12 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
 //        //        vc.items = playlistDetails.self
 //        vc.image.append(contentsOf: playlistDetails.compactMap({$0.track.album?.images.first?.url}))
 //        vc.names.append(contentsOf: playlistDetails.compactMap({$0.track.name}))
-        let vc = ViewController()
-        vc.itemArray.append(contentsOf: playlistDetails.compactMap({$0.track.preview_url!}))
+        let vc = PlayerViewController()
+        vc.itemArray.append(contentsOf:  playlistDetails.compactMap({$0.track.preview_url!}))
+        vc.imageView.append(contentsOf:  playlistDetails.compactMap({$0.track.album?.images.first?.url}))
+        vc.names.append(contentsOf:      playlistDetails.compactMap({$0.track.name}))
+        vc.namesTrack.append(contentsOf: playlistDetails.compactMap({$0.track.artists.first?.name}))
+      
         navigationController?.pushViewController(vc, animated: true)
         vc.modalPresentationStyle = .fullScreen
 
