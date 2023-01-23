@@ -32,8 +32,8 @@ class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         
             
-            likesTracks = UserDefaults.standard.stringArray(forKey: "names")!
-            likesSong = UserDefaults.standard.stringArray(forKey: "songs") ?? [""]
+        likesTracks = UserDefaults.standard.stringArray(forKey: "names") ?? [""]
+        likesSong = UserDefaults.standard.stringArray(forKey: "songs") ?? [""]
           
     
     }

@@ -212,8 +212,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             sender.tintColor = .white
 
 //            vc.likesVC.likesTracks.removeFirst()
-            vc.likesVC.likesTracks.remove(at: sender.tag)
-            vc.likesVC.likesSong.remove(at: sender.tag)
+//            vc.likesVC.likesTracks.remove(at: sender.tag)
+//            vc.likesVC.likesSong.remove(at: sender.tag)
 
             UserDefaults.standard.set(false, forKey: "isSelected")
             UserDefaults.standard.synchronize()
