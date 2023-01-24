@@ -9,11 +9,8 @@ import UIKit
 import SDWebImage
 import SnapKit
 
-
-
-
 class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
-    
+    // should you have link on the cell strogly?
     var cell = AlbumCellDetailsTraks()
     var album = Album(album_type: "", available_markets: [], id: "", images: [], name: "", release_date: "", total_tracks: 0, artists: [])
 
@@ -61,7 +58,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             case.success(let model):
                 
                 self?.albumDetails.append(contentsOf: model.tracks.items.filter{$0.preview_url != nil}.compactMap({$0}))
-                
+                // == true is redundant
                 if self?.albumDetails.isEmpty == true {
                     var vc = UIAlertController(title: "Message", message: "Album not available", preferredStyle: .alert)
                     let action = UIAlertAction(title: "Ok", style: .cancel)
@@ -132,6 +129,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             var state = UserDefaults.standard.bool(forKey: "isSelected")
             cell.buttonLike.isSelected = state
+            //  this method is unnecessary and shouldn't be used.
+            // the reason of issue
             if  cell.buttonLike.isSelected == true {
                 cell.buttonLike.isSelected = false
                var imageLike = UIImage(systemName: "suit.heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
@@ -190,6 +189,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             sender.isSelected = false
 
             UserDefaults.standard.set(true, forKey: "isSelected")
+            //  this method is unnecessary and shouldn't be used.
             UserDefaults.standard.synchronize()
 //            UserDefaults.standard.set(false, forKey: "addTolike")
             

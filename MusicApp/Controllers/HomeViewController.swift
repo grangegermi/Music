@@ -12,14 +12,45 @@ import SDWebImage
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    // That is dat of your app. ViewController shoudn't store it
     var albums:[Album] = []
     var playlist:[Item] = []
     var tracksRecomendation:[Tracks] = []
     var category:[ItemsCategory] = []
     
-    var track = AudioTrack(album: Album(album_type: "", available_markets: [], id: "", images: [], name: "", release_date: "", total_tracks: 0, artists: []), artists: [], available_markets: [], disc_number: 0, duration_ms: 0, explicit: true, external_urls: ["":""], id: "", name: "", preview_url: "")
+    var track = AudioTrack(album: Album(album_type: "",
+                                        available_markets: [],
+                                        id: "",
+                                        images: [],
+                                        name: "",
+                                        release_date: "",
+                                        total_tracks: 0,
+                                        artists: []),
+                           artists: [],
+                           available_markets: [],
+                           disc_number: 0,
+                           duration_ms: 0,
+                           explicit: true,
+                           external_urls: ["":""],
+                           id: "",
+                           name: "",
+                           preview_url: "")
 
-    var trackRecomendation = Tracks(album: Album(album_type: "", available_markets: [], id: "", images: [], name: "", release_date: "", total_tracks: 0, artists: []), artists: [], available_markets: [], disc_number: 0, duration_ms: 0, id: "", name: "", preview_url: "")
+    var trackRecomendation = Tracks(album: Album(album_type: "",
+                                                 available_markets: [],
+                                                 id: "",
+                                                 images: [],
+                                                 name: "",
+                                                 release_date: "",
+                                                 total_tracks: 0,
+                                                 artists: []),
+                                    artists: [],
+                                    available_markets: [],
+                                    disc_number: 0,
+                                    duration_ms: 0,
+                                    id: "",
+                                    name: "",
+                                    preview_url: "")
     
     var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
@@ -70,9 +101,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
       
                 switch result {
                 case.success(let model):
+                    // self?.album has data race
                     self?.albums.append(contentsOf: model.albums.items.compactMap({$0}))
 //                    print(self.albums.count)
                 case.failure(let error):
+                    // hadle it plz
 //                    if error != nil {
 //                        self?.collectionView.emptyView(title:"Ошибка", message: "Перезагрузите приложение")
 //                    }
@@ -88,10 +121,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             switch result {
             case .success(let model):
+                // self?.playlist has data race
                 self?.playlist.append(contentsOf: model.playlists.items.compactMap({$0}))
            
             case .failure( let error):
-                
+                // hadle it plz
 //                if error != nil {
 //                    self?.collectionView.emptyView(title:"Ошибка", message: "Перезагрузите приложение")
 //                }
@@ -108,9 +142,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             switch result{
             case .success(let model):
+                // self?.playlist has data race
                 self?.tracksRecomendation.append(contentsOf: model.tracks.filter{$0.preview_url != nil}.compactMap({$0}))
             case .failure(let error):
-                
+                // hadle it plz
 //                if error != nil {
 //                    self?.collectionView.emptyView(title:"Ошибка", message: "Перезагрузите приложение")
 //                }
@@ -127,8 +162,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             switch result{
             case .success(let model):
+                // self?.category hs data race
                 self?.category.append(contentsOf: model.categories.items.compactMap({$0}))
             case.failure(let error):
+                // hadle it plz
                 print(error)
             }
         }
@@ -188,7 +225,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let cell = UICollectionViewCell()
         
-        //MARK: -  First
         if indexPath.section == 0 {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.id, for: indexPath) as! AlbumCell
@@ -202,7 +238,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
             return cell
         }
-        //MARK: -  Second
         if indexPath.section == 1 {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackCell.id, for: indexPath) as! TrackCell
