@@ -27,15 +27,16 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
 
         collectionView.backgroundView = UIVieww()
         search.searchBar.barStyle = .default
-        search.searchBar.placeholder = "Album, Artist, Track"
+        search.searchBar.placeholder = "Альбомы, Артисты, Плейлисты"
         search.definesPresentationContext = true
         search.searchResultsUpdater = self
         search.searchBar.delegate = self
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     
-        navigationController?.navigationBar.topItem?.title = "Search"
+        navigationController?.navigationBar.topItem?.title = "Поиск"
         navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
         navigationItem.searchController = search
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
        
         collectionView.delegate = self
         collectionView.dataSource = self

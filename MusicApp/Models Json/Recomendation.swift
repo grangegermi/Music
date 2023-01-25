@@ -8,7 +8,7 @@
 import Foundation
 
 struct TracksRecomendation:Decodable{
-    let tracks: [Tracks]
+    let tracks: [AudioTrack]
 }
 
 struct Tracks:Decodable {

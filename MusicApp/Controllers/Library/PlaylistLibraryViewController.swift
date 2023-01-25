@@ -26,7 +26,7 @@ class LibraryPlaylistVC: UIViewController, UITableViewDelegate, UITableViewDataS
         view.addSubview(tableView)
      
         tableView.frame = view.bounds
-        tableView.backgroundColor = .systemGray
+        tableView.backgroundColor = .darkGray
         tableView.register(LibraryCell.self, forCellReuseIdentifier: LibraryCell.id)
         tableView.delegate = self
         tableView.dataSource = self

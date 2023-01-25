@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class CategoryController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-   
-    
+class CategoryController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
  
     var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
@@ -26,7 +24,7 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
 
         view.addSubview(collectionView)
         collectionView.backgroundView = UIVieww()
-        collectionView.register(RecomendationCell.self, forCellWithReuseIdentifier: RecomendationCell.id)
+        collectionView.register(CategoryCellDetails.self, forCellWithReuseIdentifier: CategoryCellDetails.id)
         collectionView.dataSource = self
         collectionView.delegate = self
         navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
@@ -39,6 +37,10 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         getNetwork()
+        navigationController?.navigationBar.topItem?.title = "Категории"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
+        navigationController?.navigationBar.tintColor = .white
         
     }
     func getNetwork() {
@@ -70,8 +72,8 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
      
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecomendationCell.id, for: indexPath) as! RecomendationCell
-            cell.namePlaylist.text = categoryDetails[indexPath.row].name
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCellDetails.id, for: indexPath) as! CategoryCellDetails
+        cell.namePlaylist.text = categoryDetails[indexPath.row].name
         cell.imageView.sd_setImage(with: categoryDetails[indexPath.row].images.first?.url)
             
             return cell

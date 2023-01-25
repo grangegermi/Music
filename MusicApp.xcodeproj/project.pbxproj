@@ -44,7 +44,6 @@
 		DB5704FE2961BC3100555521 /* AlbumCellDetailsTraks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5704FD2961BC3100555521 /* AlbumCellDetailsTraks.swift */; };
 		DB65D103295C29230041A7DC /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65D102295C29230041A7DC /* PlaylistCell.swift */; };
 		DB65D107295C75940041A7DC /* PlaylistTrackCellDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65D106295C75940041A7DC /* PlaylistTrackCellDetails.swift */; };
-		DB6DB6632952FB0500DBB62F /* NewRealesesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6DB6622952FB0500DBB62F /* NewRealesesController.swift */; };
 		DB6DB6652952FB8500DBB62F /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6DB6642952FB8500DBB62F /* AlbumCell.swift */; };
 		DB6DB6672953011F00DBB62F /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6DB6662953011F00DBB62F /* TrackCell.swift */; };
 		DB6DB669295318EE00DBB62F /* RecomendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6DB668295318EE00DBB62F /* RecomendationCell.swift */; };
@@ -53,10 +52,11 @@
 		DB6ED52B295B1E4F00544A12 /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6ED52A295B1E4F00544A12 /* PlaylistController.swift */; };
 		DB769008296C00C1009E548A /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB769007296C00C1009E548A /* CategoryController.swift */; };
 		DB76900A296C725F009E548A /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB769009296C725F009E548A /* ColorsView.swift */; };
+		DB78C5CD2980722E002089D9 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB78C5CC2980722E002089D9 /* Class.swift */; };
+		DB78C5D0298112DD002089D9 /* CategoryCellDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB78C5CF298112DD002089D9 /* CategoryCellDetails.swift */; };
 		DB998A9729680F60002F531A /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB998A9629680F60002F531A /* SearchResult.swift */; };
 		DB998A99296840AE002F531A /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB998A98296840AE002F531A /* SearchCell.swift */; };
 		DBAB55CC295B45D1004C1E5F /* PlaylistDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAB55CB295B45D1004C1E5F /* PlaylistDetails.swift */; };
-		DBAB55CE295B4F4F004C1E5F /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAB55CD295B4F4F004C1E5F /* TrackViewController.swift */; };
 		DBAB55D0295B51C2004C1E5F /* TrackDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAB55CF295B51C2004C1E5F /* TrackDetails.swift */; };
 		DBAB55D2295B597E004C1E5F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAB55D1295B597E004C1E5F /* Category.swift */; };
 /* End PBXBuildFile section */
@@ -103,7 +103,6 @@
 		DB5704FD2961BC3100555521 /* AlbumCellDetailsTraks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCellDetailsTraks.swift; sourceTree = "<group>"; };
 		DB65D102295C29230041A7DC /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
 		DB65D106295C75940041A7DC /* PlaylistTrackCellDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTrackCellDetails.swift; sourceTree = "<group>"; };
-		DB6DB6622952FB0500DBB62F /* NewRealesesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRealesesController.swift; sourceTree = "<group>"; };
 		DB6DB6642952FB8500DBB62F /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		DB6DB6662953011F00DBB62F /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		DB6DB668295318EE00DBB62F /* RecomendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendationCell.swift; sourceTree = "<group>"; };
@@ -112,10 +111,11 @@
 		DB6ED52A295B1E4F00544A12 /* PlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistController.swift; sourceTree = "<group>"; };
 		DB769007296C00C1009E548A /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryController.swift; path = MusicApp/Controllers/CategoryController.swift; sourceTree = SOURCE_ROOT; };
 		DB769009296C725F009E548A /* ColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsView.swift; sourceTree = "<group>"; };
+		DB78C5CC2980722E002089D9 /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		DB78C5CF298112DD002089D9 /* CategoryCellDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellDetails.swift; sourceTree = "<group>"; };
 		DB998A9629680F60002F531A /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		DB998A98296840AE002F531A /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		DBAB55CB295B45D1004C1E5F /* PlaylistDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetails.swift; sourceTree = "<group>"; };
-		DBAB55CD295B4F4F004C1E5F /* TrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
 		DBAB55CF295B51C2004C1E5F /* TrackDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetails.swift; sourceTree = "<group>"; };
 		DBAB55D1295B597E004C1E5F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,10 +185,11 @@
 			children = (
 				DB387126294F4AFE00965210 /* AppDelegate.swift */,
 				DB387128294F4AFE00965210 /* SceneDelegate.swift */,
+				DB78C5CE29807749002089D9 /* ModelsForVC */,
+				DB39C2A729543B620076F780 /* Controllers */,
 				DB39C2AB29543C110076F780 /* ManagerNetwork */,
 				DB39C2AA29543BDB0076F780 /* Models Json */,
 				DB39C2A929543BA40076F780 /* Cells */,
-				DB39C2A729543B620076F780 /* Controllers */,
 				DB38712C294F4AFE00965210 /* Main.storyboard */,
 				DB38712F294F4B0100965210 /* Assets.xcassets */,
 				DB387131294F4B0100965210 /* LaunchScreen.storyboard */,
@@ -203,7 +204,6 @@
 				DB2DBC162975648A0059FF2D /* Library */,
 				DB769007296C00C1009E548A /* CategoryController.swift */,
 				DB5704F92961B9C900555521 /* AlbumViewController.swift */,
-				DBAB55CD295B4F4F004C1E5F /* TrackViewController.swift */,
 				DB6ED52A295B1E4F00544A12 /* PlaylistController.swift */,
 				DB38713E294F916400965210 /* HomeViewController.swift */,
 				DB387144294F919000965210 /* AuthViewController.swift */,
@@ -211,7 +211,6 @@
 				DB38712A294F4AFE00965210 /* PlayerViewController.swift */,
 				DB387146294F91A100965210 /* StartViewController.swift */,
 				DB387148294F91C400965210 /* TabBarViewController.swift */,
-				DB6DB6622952FB0500DBB62F /* NewRealesesController.swift */,
 				DB387142294F918400965210 /* SearchViewController.swift */,
 				DB29927F29675E24009B497A /* SearchResultViewController.swift */,
 			);
@@ -221,13 +220,14 @@
 		DB39C2A929543BA40076F780 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				DB78C5CF298112DD002089D9 /* CategoryCellDetails.swift */,
+				DB2992812967690C009B497A /* CategoryCell.swift */,
 				DB769009296C725F009E548A /* ColorsView.swift */,
 				DB998A98296840AE002F531A /* SearchCell.swift */,
 				DB65D106295C75940041A7DC /* PlaylistTrackCellDetails.swift */,
 				DB6DB6642952FB8500DBB62F /* AlbumCell.swift */,
 				DB65D102295C29230041A7DC /* PlaylistCell.swift */,
 				DB6DB6662953011F00DBB62F /* TrackCell.swift */,
-				DB2992812967690C009B497A /* CategoryCell.swift */,
 				DB387154294F954000965210 /* CellForSettings.swift */,
 				DB6DB668295318EE00DBB62F /* RecomendationCell.swift */,
 				DB5704FB2961BB3A00555521 /* AlbumCellDetails.swift */,
@@ -264,6 +264,14 @@
 				DB38713A294F910B00965210 /* AuthManager.swift */,
 			);
 			path = ManagerNetwork;
+			sourceTree = "<group>";
+		};
+		DB78C5CE29807749002089D9 /* ModelsForVC */ = {
+			isa = PBXGroup;
+			children = (
+				DB78C5CC2980722E002089D9 /* Class.swift */,
+			);
+			path = ModelsForVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,13 +398,11 @@
 				DB65D107295C75940041A7DC /* PlaylistTrackCellDetails.swift in Sources */,
 				DB38713B294F910B00965210 /* AuthManager.swift in Sources */,
 				DB387149294F91C400965210 /* TabBarViewController.swift in Sources */,
-				DBAB55CE295B4F4F004C1E5F /* TrackViewController.swift in Sources */,
 				DB65D103295C29230041A7DC /* PlaylistCell.swift in Sources */,
 				DB2DBC15297564780059FF2D /* PlaylistLibraryViewController.swift in Sources */,
 				DB2DBC13297564570059FF2D /* LikesViewController.swift in Sources */,
 				DBAB55D0295B51C2004C1E5F /* TrackDetails.swift in Sources */,
 				DB5704FA2961B9C900555521 /* AlbumViewController.swift in Sources */,
-				DB6DB6632952FB0500DBB62F /* NewRealesesController.swift in Sources */,
 				DB5704FE2961BC3100555521 /* AlbumCellDetailsTraks.swift in Sources */,
 				DB998A9729680F60002F531A /* SearchResult.swift in Sources */,
 				DB38714F294F929B00965210 /* AuthResponse.swift in Sources */,
@@ -407,6 +413,7 @@
 				DBAB55CC295B45D1004C1E5F /* PlaylistDetails.swift in Sources */,
 				DB6DB6672953011F00DBB62F /* TrackCell.swift in Sources */,
 				DB387127294F4AFE00965210 /* AppDelegate.swift in Sources */,
+				DB78C5D0298112DD002089D9 /* CategoryCellDetails.swift in Sources */,
 				DB2DBC1A297564F20059FF2D /* ToggleView.swift in Sources */,
 				DB387155294F954000965210 /* CellForSettings.swift in Sources */,
 				DB387129294F4AFE00965210 /* SceneDelegate.swift in Sources */,
@@ -414,6 +421,7 @@
 				DB0A396829505F64006E551B /* MyAlbum.swift in Sources */,
 				DB6ED52B295B1E4F00544A12 /* PlaylistController.swift in Sources */,
 				DB38714B294F91DE00965210 /* ProfileViewController.swift in Sources */,
+				DB78C5CD2980722E002089D9 /* Class.swift in Sources */,
 				DB998A99296840AE002F531A /* SearchCell.swift in Sources */,
 				DB2DBC1E2975C2270059FF2D /* LikeCell.swift in Sources */,
 				DB387147294F91A100965210 /* StartViewController.swift in Sources */,

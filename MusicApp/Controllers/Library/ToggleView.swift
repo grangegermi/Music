@@ -45,14 +45,14 @@ class ToggleView:UIView{
     
     func  createStyle () {
         
-        buttonLike.backgroundColor = .lightGray
-        buttonLike.setTitle("Likes", for: .normal)
+        buttonLike.backgroundColor = .systemGray2
+        buttonLike.setTitle("Лайки", for: .normal)
         buttonLike.layer.cornerRadius = 10
         buttonLike.setTitleColor(.white, for: .normal)
         buttonLike.addTarget(self, action: #selector(tapLikes), for: .touchUpInside)
         
-        buttonPlaylist.backgroundColor = .lightGray
-        buttonPlaylist.setTitle("Playlist", for: .normal)
+        buttonPlaylist.backgroundColor = .systemGray2
+        buttonPlaylist.setTitle("Плейлисты", for: .normal)
         buttonPlaylist.layer.cornerRadius = 10
         buttonPlaylist.setTitleColor(.white, for: .normal)
         buttonPlaylist.addTarget(self, action: #selector(tapPlylist), for: .touchUpInside)
@@ -63,15 +63,15 @@ class ToggleView:UIView{
         buttonLike.snp.makeConstraints { make in
             make.left.equalTo(self.snp.left).inset(5)
             make.top.equalTo(self.snp.top).inset(5)
-            make.width.equalTo(100)
-            make.height.equalTo(30)
+            make.width.equalTo(150)
+            make.height.equalTo(40)
         }
         
         buttonPlaylist.snp.makeConstraints { make in
-            make.left.equalTo(self.snp.left).inset(120)
+            make.left.equalTo(self.snp.left).inset(180)
             make.top.equalTo(self.snp.top).inset(5)
-            make.width.equalTo(100)
-            make.height.equalTo(30)
+            make.width.equalTo(150)
+            make.height.equalTo(40)
         }
         
         

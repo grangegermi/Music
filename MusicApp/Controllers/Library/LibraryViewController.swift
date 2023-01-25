@@ -26,10 +26,11 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         let contentSize = CGSize(width: view.frame.width*2, height:view.frame.height)
 
         view = UIVieww()
-        navigationController?.navigationBar.topItem?.title = "Library"
+        navigationController?.navigationBar.topItem?.title = "Библиотека"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createPlaylist))
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
+        navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
+        navigationController?.navigationBar.tintColor = .white
         
 //        view.backgroundColor = .gray
         view.addSubview(scrollView)
@@ -57,13 +58,13 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
     
     @objc func createPlaylist(_ sender:UIBarButtonItem){
         
-        let alert = UIAlertController(title: "Create", message: "Create your playlist", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Создать", message: "Создай свой первый плейлист", preferredStyle: .alert)
         alert.addTextField{ textField in
-            textField.placeholder = "Playlist..."
+            textField.placeholder = "Плейлист..."
 
         }
-    let action1 = UIAlertAction(title: "Cancel", style: .cancel)
-    let action2 = UIAlertAction(title: "ok", style: .default) { _ in
+    let action1 = UIAlertAction(title: "Отменить", style: .cancel)
+    let action2 = UIAlertAction(title: "ОК", style: .default) { _ in
                 guard let field = alert.textFields?.first,
                       let text = field.text,
                       !text.trimmingCharacters(in: .whitespaces).isEmpty else {

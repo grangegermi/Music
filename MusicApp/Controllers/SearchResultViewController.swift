@@ -43,22 +43,22 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         
         if section == 0 {
             
-             return "Albums"
+             return "Альбомы"
         }
         
         if section == 1 {
            
-            return "Playlist"
+            return "Плейлисты"
             
         }
         
         if section == 2 {
             
-            return "Artist"
+            return "Артисты"
         }
         if section == 3 {
             
-            return "Tracks"
+            return "Треки"
         }
         
         return String()

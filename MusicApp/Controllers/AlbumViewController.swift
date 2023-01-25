@@ -9,13 +9,16 @@ import UIKit
 import SDWebImage
 import SnapKit
 
-
-
-
 class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
-    var cell = AlbumCellDetailsTraks()
-    var album = Album(album_type: "", available_markets: [], id: "", images: [], name: "", release_date: "", total_tracks: 0, artists: [])
+    
+    var album = Album(album_type: "",
+                      available_markets: [],
+                      id: "", images: [],
+                      name: "",
+                      release_date: "",
+                      total_tracks: 0,
+                      artists: [])
 
     var albumDetails:[AudioTrack] = []
 
@@ -25,9 +28,24 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             return AlbumViewController.createSectionLayout(section: sectionIndex)
         })
     
-    var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+    var track = AudioTrack(album: Album(album_type: "",
+                                        available_markets: [],
+                                        id: "",
+                                        images: [],
+                                        name: "",
+                                        release_date: "",
+                                        total_tracks: 0,
+                                        artists: []),
+                           artists: [],
+                           available_markets: [],
+                           disc_number: 0,
+                           duration_ms: 0,
+                           explicit: true,
+                           external_urls: ["":""],
+                           id: "",
+                           name: "",
+                           preview_url: "")
     
-    var track = AudioTrack(album: Album(album_type: "", available_markets: [], id: "", images: [], name: "", release_date: "", total_tracks: 0, artists: []), artists: [], available_markets: [], disc_number: 0, duration_ms: 0, explicit: true, external_urls: ["":""], id: "", name: "", preview_url: "")
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,9 +80,9 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
                 
                 self?.albumDetails.append(contentsOf: model.tracks.items.filter{$0.preview_url != nil}.compactMap({$0}))
                 
-                if self?.albumDetails.isEmpty == true {
-                    var vc = UIAlertController(title: "Message", message: "Album not available", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .cancel)
+                if self!.albumDetails.isEmpty {
+                    var vc = UIAlertController(title: "Сообщение", message: "Альбом недоступен", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "ОK", style: .cancel)
                     vc.addAction(action)
                     self?.present(vc, animated: true)
                     
@@ -77,10 +95,9 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         group.notify(queue: .main){ [weak self] in
-            print("all")
             self?.collectionView.reloadData()
         }
-        
+
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -131,8 +148,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             cell.buttonLike.tag = indexPath.row
             
             var state = UserDefaults.standard.bool(forKey: "isSelected")
-            cell.buttonLike.isSelected = state
-            if  cell.buttonLike.isSelected == true {
+//            cell.buttonLike.isSelected = state
+            if  cell.buttonLike.isSelected {
                 cell.buttonLike.isSelected = false
                var imageLike = UIImage(systemName: "suit.heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
 
@@ -141,14 +158,12 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
             else {
                 cell.buttonLike.isSelected = true
+                
                 var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
 
                 cell.buttonLike.setImage(imageLike, for: .normal)
                 cell.buttonLike.tintColor = .white
             }
-            
-           
-
 
             return cell
         }
@@ -163,16 +178,18 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         let indexPath = collectionView.indexPathForItem(at: buttonPosition)
         let cell = collectionView.cellForItem(at: indexPath!) as! AlbumCellDetailsTraks
         
-        
+        guard let indexPath = indexPath else {return}
         if sender.isSelected  {
+            sender.isSelected = false
             print("added")
 
             let navVC = tabBarController?.viewControllers![2] as! UINavigationController
             
             let vc = navVC.topViewController as! LibraryViewController
-            
-            vc.likesVC.likesTracks.append(contentsOf: albumDetails.map({$0.name}))
-            vc.likesVC.likesSong.append(contentsOf:   albumDetails.map({$0.artists[index].name}))
+          
+//            vc.likesVC.likesTracks.append(contentsOf: albumDetails.map({$0.name}))
+            vc.likesVC.likesTracks.append(albumDetails[indexPath.row].name)
+            vc.likesVC.likesSong.append(albumDetails[indexPath.row].artists[indexPath.row].name)
             
             print(vc.likesVC.likesTracks)
             print(vc.likesVC.likesSong)
@@ -190,7 +207,6 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             sender.isSelected = false
 
             UserDefaults.standard.set(true, forKey: "isSelected")
-            UserDefaults.standard.synchronize()
 //            UserDefaults.standard.set(false, forKey: "addTolike")
             
 
@@ -212,8 +228,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             sender.tintColor = .white
 
 //            vc.likesVC.likesTracks.removeFirst()
-//            vc.likesVC.likesTracks.remove(at: sender.tag)
-//            vc.likesVC.likesSong.remove(at: sender.tag)
+            vc.likesVC.likesTracks.remove(at: indexPath.row)
+            vc.likesVC.likesSong.remove(at: indexPath.row)
 
             UserDefaults.standard.set(false, forKey: "isSelected")
             UserDefaults.standard.synchronize()
@@ -271,8 +287,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @objc func addTrackToPlaylist(_ sender:UIButton){
         
-        var alert = UIAlertController(title: "Add" , message: "Add To Playlist", preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "ok", style: .default) { _ in
+        var alert = UIAlertController(title: "Добавить в плейлист?" , message: "Трек будет добавлен", preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "ОК", style: .default) { _ in
             
             var index = 0
             DispatchQueue.main.async {
@@ -293,9 +309,9 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         alert.addAction(action)
         present(alert, animated: true)
-        
-        
+ 
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let vc = PlayerViewController()

@@ -19,7 +19,7 @@ class StartViewController: UIViewController {
         
         view.addSubview(buttonStart)
         view.backgroundColor = .orange
-        buttonStart.setTitle("Start", for: .normal)
+        buttonStart.setTitle("Начать", for: .normal)
         buttonStart.backgroundColor = .yellow
         buttonStart.setTitleColor(.black, for: .normal)
         buttonStart.layer.cornerRadius = 10

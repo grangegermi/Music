@@ -71,28 +71,7 @@ class AlbumCellDetailsTraks: UICollectionViewCell{
             createConstraints()
             createStyleForButtons()
         }
-//
-//        @objc func addToLike (_ sender:UIButton){
-//            //
-//
-//            if sender.tag == 1 {
-////                link?.addToLike(buttonLike)
-//                buttonLike.isHidden = true
-//                buttonLikeFull.isHidden = false
-//
-//            }
-//
-//            if sender.tag == 2 {
-//                //            var index = 0
-//                //            librarylink?.likesSong.remove(at: index)
-//                //            librarylink?.likesSong.remove(at: index)
-//                buttonLikeFull.isHidden = true
-//                buttonLike.isHidden = false
-//
-//            }
-//
-//
-//        }
+
         
         
         func createStyleForButtons() {

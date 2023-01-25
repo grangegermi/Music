@@ -21,7 +21,7 @@ class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         super.viewDidLoad()
         
         view.addSubview(tableView)
-        tableView.backgroundColor = .systemGray4
+        tableView.backgroundColor = .darkGray
         //        tableView.backgroundView = UIVieww()
         tableView.register( LikeCell.self, forCellReuseIdentifier: LikeCell.id)
         

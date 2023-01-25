@@ -70,7 +70,7 @@ final class ApiCaller{
         
     }
     
-    func getNewReleases(completion:@escaping((Result<NewReleasesResponse, Error>)) -> Void){
+    func getNewReleases(completion: @escaping(Result<NewReleasesResponse, Error>) -> Void) {
         
         AuthManager.shared.getRefreshToken { token in
             
@@ -84,21 +84,28 @@ final class ApiCaller{
                 request.httpMethod = "GET"
                 request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            let task = URLSession.shared.dataTask(with: request) { data, error,  response in
+//                if  let error = error {
+//                    error.response?.statusCode
+//                    completion(.failure(error))
+//                    }
+//                if  let data = data {
+                guard let data = data else {return}
+                        do {
+                            let album = try JSONDecoder().decode(NewReleasesResponse.self, from: data)
+    //                                                print(album)
+                            completion(.success(album))
+                            
+                            
+                        }catch let error {
+                            completion(.failure(error))
+                        }
+//                    }
                 
-                let task = URLSession.shared.dataTask(with: request) { data, error,  response in
-                    
-                    guard let data = data else {return}
-                    
-                    do {
-                        let album = try JSONDecoder().decode(NewReleasesResponse.self, from: data)
-//                                                print(album)
-                        completion(.success(album))
-                        
-                        
-                    }catch let error {
-                        completion(.failure(error))
-                    }
-                    
+                
+//                    else {
+//                        completion(.failure(AuthError.codingKeys))
+//                    }
                 }
                 
                 task.resume()

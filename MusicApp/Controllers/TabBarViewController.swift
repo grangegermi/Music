@@ -16,10 +16,10 @@ class TabBarViewController:UITabBarController  {
         let  searchVC = UINavigationController(rootViewController: SearchViewController())
         let  libraryVC = UINavigationController(rootViewController: LibraryViewController())
         
-        homeVC.title = "Home"
+        homeVC.title = "Главная"
        
-        searchVC.title = "Search"
-        libraryVC.title = "Library"
+        searchVC.title = "Поиск"
+        libraryVC.title = "Библиотека"
         view.backgroundColor = .white
         
         homeVC.tabBarItem.image = UIImage(systemName: "house")

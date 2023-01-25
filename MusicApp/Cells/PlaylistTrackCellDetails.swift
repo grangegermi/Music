@@ -36,7 +36,10 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
         labelNameArtist.font = UIFont(name: "Noto Sans Kannada Bold", size: 16)
         labelNameTrack.font = UIFont(name: "Noto Sans Kannada Regular", size: 14)
         labelNameArtist.textColor = .white
+        labelNameArtist.numberOfLines = 0
+      
         labelNameTrack.textColor = .white
+        
         
         createConstraints()
         createStyleForButtons()
@@ -54,6 +57,7 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
     
         buttonAdd.setImage(imagePlus, for: .normal)
         buttonAdd.tintColor = .white
+        buttonAdd.contentEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
  
     }
     
@@ -64,38 +68,38 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
             make.right.equalTo(contentView.snp.right)
             make.centerX.equalTo(contentView.snp.centerX)
 //            make.width.equalTo(200)
-            make.height.equalTo(190)
+            make.height.equalTo(150)
         }
         labelNameArtist.snp.makeConstraints { make in
             
             make.left.equalTo(contentView.snp.left).inset(10)
-            make.top.equalTo(contentView.snp.top).inset(200)
-            make.width.equalTo(120)
-            make.height.equalTo(30)
+            make.top.equalTo(contentView.snp.top).inset(160)
+            make.width.equalTo(100)
+            make.height.equalTo(60)
         }
         
         labelNameTrack.snp.makeConstraints { make in
             
             make.left.equalTo(contentView.snp.left).inset(10)
-            make.top.equalTo(contentView.snp.top).inset(220)
-            make.width.equalTo(120)
-            make.height.equalTo(30)
+            make.top.equalTo(contentView.snp.top).inset(200)
+            make.width.equalTo(100)
+            make.height.equalTo(40)
         }
         
        buttonLike.snp.makeConstraints { make in
             
-            make.right.equalTo(contentView.snp.right).inset(30)
-            make.top.equalTo(contentView.snp.top).inset(220)
-            make.width.equalTo(20)
-            make.height.equalTo(20)
+           make.right.equalTo(contentView.snp.right).inset(10)
+            make.top.equalTo(contentView.snp.top).inset(160)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
         }
         
         buttonAdd.snp.makeConstraints { make in
              
-             make.right.equalTo(contentView.snp.right)
-             make.top.equalTo(contentView.snp.top).inset(220)
-             make.width.equalTo(20)
-             make.height.equalTo(20)
+            make.right.equalTo(contentView.snp.right).inset(10)
+            make.top.equalTo(contentView.snp.top).inset(210)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
          }
       
     }
