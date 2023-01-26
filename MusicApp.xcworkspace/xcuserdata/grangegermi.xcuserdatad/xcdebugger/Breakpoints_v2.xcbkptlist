@@ -524,8 +524,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
             <Locations>
@@ -572,8 +572,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
             <Locations>
@@ -620,8 +620,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -636,8 +636,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -652,8 +652,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -668,8 +668,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -684,8 +684,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -779,8 +779,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -795,58 +795,10 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "getUser(completion:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A70B0650-9E06-4342-BE4F-F5A4AE5C41EC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "getRecommendations(completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A70B0650-9E06-4342-BE4F-F5A4AE5C41EC - b318c7b7a15624bc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; () in MusicApp.ApiCaller.getRecommendations(completion: (Swift.Result&lt;MusicApp.TracksRecomendation, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/ManagerNetwork/ApiCaller.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "480">
-               </Location>
-               <Location
-                  uuid = "A70B0650-9E06-4342-BE4F-F5A4AE5C41EC - b318c7b7a15624bc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; () in MusicApp.ApiCaller.getRecommendations(completion: (Swift.Result&lt;MusicApp.TracksRecomendation, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/ManagerNetwork/ApiCaller.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "705">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -859,8 +811,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "getRecommendations(completion:)"
             landmarkType = "7">
             <Locations>
@@ -907,24 +859,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "getAlbumsDetail(album:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "36B6E0A8-EA01-402A-BD62-F6EE73517EDE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "getAlbumsDetail(album:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -939,8 +875,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "getAlbumsDetail(album:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -955,8 +891,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "getAlbumsDetail(album:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -971,25 +907,9 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "getAlbumsDetail(album:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7DAA3F73-6475-4550-9112-2E36DFB9EED9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
-            landmarkName = "getPlaylists(playlist:comletion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1051,8 +971,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "getCategoryDetails(category:completion:)"
             landmarkType = "7">
             <Locations>
@@ -1099,8 +1019,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "459"
-            endingLineNumber = "459"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "getCategoryDetails(category:completion:)"
             landmarkType = "7">
             <Locations>
@@ -1162,8 +1082,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "467"
-            endingLineNumber = "467"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "getCategoryDetails(category:completion:)"
             landmarkType = "7">
             <Locations>
@@ -1210,40 +1130,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "469"
-            endingLineNumber = "469"
-            landmarkName = "getCategoryDetails(category:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D6148F13-4B5E-49E0-B190-CEB574EAFEF6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "472"
-            endingLineNumber = "472"
-            landmarkName = "getCategoryDetails(category:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ACF15B6C-3158-4CD2-9841-844DE09BE209"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "476"
-            endingLineNumber = "476"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
             landmarkName = "getCategoryDetails(category:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1322,8 +1210,8 @@
             filePath = "MusicApp/Controllers/AlbumViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "createSectionLayout(section:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1338,57 +1226,9 @@
             filePath = "MusicApp/Controllers/AlbumViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "createSectionLayout(section:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6D74224E-8C23-4C95-8D01-CBF4D328B09F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
-            landmarkName = "getAlbum(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F586ACDB-F025-4E76-B929-7232ECD4464C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
-            landmarkName = "getAlbum(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E4C4ECD4-C2E3-4463-A2A9-419DD9B5E6AE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "getAlbum(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1402,10 +1242,10 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "getFeaturedPlaylists(completion:)"
-            landmarkType = "7">
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "ApiCaller"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1475,54 +1315,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5315F030-12C1-46B9-881C-2FC04CA61ECC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/Controllers/AlbumViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "getDataNetwork()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5315F030-12C1-46B9-881C-2FC04CA61ECC - 58de96ec3a40f18d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MusicApp.AlbumViewController.getDataNetwork() -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/AlbumViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "281">
-               </Location>
-               <Location
-                  uuid = "5315F030-12C1-46B9-881C-2FC04CA61ECC - 655ef4b5ada4de9c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[2] = Value Promoted from Box&gt; of closure #1 (Swift.Result&lt;MusicApp.AlbumDetail, Swift.Error&gt;) -&gt; () in MusicApp.AlbumViewController.getDataNetwork() -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/AlbumViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "82">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "DF523642-9BF3-49BF-869D-A4C1F1CC0615"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1530,58 +1322,10 @@
             filePath = "MusicApp/Controllers/AlbumViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "createSectionLayout(section:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E5D7D0D1-E330-4E34-9CF3-DBBF3768947E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/Controllers/AlbumViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "getDataNetwork()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E5D7D0D1-E330-4E34-9CF3-DBBF3768947E - 58de96ec3a40ffbb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MusicApp.AlbumViewController.getDataNetwork() -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/AlbumViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "604">
-               </Location>
-               <Location
-                  uuid = "E5D7D0D1-E330-4E34-9CF3-DBBF3768947E - f9d7a649857041b6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in MusicApp.AlbumViewController.getDataNetwork() -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/AlbumViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "34">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1610,8 +1354,8 @@
             filePath = "MusicApp/Controllers/PlaylistController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1626,8 +1370,8 @@
             filePath = "MusicApp/Controllers/PlaylistController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "createSectionLayout(section:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1642,8 +1386,8 @@
             filePath = "MusicApp/Controllers/PlaylistController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "createSectionLayout(section:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1658,8 +1402,8 @@
             filePath = "MusicApp/Controllers/PlaylistController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "createSectionLayout(section:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1674,8 +1418,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "getRecommendationsTrack(track:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1690,58 +1434,10 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "getRecommendationsTrack(track:completion:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "15D2E8C3-6E3D-40DB-8612-88D2B09B68CA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/Controllers/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "getNetWork()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "15D2E8C3-6E3D-40DB-8612-88D2B09B68CA - 19ab29eb5ce8f5f2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MusicApp.SearchViewController.getNetWork() -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "254">
-               </Location>
-               <Location
-                  uuid = "15D2E8C3-6E3D-40DB-8612-88D2B09B68CA - 483dd3a91fb15590"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[2] = Value Promoted from Box&gt; of closure #1 (Swift.Result&lt;MusicApp.Categories, Swift.Error&gt;) -&gt; () in MusicApp.SearchViewController.getNetWork() -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "100">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1770,8 +1466,8 @@
             filePath = "MusicApp/ManagerNetwork/AuthManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "getTokens(code:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1786,8 +1482,8 @@
             filePath = "MusicApp/ManagerNetwork/AuthManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "getTokens(code:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1802,8 +1498,8 @@
             filePath = "MusicApp/ManagerNetwork/AuthManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "getTokens(code:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1818,8 +1514,8 @@
             filePath = "MusicApp/ManagerNetwork/AuthManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "accessToken"
             landmarkType = "24">
          </BreakpointContent>
@@ -1834,8 +1530,8 @@
             filePath = "MusicApp/ManagerNetwork/AuthManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "getTokens(code:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1850,8 +1546,8 @@
             filePath = "MusicApp/ManagerNetwork/AuthManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "getTokens(code:completion:)"
             landmarkType = "7">
             <Locations>
@@ -1931,22 +1627,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "55"
                   endingLineNumber = "55"
-                  offsetFromSymbolStart = "180">
-               </Location>
-               <Location
-                  uuid = "91F9A7D7-4CC8-47E4-8516-B25D459FB2EE - f8cf5c1677a1d48d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #2 (Swift.Bool) -&gt; () in MusicApp.AuthViewController.webView(_: __C.WKWebView, didStartProvisionalNavigation: Swift.Optional&lt;__C.WKNavigation&gt;) -&gt; ()"
-                  moduleName = "MusicApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/AuthViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "62">
+                  offsetFromSymbolStart = "67">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1961,25 +1642,9 @@
             filePath = "MusicApp/Controllers/SearchResultViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BC09E7EC-A1B1-437C-B011-6DA43C3D83B1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/AuthManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "casheToken(result:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2066,22 +1731,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5C9E059D-55E8-4EF6-BA04-90C951CBB6A2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "561"
-            endingLineNumber = "561"
-            landmarkName = "getPlaylistUser(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A22089BB-18CB-46C7-8AD5-7D7A77B10552"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2089,8 +1738,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "getPlaylistUser(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2105,8 +1754,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "551"
-            endingLineNumber = "551"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "getPlaylistUser(completion:)"
             landmarkType = "7">
             <Locations>
@@ -2369,22 +2018,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8B748B42-C39C-480B-B862-25C025C7EE89"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/Controllers/AlbumViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "getDataNetwork()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "400E6DA8-3848-40A6-B07A-469AB081384D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2472,8 +2105,8 @@
             filePath = "MusicApp/Controllers/AlbumViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2769,38 +2402,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "65177377-57F6-4C0D-89A6-90CA6299EDD2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/Cells/AlbumCellDetails.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "AlbumCellDetails"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "69288CA4-CEC4-4AE8-82A8-2386D013C866"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/Controllers/AlbumViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "AlbumViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "0E2316D0-E1C0-4F90-9867-6178F156D7DE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2808,8 +2409,8 @@
             filePath = "MusicApp/Controllers/AlbumViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -2849,38 +2450,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CDDD90D8-277E-4ACA-9A04-F2BE6F3F9E2C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "getNewReleases(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0BE8B888-62DB-4D22-9127-8C48FD0EF7AB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "getNewReleases(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "16EDE882-38ED-43C0-B716-678DA227E79F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2888,8 +2457,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "getNewReleases(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2904,8 +2473,8 @@
             filePath = "MusicApp/ManagerNetwork/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "getNewReleases(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2946,14 +2515,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8932918F-3541-4A60-A1BA-BA2F15A78926"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicApp/Controllers/PlaylistController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "addTrackToPlaylist(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2968,10 +2537,119 @@
             filePath = "MusicApp/Controllers/PlaylistController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22941F97-0E91-4557-ACC5-3EA8B0AFFCC2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicApp/Controllers/PlaylistController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "addToLike(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03772B4A-D7B0-4812-844A-582B93635D3E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicApp/Controllers/PlaylistController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "PlaylistController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "03772B4A-D7B0-4812-844A-582B93635D3E - 492b0098ac603db2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicApp.PlaylistController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; MusicApp.PlaylistController"
+                  moduleName = "MusicApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/PlaylistController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  uuid = "03772B4A-D7B0-4812-844A-582B93635D3E - d3e4b40b4c53b15e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicApp.PlaylistController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; MusicApp.PlaylistController"
+                  moduleName = "MusicApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/PlaylistController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "123">
+               </Location>
+               <Location
+                  uuid = "03772B4A-D7B0-4812-844A-582B93635D3E - 906859067d55b330"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicApp.PlaylistController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;MusicApp.PlaylistController&gt;"
+                  moduleName = "MusicApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/PlaylistController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  uuid = "03772B4A-D7B0-4812-844A-582B93635D3E - 2b4ef3091524e230"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicApp.PlaylistController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;MusicApp.PlaylistController&gt;"
+                  moduleName = "MusicApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/PlaylistController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "03772B4A-D7B0-4812-844A-582B93635D3E - e8c1dc16d6468c46"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicApp.PlaylistController.__deallocating_deinit"
+                  moduleName = "MusicApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/grangegermi/swift/MusicApp/MusicApp/Controllers/PlaylistController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

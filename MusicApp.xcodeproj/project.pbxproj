@@ -59,6 +59,11 @@
 		DBAB55CC295B45D1004C1E5F /* PlaylistDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAB55CB295B45D1004C1E5F /* PlaylistDetails.swift */; };
 		DBAB55D0295B51C2004C1E5F /* TrackDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAB55CF295B51C2004C1E5F /* TrackDetails.swift */; };
 		DBAB55D2295B597E004C1E5F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAB55D1295B597E004C1E5F /* Category.swift */; };
+		DBE446442982F88B00BA1354 /* ModelAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE446432982F88B00BA1354 /* ModelAlbumVC.swift */; };
+		DBE446462982FCCB00BA1354 /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE446452982FCCB00BA1354 /* PlaylistModel.swift */; };
+		DBE44648298300B000BA1354 /* ModelPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE44647298300B000BA1354 /* ModelPlayer.swift */; };
+		DBE4464A298305B900BA1354 /* ModelSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE44649298305B900BA1354 /* ModelSearch.swift */; };
+		DBE4464C29830E2E00BA1354 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE4464B29830E2E00BA1354 /* CategoryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +123,11 @@
 		DBAB55CB295B45D1004C1E5F /* PlaylistDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetails.swift; sourceTree = "<group>"; };
 		DBAB55CF295B51C2004C1E5F /* TrackDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetails.swift; sourceTree = "<group>"; };
 		DBAB55D1295B597E004C1E5F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		DBE446432982F88B00BA1354 /* ModelAlbumVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAlbumVC.swift; sourceTree = "<group>"; };
+		DBE446452982FCCB00BA1354 /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModel.swift; sourceTree = "<group>"; };
+		DBE44647298300B000BA1354 /* ModelPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPlayer.swift; sourceTree = "<group>"; };
+		DBE44649298305B900BA1354 /* ModelSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearch.swift; sourceTree = "<group>"; };
+		DBE4464B29830E2E00BA1354 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,9 +214,9 @@
 				DB2DBC162975648A0059FF2D /* Library */,
 				DB769007296C00C1009E548A /* CategoryController.swift */,
 				DB5704F92961B9C900555521 /* AlbumViewController.swift */,
+				DB387144294F919000965210 /* AuthViewController.swift */,
 				DB6ED52A295B1E4F00544A12 /* PlaylistController.swift */,
 				DB38713E294F916400965210 /* HomeViewController.swift */,
-				DB387144294F919000965210 /* AuthViewController.swift */,
 				DB38714A294F91DE00965210 /* ProfileViewController.swift */,
 				DB38712A294F4AFE00965210 /* PlayerViewController.swift */,
 				DB387146294F91A100965210 /* StartViewController.swift */,
@@ -270,6 +280,11 @@
 			isa = PBXGroup;
 			children = (
 				DB78C5CC2980722E002089D9 /* Class.swift */,
+				DBE446432982F88B00BA1354 /* ModelAlbumVC.swift */,
+				DBE446452982FCCB00BA1354 /* PlaylistModel.swift */,
+				DBE44647298300B000BA1354 /* ModelPlayer.swift */,
+				DBE4464B29830E2E00BA1354 /* CategoryModel.swift */,
+				DBE44649298305B900BA1354 /* ModelSearch.swift */,
 			);
 			path = ModelsForVC;
 			sourceTree = "<group>";
@@ -397,6 +412,7 @@
 				DB387151294F92AF00965210 /* UserProfile.swift in Sources */,
 				DB65D107295C75940041A7DC /* PlaylistTrackCellDetails.swift in Sources */,
 				DB38713B294F910B00965210 /* AuthManager.swift in Sources */,
+				DBE446442982F88B00BA1354 /* ModelAlbumVC.swift in Sources */,
 				DB387149294F91C400965210 /* TabBarViewController.swift in Sources */,
 				DB65D103295C29230041A7DC /* PlaylistCell.swift in Sources */,
 				DB2DBC15297564780059FF2D /* PlaylistLibraryViewController.swift in Sources */,
@@ -404,17 +420,20 @@
 				DBAB55D0295B51C2004C1E5F /* TrackDetails.swift in Sources */,
 				DB5704FA2961B9C900555521 /* AlbumViewController.swift in Sources */,
 				DB5704FE2961BC3100555521 /* AlbumCellDetailsTraks.swift in Sources */,
+				DBE4464A298305B900BA1354 /* ModelSearch.swift in Sources */,
 				DB998A9729680F60002F531A /* SearchResult.swift in Sources */,
 				DB38714F294F929B00965210 /* AuthResponse.swift in Sources */,
 				DB6DB6652952FB8500DBB62F /* AlbumCell.swift in Sources */,
 				DB387143294F918400965210 /* SearchViewController.swift in Sources */,
 				DB2992822967690C009B497A /* CategoryCell.swift in Sources */,
+				DBE446462982FCCB00BA1354 /* PlaylistModel.swift in Sources */,
 				DB6DB669295318EE00DBB62F /* RecomendationCell.swift in Sources */,
 				DBAB55CC295B45D1004C1E5F /* PlaylistDetails.swift in Sources */,
 				DB6DB6672953011F00DBB62F /* TrackCell.swift in Sources */,
 				DB387127294F4AFE00965210 /* AppDelegate.swift in Sources */,
 				DB78C5D0298112DD002089D9 /* CategoryCellDetails.swift in Sources */,
 				DB2DBC1A297564F20059FF2D /* ToggleView.swift in Sources */,
+				DBE44648298300B000BA1354 /* ModelPlayer.swift in Sources */,
 				DB387155294F954000965210 /* CellForSettings.swift in Sources */,
 				DB387129294F4AFE00965210 /* SceneDelegate.swift in Sources */,
 				DB76900A296C725F009E548A /* ColorsView.swift in Sources */,
@@ -429,6 +448,7 @@
 				DB0A396A2950D796006E551B /* Recomendation.swift in Sources */,
 				DB387141294F917500965210 /* LibraryViewController.swift in Sources */,
 				DB38713D294F912100965210 /* ApiCaller.swift in Sources */,
+				DBE4464C29830E2E00BA1354 /* CategoryModel.swift in Sources */,
 				DB5704FC2961BB3A00555521 /* AlbumCellDetails.swift in Sources */,
 				DB769008296C00C1009E548A /* CategoryController.swift in Sources */,
 				DB387145294F919000965210 /* AuthViewController.swift in Sources */,

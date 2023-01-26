@@ -51,10 +51,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
             }
         }
     }
-//    func createUserModel () {
-////
-//        tableView.reloadData()
-//    }
     
     func createConstraints() {
         tableView.snp.makeConstraints { make in

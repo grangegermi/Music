@@ -33,7 +33,7 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
-        labelNameArtist.font = UIFont(name: "Noto Sans Kannada Bold", size: 16)
+        labelNameArtist.font = UIFont(name: "Noto Sans Kannada Bold", size: 14)
         labelNameTrack.font = UIFont(name: "Noto Sans Kannada Regular", size: 14)
         labelNameArtist.textColor = .white
         labelNameArtist.numberOfLines = 0
@@ -74,21 +74,21 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
             
             make.left.equalTo(contentView.snp.left).inset(10)
             make.top.equalTo(contentView.snp.top).inset(160)
-            make.width.equalTo(100)
+            make.width.equalTo(150)
             make.height.equalTo(60)
         }
         
         labelNameTrack.snp.makeConstraints { make in
             
             make.left.equalTo(contentView.snp.left).inset(10)
-            make.top.equalTo(contentView.snp.top).inset(200)
-            make.width.equalTo(100)
+            make.top.equalTo(contentView.snp.top).inset(210)
+            make.width.equalTo(150)
             make.height.equalTo(40)
         }
         
        buttonLike.snp.makeConstraints { make in
             
-           make.right.equalTo(contentView.snp.right).inset(10)
+           make.right.equalTo(contentView.snp.right)
             make.top.equalTo(contentView.snp.top).inset(160)
             make.width.equalTo(40)
             make.height.equalTo(40)
@@ -96,8 +96,8 @@ class PlaylistTrackCellDetails: UICollectionViewCell {
         
         buttonAdd.snp.makeConstraints { make in
              
-            make.right.equalTo(contentView.snp.right).inset(10)
-            make.top.equalTo(contentView.snp.top).inset(210)
+            make.right.equalTo(contentView.snp.right)
+            make.top.equalTo(contentView.snp.top).inset(200)
             make.width.equalTo(40)
             make.height.equalTo(40)
          }

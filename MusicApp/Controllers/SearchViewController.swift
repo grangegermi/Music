@@ -11,9 +11,8 @@ import SnapKit
 import SDWebImage
 
 class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResultsUpdating, UICollectionViewDelegate, UICollectionViewDataSource {
-
-    var category:[ItemsCategory] = []
     
+    var model = ModelSearch()
     var search = UISearchController(searchResultsController: SearchResultViewController())
     
     var collectionView: UICollectionView = UICollectionView(
@@ -24,7 +23,9 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.model.viewController = self
+        
         collectionView.backgroundView = UIVieww()
         search.searchBar.barStyle = .default
         search.searchBar.placeholder = "Альбомы, Артисты, Плейлисты"
@@ -32,12 +33,12 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
         search.searchResultsUpdater = self
         search.searchBar.delegate = self
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-    
+        
         navigationController?.navigationBar.topItem?.title = "Поиск"
         navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
         navigationItem.searchController = search
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-       
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.id)
@@ -48,62 +49,36 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
             make.left.equalTo(view.snp.left)
             make.top.equalTo(view.snp.top)
         }
-     
-        getNetWork ()
-    }
-    func getNetWork () {
         
-     var group = DispatchGroup()
-        
-        group.enter()
-            ApiCaller.sharedCaller.getCategory {[weak self] result in
-            
-                switch result {
-                    case.success(let model):
-                        self?.category.append(contentsOf: model.categories.items.compactMap({$0}))
-                    case.failure(let error):
-                        print(error)
-                }
-            
-                group.leave()
-            }
-
-        group.notify(queue: .main) {
-            self.collectionView.reloadData()
-        }
+        model.getNetWork ()
     }
     
     func searchBarSearchButtonClicked(_ searchBar:UISearchBar){
         
-        let group = DispatchGroup()
         guard  let  resultSearch = search.searchResultsController as? SearchResultViewController,
-                let query = search.searchBar.text,
+               let query = search.searchBar.text,
                !query.trimmingCharacters(in: .whitespaces).isEmpty else {return}
         navigationController?.pushViewController(resultSearch, animated: true)
-        group.enter()
-         ApiCaller.sharedCaller.search(query: query) { result in
+        
+        ApiCaller.sharedCaller.search(query: query) { [weak resultSearch] result in
             
-             switch result{
-                 
-             case.success(let model):
-                 resultSearch.searchAlbums.append(contentsOf: model.albums.items.compactMap({$0}))
-                 resultSearch.searchArtist.append(contentsOf: model.artists.items.compactMap({$0}))
-                 resultSearch.searchTracks.append(contentsOf: model.tracks.items.compactMap({$0}))
-                 resultSearch.searchPlaylist.append(contentsOf: model.playlists.items.compactMap({$0}))
-//                 print(resultSearch.search.count)
-//
-                 
-             case.failure(let error):
-                 print(error)
-             }
-             group.leave()
+            DispatchQueue.main.async {
+                switch result{
+                    
+                case.success(let model):
+                    
+                    resultSearch?.model.searchAlbums.append(contentsOf: model.albums.items.compactMap({$0}))
+                    resultSearch?.model.searchArtist.append(contentsOf: model.artists.items.compactMap({$0}))
+                    resultSearch?.model.searchTracks.append(contentsOf: model.tracks.items.compactMap({$0}))
+                    resultSearch?.model.searchPlaylist.append(contentsOf: model.playlists.items.compactMap({$0}))
+                    
+                case.failure(let error):
+                    print(error)
+                }
+            }
         }
         print(query)
-        group.notify(queue: .main){
-            print("all")
-            resultSearch.tableView.reloadData()
-        }
-       
+        resultSearch.tableView.reloadData()
     }
     
     
@@ -112,81 +87,81 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return category.count
+        return  model.category.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.id, for: indexPath) as! CategoryCell
         
-        cell.label.text = category[indexPath.row].name
-        cell.imageView.sd_setImage(with: (category[indexPath.row].icons.first?.url))
+        cell.label.text =  model.category[indexPath.row].name
+        cell.imageView.sd_setImage(with: ( model.category[indexPath.row].icons.first?.url))
         return cell
     }
-
+    
     func updateSearchResults(for searchController: UISearchController) {
         
         
     }
-
-        static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
-            let supplementaryViews = [
-                NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .fractionalWidth(1),
-                        heightDimension: .absolute(50)
-                    ),
-                    elementKind: UICollectionView.elementKindSectionHeader,
-                    alignment: .top
-                )
-            ]
+    
+    static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
+        let supplementaryViews = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(50)
+                ),
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+        ]
+        
+        switch section {
             
-            switch section {
-                
-            case 0:
-                
-                
-                let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1)))
-                item.contentInsets = .init(top:10, leading: 5, bottom: 5, trailing: 5)
-              
-                
-                //MARK: -  group
-                
-                let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2)), subitems: [item])
-  
-                
-                let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(1)),subitems: [horizontalGroup])
-                groupItem.contentInsets = .init(top: 5, leading: 0, bottom: 20, trailing: 0)
-                
-                //MARK: -  Section
-                
-                let section = NSCollectionLayoutSection(group: groupItem )
-                section.orthogonalScrollingBehavior = .paging
-             
+        case 0:
             
-                return section
-                
-                
-            default:
-                
-                let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1)))
-                item.edgeSpacing = .init(leading: .fixed(5), top: .fixed(5), trailing: .fixed(5), bottom: .fixed(5))
-                //MARK: -  group
-                
-                let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.3)),subitems: [item])
-                
-                //MARK: -  Section
-                
-                let section = NSCollectionLayoutSection(group: groupItem )
-                section.orthogonalScrollingBehavior = .paging
-                section.contentInsets = .init(top: 0, leading: 0, bottom: 120, trailing: 20)
-          
-                return section
-            }
+            //MARK: Item
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1)))
+            item.contentInsets = .init(top:10, leading: 5, bottom: 5, trailing: 5)
+            
+            
+            //MARK: Group
+            
+            let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2)), subitems: [item])
+            
+            
+            let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(1)),subitems: [horizontalGroup])
+            groupItem.contentInsets = .init(top: 5, leading: 0, bottom: 20, trailing: 0)
+            
+            //MARK:  Section
+            
+            let section = NSCollectionLayoutSection(group: groupItem )
+            section.orthogonalScrollingBehavior = .paging
+            
+            
+            return section
+            
+            
+        default:
+            
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1)))
+            item.edgeSpacing = .init(leading: .fixed(5), top: .fixed(5), trailing: .fixed(5), bottom: .fixed(5))
+            //MARK: Group
+            
+            let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.3)),subitems: [item])
+            
+            //MARK: Section
+            
+            let section = NSCollectionLayoutSection(group: groupItem )
+            section.orthogonalScrollingBehavior = .paging
+            section.contentInsets = .init(top: 0, leading: 0, bottom: 120, trailing: 20)
+            
+            return section
         }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = CategoryController()
-        vc.category = category[indexPath.row].self
+        vc.model.category = model.category[indexPath.row].self
         
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -94,7 +94,7 @@ class LibraryPlaylistVC: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
         let vc = PlaylistController()
-        vc.playlist = playlist[indexPath.row]
+        vc.model.playlist = playlist[indexPath.row]
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }

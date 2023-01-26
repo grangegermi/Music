@@ -14,16 +14,14 @@ class PlayerViewController: UIViewController {
     
     var queuePlayer =  AVQueuePlayer()
     
+    var model = ModelPlayer()
+    
     private var timeObserver: Any?
     var isSeeking = false
     
     var index = 0
     var avItem: AVPlayerItem!
-    var itemArray:[String] = []
-    var imageView: [URL] = []
     var asset:AVAsset!
-    var names:[String] = []
-    var namesTrack:[String] = []
     var key:[String] = ["track"]
     
     let buttonBack = UIButton()
@@ -52,11 +50,12 @@ class PlayerViewController: UIViewController {
         view.addSubview(buttonBack)
         view.addSubview(buttonForward)
         
-        asset = AVAsset(url:  URL(string: itemArray[index])!)
+        asset = AVAsset(url:  URL(string: model.itemArray[index])!)
         createStyle()
         createconstraints()
         createPlayer()
         createSlider()
+        self.model.viewController = self
         
     }
     
@@ -69,17 +68,17 @@ class PlayerViewController: UIViewController {
         }
         
         group.leave()
-        group.notify(queue: .main) { [self] in
+        group.notify(queue: .main) { [weak self] in
             
-            NotificationCenter.default.addObserver(self, selector: #selector(self.playerDidFinishPlaying(sender:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: avItem)
+            NotificationCenter.default.addObserver(self, selector: #selector(self?.playerDidFinishPlaying(sender:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self?.avItem)
             
-            self.avItem = AVPlayerItem(asset:AVAsset(url: URL(string: self.itemArray[self.index])!))
+            self?.avItem = AVPlayerItem(asset:AVAsset(url: URL(string: (self?.model.itemArray[self?.index ?? 0])!)!))
             
-            print(self.queuePlayer.items().count)
-            self.queuePlayer.insert(self.avItem, after: nil)
-            self.viewImage.sd_setImage(with: self.imageView[self.index])
-            self.label.text = names[index]
-            self.labelArtist.text = namesTrack[index]
+//            print(self?.queuePlayer.items().count)
+            self?.queuePlayer.insert((self?.avItem)!, after: nil)
+            self?.viewImage.sd_setImage(with: self?.model.imageView[self!.index])
+            self?.label.text = self?.model.names[self!.index]
+            self?.labelArtist.text = self?.model.namesTrack[self!.index]
         }
         
         self.queuePlayer.play()
@@ -160,7 +159,7 @@ class PlayerViewController: UIViewController {
         queuePlayer.advanceToNextItem()
         index += 1
         
-        if index >= itemArray.count {
+        if index >= model.itemArray.count {
             index = queuePlayer.items().count
             
         }

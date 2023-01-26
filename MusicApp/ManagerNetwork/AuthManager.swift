@@ -10,11 +10,7 @@ import SwiftKeychainWrapper
 
 final class AuthManager {
     
-  static let shared = AuthManager()
-    
-//  var refreshingToken = false
-    
-//    var token = " "
+    static let shared = AuthManager()
     
     struct Constants {
         
@@ -26,7 +22,7 @@ final class AuthManager {
     }
     
     private init(){}
-
+    
     public var isSignedURL: URL? {
         let base = "https://accounts.spotify.com/authorize"
         
@@ -68,7 +64,7 @@ final class AuthManager {
         let task = URLSession.shared.dataTask(with: requestUrl) { data, error, response  in
             
             guard let data = data else {return}
-  
+            
             do {
                 
                 let result =  try JSONDecoder().decode(AuthResponse.self, from: data)
@@ -82,8 +78,8 @@ final class AuthManager {
         }
         task.resume()
     }
-        
-  // RefreshToken
+    
+    // RefreshToken
     func getRefreshToken(completion:@escaping ((Result<String,Error>)) -> Void) {
         
         guard let urlToken = URL(string: Constants.tokenAPIURL) else {
@@ -96,37 +92,36 @@ final class AuthManager {
                          value: "refresh_token"),
             URLQueryItem(name: "refresh_token",
                          value: refreshToken)]
-
+        
         var request = URLRequest(url: urlToken)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded ",
                          forHTTPHeaderField: "Content-Type")
         request.httpBody = components.query?.data(using: .utf8)
-
+        
         let basicToken = Constants.clientID+":"+Constants.clientSecret
         let data = basicToken.data(using: .utf8)
         guard let base64String = data?.base64EncodedString() else {
             print("fail")
-       
+            
             return
         }
-
+        
         request.setValue("Basic \(base64String)",
                          forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { data, error, _ in
             guard let data = data else {return}
-         
+            
             
             do {
                 
                 var result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 var token = result.access_token
-//                self.token = result.access_token
                 completion(.success(token))
-              
-          
-               
+                
+                
+                
             }catch let error {
                 completion(.failure(error))
                 print(error)
@@ -136,7 +131,7 @@ final class AuthManager {
         task.resume()
         
     }
-
+    
     var isSignedIn: Bool {
         return accessToken != nil
     }
@@ -144,36 +139,33 @@ final class AuthManager {
     var accessToken: String? {
         
         return KeychainWrapper.standard.string(forKey: "access_token")
-     
-    }
-    
-        var refreshToken:String?{
-          
-            return KeychainWrapper.standard.string(forKey: "refresh_token")
-
-    }
-    
-        var tokenDate:Date?{
-           
-            return KeychainWrapper.standard.object(forKey: "expires_in") as? Date
         
-
     }
     
- 
+    var refreshToken:String?{
+        
+        return KeychainWrapper.standard.string(forKey: "refresh_token")
+        
+    }
+    
+    var tokenDate:Date?{
+        
+        return KeychainWrapper.standard.object(forKey: "expires_in") as? Date
+        
+        
+    }
+    
+    
     func casheToken(result:AuthResponse){
-       
+        
         KeychainWrapper.standard.set(result.access_token, forKey: "access_token")
-
-        if   result.refresh_token != nil {
-            KeychainWrapper.standard.set(result.refresh_token!, forKey: "refresh_token")
-
+        
+        if  let token = result.refresh_token  {
+            KeychainWrapper.standard.set(token, forKey: "refresh_token")
+            
         }
         
         KeychainWrapper.standard.set(Double(Date().timeIntervalSinceNow) + Double(result.expires_in), forKey: "expires_in")
-        
-//        KeychainWrapper.standard.set(Int(Date().addingTimeInterval(TimeInterval(result.expires_in))), forKey:"expires_in")
-
     }
-
+    
 }

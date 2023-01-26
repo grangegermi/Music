@@ -76,12 +76,14 @@ class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             
             self.likesSong.remove(at: indexPath.row)
 //            UserDefaults.standard.set(likesSong, forKey: "songs")
-//           UserDefaults.standard.removeObject(forKey: "songs")
-            UserDefaults.standard.set(likesSong, forKey: "songs")
+           UserDefaults.standard.removeObject(forKey: "songs")
+         
+//            UserDefaults.standard.set(likesSong, forKey: "songs")
             
             
             self.likesTracks.remove(at: indexPath.row)
-            UserDefaults.standard.set(likesSong, forKey: "names")
+            UserDefaults.standard.removeObject(forKey: "names")
+//            UserDefaults.standard.set(likesSong, forKey: "names")
             
             
             self.tableView.deleteRows(at: [indexPath], with: .automatic)

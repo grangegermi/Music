@@ -32,7 +32,6 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
         navigationController?.navigationBar.tintColor = .white
         
-//        view.backgroundColor = .gray
         view.addSubview(scrollView)
         view.addSubview(toggleView)
         
@@ -40,6 +39,8 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         scrollView.addSubview(contentView)
         
         scrollView.contentSize = contentSize
+        scrollView.bounces = false
+ 
         contentView.frame.size = contentSize
         
         contentView.addSubview(stackView)
@@ -58,26 +59,31 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
     
     @objc func createPlaylist(_ sender:UIBarButtonItem){
         
-        let alert = UIAlertController(title: "Создать", message: "Создай свой первый плейлист", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Создать",
+                                      message: "Создай свой первый плейлист",
+                                      preferredStyle: .alert)
+        alert.view.tintColor = .gray
         alert.addTextField{ textField in
             textField.placeholder = "Плейлист..."
-
         }
+        
     let action1 = UIAlertAction(title: "Отменить", style: .cancel)
+        
     let action2 = UIAlertAction(title: "ОК", style: .default) { _ in
-                guard let field = alert.textFields?.first,
-                      let text = field.text,
-                      !text.trimmingCharacters(in: .whitespaces).isEmpty else {
-                    return
-                }
-
-                ApiCaller.sharedCaller.createUsersPlaylist(name: text) { [weak self] result  in
-                    self?.playlistVC.getData()
-                }
+        guard let field = alert.textFields?.first,
+              let text = field.text,
+              !text.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
         }
+        
+        ApiCaller.sharedCaller.createUsersPlaylist(name: text) { [weak self] result  in
+            self?.playlistVC.getData()
+        }
+    }
+        
     alert.addAction(action1)
     alert.addAction(action2)
-         present(alert, animated: true)
+    present(alert, animated: true)
         
     }
 
@@ -89,15 +95,6 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(80)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-        
-//        contentView.snp.makeConstraints { make in
-//
-//            make.right.equalTo(scrollView.snp.right)
-//            make.left.equalTo(scrollView.snp.left)
-//            make.top.equalTo(scrollView.snp.top)
-//            make.bottom.equalTo(scrollView.snp.bottom)
-//
-//        }
         
         toggleView.snp.makeConstraints { make in
             make.left.equalTo(view.snp.left).inset(20)
@@ -117,7 +114,6 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         likesVC.view.snp.makeConstraints { make in
             make.left.equalTo(stackView.snp.left)
             make.width.equalTo(stackView.snp.width).multipliedBy(0.5)
-//            make.height.equalTo(self.view.snp.height)
             make.top.equalTo(stackView.snp.top)
 
 
@@ -126,9 +122,7 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         playlistVC.view.snp.makeConstraints { make in
             make.right.equalTo(stackView.snp.right)
             make.width.equalTo(stackView.snp.width).multipliedBy(0.5)
-//            make.height.equalTo(self.view.snp.height)
             make.top.equalTo(stackView.snp.top)
-
 
         }
        
@@ -139,12 +133,7 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         playlistVC.willMove(toParent: self)
         addChild(playlistVC)
         stackView.addArrangedSubview(playlistVC.view)
-        
-//        playlistVC.view.frame = CGRect(x: view.frame.width,
-//                                       y: 0,
-//                                       width: stackView.frame.width/2,
-//                                       height: stackView.frame.height)
-        
+
         playlistVC.didMove(toParent: self)
       
         
@@ -152,12 +141,6 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         addChild(likesVC)
         
         stackView.addArrangedSubview(likesVC.view)
-//
-//        likesVC.view.frame = CGRect(x: 0,
-//                                    y: 0,
-//                                    width: stackView.frame.width/2,
-//                                    height: stackView.frame.height)
-//
         likesVC.didMove(toParent: self)
     }
 
@@ -167,7 +150,6 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
                                             y: 0),
                                     animated: true)
     }
-    
     
     func goToPlaylist(_ toggleView: ToggleView) {
         

@@ -13,33 +13,20 @@ class ModelHomeVC{
     
     var albums:[Album] = [] {
         didSet {
-            DispatchQueue.main.async {
                 self.model?.collectionView.reloadData()
-            }
         }
     }
     
     var playlist:[Item] = [] {
         didSet {
-            DispatchQueue.main.async {
                 self.model?.collectionView.reloadData()
-            }
         }
     }
     
     var tracksRecomendation:[AudioTrack] = [] {
         didSet {
-            DispatchQueue.main.async {
+
                 self.model?.collectionView.reloadData()
-            }
-        }
-    }
-    
-    var category:[ItemsCategory] = []{
-        didSet {
-            DispatchQueue.main.async {
-                self.model?.collectionView.reloadData()
-            }
         }
     }
     

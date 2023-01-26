@@ -11,22 +11,7 @@ import SnapKit
 
 class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
-    
-    var album = Album(album_type: "",
-                      available_markets: [],
-                      id: "", images: [],
-                      name: "",
-                      release_date: "",
-                      total_tracks: 0,
-                      artists: [])
-
-    var albumDetails:[AudioTrack] = []
-
-    var collectionView: UICollectionView = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
-            return AlbumViewController.createSectionLayout(section: sectionIndex)
-        })
+    var model = ModelAlbum()
     
     var track = AudioTrack(album: Album(album_type: "",
                                         available_markets: [],
@@ -45,6 +30,12 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
                            id: "",
                            name: "",
                            preview_url: "")
+    
+    var collectionView: UICollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
+            return AlbumViewController.createSectionLayout(section: sectionIndex)
+        })
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,41 +56,19 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             make.top.equalTo(view.snp.top)
             make.bottom.equalTo(view.snp.bottom)
         }
-        getDataNetwork()
-
-    }
-   
-    
-    func getDataNetwork() {
+        model.getDataNetwork()
+        self.model.viewController = self
         
-        var group =  DispatchGroup()
-        group.enter()
-        ApiCaller.sharedCaller.getAlbumsDetail(album: album) { [weak self] result  in
-            switch result{
-            case.success(let model):
-                
-                self?.albumDetails.append(contentsOf: model.tracks.items.filter{$0.preview_url != nil}.compactMap({$0}))
-                
-                if self!.albumDetails.isEmpty {
-                    var vc = UIAlertController(title: "Сообщение", message: "Альбом недоступен", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "ОK", style: .cancel)
-                    vc.addAction(action)
-                    self?.present(vc, animated: true)
-                    
-                }
-                
-            case.failure(let error):
-                print(error)
-            }
-            group.leave()
-        }
-        
-        group.notify(queue: .main){ [weak self] in
-            self?.collectionView.reloadData()
-        }
-
     }
-
+    //CreateAlert
+    func  createAlert(){
+        var vc = UIAlertController(title: "Сообщение", message: "Альбом недоступен", preferredStyle: .alert)
+        vc.view.tintColor = .gray
+        let action = UIAlertAction(title: "ОK", style: .cancel)
+        vc.addAction(action)
+        self.present(vc, animated: true)
+    }
+    //MARK: - Data Source
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         return 2
@@ -114,7 +83,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         if section == 1 {
             
-            return  albumDetails.count
+            return  model.albumDetails.count
         }
         
         return section
@@ -126,9 +95,9 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCellDetails.id, for: indexPath) as! AlbumCellDetails
             
-            cell.label.text = album.name
-            cell.imageView.sd_setImage(with: album.images.first?.url)
-            cell.labelDescription.text = album.release_date
+            cell.label.text = model.album.name
+            cell.imageView.sd_setImage(with: model.album.images.first?.url)
+            cell.labelDescription.text = model.album.release_date
             return cell
         }
         
@@ -137,22 +106,25 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCellDetailsTraks.id, for: indexPath) as! AlbumCellDetailsTraks
             
             
-            cell.labelNameArtist.text = albumDetails[indexPath.row].artists.first?.name
-            cell.labelNameTrack.text = albumDetails[indexPath.row].name
+            cell.labelNameArtist.text = model.albumDetails[indexPath.row].artists.first?.name
+            cell.labelNameTrack.text = model.albumDetails[indexPath.row].name
             cell.labelNumber.text = "\((indexPath.row) + 1)"
             
             cell.buttonAdd.addTarget(self, action: #selector(addTrackToPlaylist), for: .touchUpInside)
             cell.buttonAdd.tag = indexPath.row
-
+            
             cell.buttonLike.addTarget(self, action: #selector(addToLike), for: .touchUpInside)
             cell.buttonLike.tag = indexPath.row
             
-            var state = UserDefaults.standard.bool(forKey: "isSelected")
-//            cell.buttonLike.isSelected = state
+            let navVC = tabBarController?.viewControllers![2] as! UINavigationController
+            let vc = navVC.topViewController as! LibraryViewController
+            let bool = vc.likesVC.likesTracks.contains{$0 == model.albumDetails[indexPath.row].name}
+            cell.buttonLike.isSelected = bool
+            
             if  cell.buttonLike.isSelected {
                 cell.buttonLike.isSelected = false
-               var imageLike = UIImage(systemName: "suit.heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-
+                var imageLike = UIImage(systemName: "suit.heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+                
                 cell.buttonLike.setImage(imageLike, for: .normal)
                 cell.buttonLike.tintColor = .white
             }
@@ -160,17 +132,16 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
                 cell.buttonLike.isSelected = true
                 
                 var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-
+                
                 cell.buttonLike.setImage(imageLike, for: .normal)
                 cell.buttonLike.tintColor = .white
             }
-
+            
             return cell
         }
         return cell
     }
-    
-   
+
     @objc func addToLike (_ sender:UIButton){
         
         var index = 0
@@ -179,23 +150,23 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         let cell = collectionView.cellForItem(at: indexPath!) as! AlbumCellDetailsTraks
         
         guard let indexPath = indexPath else {return}
+        
         if sender.isSelected  {
             sender.isSelected = false
             print("added")
-
+            
             let navVC = tabBarController?.viewControllers![2] as! UINavigationController
             
             let vc = navVC.topViewController as! LibraryViewController
-          
-//            vc.likesVC.likesTracks.append(contentsOf: albumDetails.map({$0.name}))
-            vc.likesVC.likesTracks.append(albumDetails[indexPath.row].name)
-            vc.likesVC.likesSong.append(albumDetails[indexPath.row].artists[indexPath.row].name)
+            
+            vc.likesVC.likesTracks.append(model.albumDetails[indexPath.row].name)
+            vc.likesVC.likesSong.append(model.albumDetails[indexPath.row].artists[indexPath.row].name)
             
             print(vc.likesVC.likesTracks)
             print(vc.likesVC.likesSong)
-//
+            
             var imageLikeFull = UIImage(systemName: "suit.heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-
+            
             sender.setImage(imageLikeFull, for: .normal)
             sender.tintColor = .white
             
@@ -204,126 +175,74 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             
             tabBarController?.selectedIndex = 2
-            sender.isSelected = false
-
-            UserDefaults.standard.set(true, forKey: "isSelected")
-//            UserDefaults.standard.set(false, forKey: "addTolike")
             
-
-            
-        }
-        else if sender.isSelected == false {
+        } else  {
             sender.isSelected = true
-     
+            
             print("deleted")
-
-
+            
             let navVC = tabBarController?.viewControllers![2] as! UINavigationController
-
+            
             let vc = navVC.topViewController as! LibraryViewController
             
             var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-
+            
             sender.setImage(imageLike, for: .normal)
             sender.tintColor = .white
-
-//            vc.likesVC.likesTracks.removeFirst()
+            
             vc.likesVC.likesTracks.remove(at: indexPath.row)
+            UserDefaults.standard.set(vc.likesVC.likesTracks, forKey: "songs")
+            
             vc.likesVC.likesSong.remove(at: indexPath.row)
-
-            UserDefaults.standard.set(false, forKey: "isSelected")
-            UserDefaults.standard.synchronize()
-//            UserDefaults.standard.set(true, forKey: "addTolike")
-
+            UserDefaults.standard.set(vc.likesVC.likesSong, forKey: "names")
+            
             tabBarController?.selectedIndex = 2
-
-         
+            
         }
     }
-    
-//    @objc func addToLike (_ sender:UIButton){
-//
-//
-//
-//
-////            guard let data = imageLike?.jpegData(compressionQuality: .infinity) else {return}
-////            let encoded = try! PropertyListEncoder().encode(data)
-////
-////            UserDefaults.standard.set(encoded, forKey: "addTolike")
-//
-////            cell.buttonLike.isHidden = false
-////            cell.buttonLikeFull.isHidden = true
-//
-//        }
-//    }
-   
-    
-    
-    
-//        else {
-//            tapped = false
-
-//            var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-//
-//            sender.setImage(imageLike, for: .normal)
-//            sender.tintColor = .white
-//            UserDefaults.standard.set(tapped, forKey: "notTapped")
-//        }
-//
-        
-//    }
-            
-//        } else{
-//            sortedAlbum.like = false
-//            var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-//
-//            sender.setImage(imageLike, for: .normal)
-//            sender.tintColor = .white
-//        }
-        
-        
-
-//    }
     
     @objc func addTrackToPlaylist(_ sender:UIButton){
         
-        var alert = UIAlertController(title: "Добавить в плейлист?" , message: "Трек будет добавлен", preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "ОК", style: .default) { _ in
+        var alert = UIAlertController(title: "Добавить в плейлист?" ,
+                                      message: "Трек будет добавлен",
+                                      preferredStyle: .actionSheet)
+        
+        let action = UIAlertAction(title: "ОК", style: .default) { [weak self] _ in
             
             var index = 0
-            DispatchQueue.main.async {
-                let vc = LibraryPlaylistVC()
-                vc.selectionHandler = { [weak self] playlist in
-                    ApiCaller.sharedCaller.addTrackToPlaylist(track: (self?.albumDetails[index])!, playlist: playlist) { succsses in
-                        print("adding")
-                        
-                    }
+            
+            let vc = LibraryPlaylistVC()
+            vc.selectionHandler = { [weak self] playlist in
+                ApiCaller.sharedCaller.addTrackToPlaylist(track: (self?.model.albumDetails[index])!, playlist: playlist) { succsses in
+                    print("adding")
+                    
                 }
-                self.present(UINavigationController(rootViewController: vc),
-                             animated: true, completion: nil)
-                vc.modalPresentationStyle = .fullScreen
-                
-                
             }
+            self?.present(UINavigationController(rootViewController: vc),
+                          animated: true,
+                          completion: nil)
+            vc.modalPresentationStyle = .fullScreen
             
         }
+        
         alert.addAction(action)
         present(alert, animated: true)
- 
+        
     }
-    
+    //MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let vc = PlayerViewController()
-        vc.itemArray.append(albumDetails[indexPath.row].preview_url!)
-        vc.imageView.append((album.images.first!.url))
-        vc.names.append(albumDetails[indexPath.row].name)
-        vc.namesTrack.append(albumDetails[indexPath.row].artists.first!.name)
+        vc.model.itemArray.append(model.albumDetails[indexPath.row].preview_url!)
+        vc.model.imageView.append((model.album.images.first!.url))
+        vc.model.names.append(model.albumDetails[indexPath.row].name)
+        vc.model.namesTrack.append(model.albumDetails[indexPath.row].artists.first!.name)
         navigationController?.pushViewController(vc, animated: true)
         vc.modalPresentationStyle = .fullScreen
         
     }
     
+    //MARK: - CreateLayot
     static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
         let supplementaryViews = [
             NSCollectionLayoutBoundarySupplementaryItem(
@@ -340,16 +259,16 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
         case 0:
             
-            //MARK: -  item
+            //MARK: Item
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             
-            //MARK: -  group
+            //MARK: Group
             
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7),heightDimension:.fractionalHeight(0.2)),subitems: [item])
             groupItem.interItemSpacing = .fixed(100)
             
             
-            //MARK: -  Section
+            //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem )
             section.orthogonalScrollingBehavior = .paging
@@ -359,15 +278,15 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
         case 1 :
             
-            //MARK: -  item
+            //MARK: Item
             
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.96), heightDimension: .fractionalHeight(0.13)))
             item.edgeSpacing = .init(leading: .fixed(10), top: .fixed(10), trailing: .fixed(0), bottom: .fixed(5))
-            //MARK: -  group
+            //MARK: Group
             
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.8)),subitems: [item])
             groupItem.interItemSpacing = .fixed(5)
-            //MARK: -  Section
+            //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem)
             section.orthogonalScrollingBehavior = .continuous
@@ -379,11 +298,11 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1)))
             item.edgeSpacing = .init(leading: .fixed(5), top: .fixed(5), trailing: .fixed(5), bottom: .fixed(5))
-            //MARK: -  group
+            //MARK:  Group
             
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.3)),subitems: [item])
             
-            //MARK: -  Section
+            //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem )
             section.orthogonalScrollingBehavior = .paging
