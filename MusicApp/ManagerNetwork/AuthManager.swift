@@ -25,7 +25,6 @@ final class AuthManager {
     
     public var isSignedURL: URL? {
         let base = "https://accounts.spotify.com/authorize"
-        
         let string = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(Constants.scope)&redirect_uri=\(Constants.redirectUrl)&show_dialog=TRUE"
         
         return URL(string: string)
@@ -154,8 +153,7 @@ final class AuthManager {
         
         
     }
-    
-    
+ 
     func casheToken(result:AuthResponse){
         
         KeychainWrapper.standard.set(result.access_token, forKey: "access_token")
@@ -166,6 +164,15 @@ final class AuthManager {
         }
         
         KeychainWrapper.standard.set(Double(Date().timeIntervalSinceNow) + Double(result.expires_in), forKey: "expires_in")
+    }
+    
+  func singOut(completion: (Bool) -> Void) {
+        
+      KeychainWrapper.standard.remove(forKey: "access_token")
+      KeychainWrapper.standard.remove(forKey: "refresh_token")
+      KeychainWrapper.standard.remove(forKey: "expires_in")
+      
+        completion(true)
     }
     
 }

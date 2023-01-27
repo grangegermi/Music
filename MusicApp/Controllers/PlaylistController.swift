@@ -17,17 +17,23 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
             return PlaylistController.createSectionLayout(section: sectionIndex)
         }
     )
-  
+    
+    let activityIndicator = UIActivityIndicatorView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(PlaylistCell.self, forCellWithReuseIdentifier: PlaylistCell.id)
         collectionView.register(PlaylistTrackCellDetails.self, forCellWithReuseIdentifier: PlaylistTrackCellDetails.id)
         
+        
         view.addSubview(collectionView)
+        view.addSubview(activityIndicator)
+       
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundView = UIVieww()
+        
         collectionView.snp.makeConstraints { make in
             
             make.top.equalTo(view.snp.top)
@@ -35,9 +41,20 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
         }
-        self.model.viewController = self
-        model.networkData ()
         
+        activityIndicator.frame = CGRect(x: 100, y: 100, width: 50, height: 50)
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.centerY.equalTo(view.snp.centerY)
+        }
+        activityIndicator.color = .white
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        
+        self.model.viewController = self
+ 
+        model.networkData()
+
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -91,11 +108,9 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
             cell.buttonAdd.addTarget(self, action: #selector(addTrackToPlaylist), for: .touchUpInside)
             cell.buttonLike.addTarget(self, action: #selector(addToLike), for: .touchUpInside)
             
-    //Selected Button
-            let navVC = tabBarController?.viewControllers![2] as! UINavigationController
-            let vc = navVC.topViewController as! LibraryViewController
-        
-            let bool = vc.likesVC.likesTracks.contains{$0 == model.playlistDetails[indexPath.row].track.name}
+    //Selected Button            
+            let vc = LibraryLikeVC()
+            let bool = vc.model.likesTracks.contains{$0 == model.playlistDetails[indexPath.row].track.name}
             cell.buttonLike.isSelected = bool
             
             if  cell.buttonLike.isSelected {
@@ -136,19 +151,19 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
             
             let vc = navVC.topViewController as! LibraryViewController
             
-            vc.likesVC.likesTracks.append(model.playlistDetails[indexPath.row].track.name)
-            vc.likesVC.likesSong.append(model.playlistDetails[indexPath.row].track.artists.first!.name)
+            vc.likesVC.model.likesTracks.append(model.playlistDetails[indexPath.row].track.name)
+            vc.likesVC.model.likesArtist.append(model.playlistDetails[indexPath.row].track.artists.first!.name)
             
-            print(vc.likesVC.likesTracks)
-            print(vc.likesVC.likesSong)
+            print(vc.likesVC.model.likesTracks)
+            print(vc.likesVC.model.likesArtist)
             
             var imageLikeFull = UIImage(systemName: "suit.heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
             
             sender.setImage(imageLikeFull, for: .normal)
             sender.tintColor = .white
             
-            UserDefaults.standard.setValue(vc.likesVC.likesTracks, forKey: "names")
-            UserDefaults.standard.setValue(vc.likesVC.likesSong, forKey: "songs")
+            UserDefaults.standard.setValue(vc.likesVC.model.likesTracks, forKey: "names")
+            UserDefaults.standard.setValue(vc.likesVC.model.likesArtist, forKey: "songs")
             
             tabBarController?.selectedIndex = 2 
             
@@ -166,15 +181,15 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
             sender.setImage(imageLike, for: .normal)
             sender.tintColor = .white
             
-            vc.likesVC.likesTracks.remove(at: indexPath.row)
+            vc.likesVC.model.likesTracks.remove(at: indexPath.row)
             UserDefaults.standard.removeObject(forKey: "songs")
             
-            vc.likesVC.likesSong.remove(at: indexPath.row)
+            vc.likesVC.model.likesArtist.remove(at: indexPath.row)
             UserDefaults.standard.removeObject(forKey: "names")
             
             tabBarController?.selectedIndex = 2
             collectionView.reloadData()
-         print(vc.likesVC.likesSong.count)
+         print(vc.likesVC.model.likesArtist.count)
         }
     }
     
@@ -294,5 +309,6 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
 }
+
 
 

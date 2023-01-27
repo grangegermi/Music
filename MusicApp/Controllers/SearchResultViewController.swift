@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import SafariServices
 
-class SearchResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
   
     var model = ModelSearchResult()
     
@@ -27,7 +27,9 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         tableView.dataSource = self
         tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
         tableView.frame = view.bounds
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
+        navigationController?.navigationBar.tintColor = .white
         
     }
     

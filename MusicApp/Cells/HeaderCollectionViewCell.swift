@@ -16,12 +16,12 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-       
+        
         addSubview(label)
         createConstraints()
         label.textColor = .white
     }
-
+    
     func createConstraints(){
         
         label.snp.makeConstraints { make in
@@ -35,6 +35,6 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }
 

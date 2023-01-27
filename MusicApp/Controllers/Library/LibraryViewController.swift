@@ -34,8 +34,7 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         
         view.addSubview(scrollView)
         view.addSubview(toggleView)
-        
-        
+  
         scrollView.addSubview(contentView)
         
         scrollView.contentSize = contentSize
@@ -77,14 +76,16 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
         }
         
         ApiCaller.sharedCaller.createUsersPlaylist(name: text) { [weak self] result  in
-            self?.playlistVC.getData()
+            DispatchQueue.main.async {
+                self?.playlistVC.model.getData()
+            }
+           
         }
     }
         
     alert.addAction(action1)
     alert.addAction(action2)
     present(alert, animated: true)
-        
     }
 
     func createConstraintsScrollView() {
@@ -115,8 +116,6 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
             make.left.equalTo(stackView.snp.left)
             make.width.equalTo(stackView.snp.width).multipliedBy(0.5)
             make.top.equalTo(stackView.snp.top)
-
-
         }
 
         playlistVC.view.snp.makeConstraints { make in
@@ -125,7 +124,6 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
             make.top.equalTo(stackView.snp.top)
 
         }
-       
     }
     
     func addChildren() {
@@ -157,5 +155,4 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
                                             y: 0),
                                     animated: true)
     }
-
 }

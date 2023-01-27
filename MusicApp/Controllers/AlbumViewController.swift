@@ -118,7 +118,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let navVC = tabBarController?.viewControllers![2] as! UINavigationController
             let vc = navVC.topViewController as! LibraryViewController
-            let bool = vc.likesVC.likesTracks.contains{$0 == model.albumDetails[indexPath.row].name}
+            let bool = vc.likesVC.model.likesTracks.contains{$0 == model.albumDetails[indexPath.row].name}
             cell.buttonLike.isSelected = bool
             
             if  cell.buttonLike.isSelected {
@@ -159,19 +159,19 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let vc = navVC.topViewController as! LibraryViewController
             
-            vc.likesVC.likesTracks.append(model.albumDetails[indexPath.row].name)
-            vc.likesVC.likesSong.append(model.albumDetails[indexPath.row].artists[indexPath.row].name)
+            vc.likesVC.model.likesTracks.append(model.albumDetails[indexPath.row].name)
+            vc.likesVC.model.likesArtist.append(model.albumDetails[indexPath.row].artists[indexPath.row].name)
             
-            print(vc.likesVC.likesTracks)
-            print(vc.likesVC.likesSong)
+            print(vc.likesVC.model.likesTracks)
+            print(vc.likesVC.model.likesArtist)
             
             var imageLikeFull = UIImage(systemName: "suit.heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
             
             sender.setImage(imageLikeFull, for: .normal)
             sender.tintColor = .white
             
-            UserDefaults.standard.setValue(vc.likesVC.likesTracks, forKey: "names")
-            UserDefaults.standard.setValue(vc.likesVC.likesSong, forKey: "songs")
+            UserDefaults.standard.setValue(vc.likesVC.model.likesTracks, forKey: "names")
+            UserDefaults.standard.setValue(vc.likesVC.model.likesArtist, forKey: "songs")
             
             
             tabBarController?.selectedIndex = 2
@@ -190,11 +190,11 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             sender.setImage(imageLike, for: .normal)
             sender.tintColor = .white
             
-            vc.likesVC.likesTracks.remove(at: indexPath.row)
-            UserDefaults.standard.set(vc.likesVC.likesTracks, forKey: "songs")
+            vc.likesVC.model.likesTracks.remove(at: indexPath.row)
+            UserDefaults.standard.set(vc.likesVC.model.likesTracks, forKey: "songs")
             
-            vc.likesVC.likesSong.remove(at: indexPath.row)
-            UserDefaults.standard.set(vc.likesVC.likesSong, forKey: "names")
+            vc.likesVC.model.likesArtist.remove(at: indexPath.row)
+            UserDefaults.standard.set(vc.likesVC.model.likesArtist, forKey: "names")
             
             tabBarController?.selectedIndex = 2
             
@@ -206,7 +206,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         var alert = UIAlertController(title: "Добавить в плейлист?" ,
                                       message: "Трек будет добавлен",
                                       preferredStyle: .actionSheet)
-        
+        alert.view.tintColor = .gray
         let action = UIAlertAction(title: "ОК", style: .default) { [weak self] _ in
             
             var index = 0
@@ -221,8 +221,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             self?.present(UINavigationController(rootViewController: vc),
                           animated: true,
                           completion: nil)
-            vc.modalPresentationStyle = .fullScreen
-            
+            vc.modalPresentationStyle = .overFullScreen
         }
         
         alert.addAction(action)
@@ -286,6 +285,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.8)),subitems: [item])
             groupItem.interItemSpacing = .fixed(5)
+            
             //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem)

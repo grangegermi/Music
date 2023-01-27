@@ -37,7 +37,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
         navigationController?.navigationBar.topItem?.title = "Поиск"
         navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
         navigationItem.searchController = search
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
         
         collectionView.delegate = self
         collectionView.dataSource = self

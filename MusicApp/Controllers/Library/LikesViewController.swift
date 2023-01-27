@@ -10,32 +10,25 @@ import SDWebImage
 
 class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var index = 0
-    var likesTracks:[String] = []
-    var likesSong:[String] = []
-    //    var likesImages:[URL] = []
-    
+    var model = LibraryLikes()
     let tableView = UITableView()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.model.viewController = self
         view.addSubview(tableView)
         tableView.backgroundColor = .darkGray
-        //        tableView.backgroundView = UIVieww()
         tableView.register( LikeCell.self, forCellReuseIdentifier: LikeCell.id)
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
         tableView.separatorStyle = .singleLine
-        
-        
-            
-        likesTracks = UserDefaults.standard.stringArray(forKey: "names") ?? [""]
-        likesSong = UserDefaults.standard.stringArray(forKey: "songs") ?? [""]
-          
     
+        model.likesTracks = UserDefaults.standard.stringArray(forKey: "names") ?? [""]
+        model.likesArtist = UserDefaults.standard.stringArray(forKey: "songs") ?? [""]
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +37,7 @@ class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return likesTracks.count
+        return model.likesTracks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,10 +45,9 @@ class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier:  LikeCell.id, for: indexPath) as! LikeCell
         
         
-        cell.labelNameTrack.text = likesTracks[indexPath.row]
-        cell.labelNameArtist.text = likesSong[indexPath.row]
+        cell.labelNameTrack.text = model.likesTracks[indexPath.row]
+        cell.labelNameArtist.text = model.likesArtist[indexPath.row]
         cell.labelNumber.text = "\(indexPath.row + 1)"
-        //        cell.viewImage.sd_setImage(with: URL(string: likesSong[indexPath.row])!)
         
         return cell
     }
@@ -74,22 +66,15 @@ class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if editingStyle == .delete {
             print("Deleted")
             
-            self.likesSong.remove(at: indexPath.row)
-//            UserDefaults.standard.set(likesSong, forKey: "songs")
+            self.model.likesArtist.remove(at: indexPath.row)
            UserDefaults.standard.removeObject(forKey: "songs")
-         
-//            UserDefaults.standard.set(likesSong, forKey: "songs")
-            
-            
-            self.likesTracks.remove(at: indexPath.row)
+
+            self.model.likesTracks.remove(at: indexPath.row)
             UserDefaults.standard.removeObject(forKey: "names")
-//            UserDefaults.standard.set(likesSong, forKey: "names")
-            
-            
+
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.reloadData()
             
         }
-        
     }
 }

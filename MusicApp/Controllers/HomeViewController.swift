@@ -152,7 +152,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let navVC = tabBarController?.viewControllers![2] as! UINavigationController
             let vc = navVC.topViewController as! LibraryViewController
             
-            let bool = vc.likesVC.likesTracks.contains{$0 == modelVC.tracksRecomendation[indexPath.row].name}
+            let bool = vc.likesVC.model.likesTracks.contains{$0 == modelVC.tracksRecomendation[indexPath.row].name}
             cell.buttonLike.isSelected = bool
             
             if  cell.buttonLike.isSelected {
@@ -193,19 +193,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             let vc = navVC.topViewController as! LibraryViewController
 
-            vc.likesVC.likesTracks.append(modelVC.tracksRecomendation[indexPath.row].name)
-            vc.likesVC.likesSong.append(modelVC.tracksRecomendation[indexPath.row].artists.first!.name)
+            vc.likesVC.model.likesTracks.append(modelVC.tracksRecomendation[indexPath.row].name)
+            vc.likesVC.model.likesArtist.append(modelVC.tracksRecomendation[indexPath.row].artists.first!.name)
             
-            print(vc.likesVC.likesTracks)
-            print(vc.likesVC.likesSong)
+            print(vc.likesVC.model.likesTracks)
+            print(vc.likesVC.model.likesArtist)
 
             var imageLikeFull = UIImage(systemName: "suit.heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
 
             sender.setImage(imageLikeFull, for: .normal)
             sender.tintColor = .white
             
-            UserDefaults.standard.setValue(vc.likesVC.likesTracks, forKey: "names")
-            UserDefaults.standard.setValue(vc.likesVC.likesSong, forKey: "songs")
+            UserDefaults.standard.setValue(vc.likesVC.model.likesTracks, forKey: "names")
+            UserDefaults.standard.setValue(vc.likesVC.model.likesArtist, forKey: "songs")
             
             tabBarController?.selectedIndex = 2
            
@@ -225,11 +225,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             sender.setImage(imageLike, for: .normal)
             sender.tintColor = .white
 
-            vc.likesVC.likesTracks.remove(at: indexPath.row)
-            UserDefaults.standard.set(vc.likesVC.likesTracks, forKey: "songs")
+            vc.likesVC.model.likesTracks.remove(at: indexPath.row)
+            UserDefaults.standard.set(vc.likesVC.model.likesTracks, forKey: "songs")
             
-            vc.likesVC.likesSong.remove(at: indexPath.row)
-            UserDefaults.standard.set(vc.likesVC.likesSong, forKey: "names")
+            vc.likesVC.model.likesArtist.remove(at: indexPath.row)
+            UserDefaults.standard.set(vc.likesVC.model.likesArtist, forKey: "names")
             
             tabBarController?.selectedIndex = 2
 
@@ -318,7 +318,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         case 0:
         //Item
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1)))
-            item.edgeSpacing = .init(leading: .fixed(5), top: .fixed(5), trailing: .fixed(5), bottom: .fixed(0))
+            item.edgeSpacing = .init(leading: .fixed(5), top: .fixed(5), trailing: .fixed(5), bottom: .fixed(5))
         //Group
             let groupItem = NSCollectionLayoutGroup.horizontal(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.2)),subitems: [item])
        //Section

@@ -54,7 +54,6 @@ class LibraryCell: UITableViewCell {
             make.height.equalTo(30)
             
         }
-        
     }
     
     required init?(coder: NSCoder) {
@@ -63,8 +62,5 @@ class LibraryCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

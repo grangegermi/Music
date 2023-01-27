@@ -48,16 +48,16 @@ class RecomendationCell: UICollectionViewCell {
     func createStyleForButtons() {
         
         var imageLike = UIImage(systemName: "suit.heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-
+        
         buttonLike.setImage(imageLike, for: .normal)
         buttonLike.tintColor = .white
         
         
         var imagePlus = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-    
+        
         buttonAdd.setImage(imagePlus, for: .normal)
         buttonAdd.tintColor = .white
- 
+        
     }
     
     func createConstraints() {

@@ -3,7 +3,7 @@
 //  MusicApp
 //
 //  Created by Даша Волошина on 28.12.22.
-//
+
 
 
 import UIKit
@@ -17,8 +17,8 @@ class PlaylistCell: UICollectionViewCell {
     let button = UIButton()
     let imageView = UIImageView()
     let labelDescription = UILabel()
-  
-
+    
+    
     override init(frame:CGRect){
         super.init(frame:frame)
         
@@ -32,22 +32,22 @@ class PlaylistCell: UICollectionViewCell {
         
         button.setImage(image, for: .normal)
         button.tintColor = .white
-
+        
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 6
         imageView.layer.masksToBounds = true
-  
+        
         label.font = UIFont(name: "Noto Sans Kannada Bold", size: 16)
         label.textColor = .white
         labelDescription.font = UIFont(name: "Noto Sans Kannada Regular", size: 14)
         labelDescription.numberOfLines = 0
         labelDescription.textColor = .white
         createConstraints()
-    
+        
     }
-  
+    
     func createConstraints() {
-
+        
         button.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.bottom).inset(60)
             make.right.equalTo(contentView.snp.right).inset(5)
@@ -67,7 +67,6 @@ class PlaylistCell: UICollectionViewCell {
             make.width.equalTo(200)
             make.top.equalTo(contentView.snp.bottom).inset(70)
         }
-//
         labelDescription.snp.makeConstraints { make in
             make.height.equalTo(60)
             make.width.equalTo(200)

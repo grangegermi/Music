@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class SearchCell: UITableViewCell {
-
+    
     static let id = "SearchCell"
     let label = UILabel()
     
@@ -17,7 +17,7 @@ class SearchCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubview(label)
-     
+        
         label.numberOfLines = 0
         label.textColor = .white
         label.font =  UIFont(name: "Noto Sans Kannada Regular", size: 16)!
@@ -36,8 +36,8 @@ class SearchCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-       
+        
+        
     }
-
+    
 }

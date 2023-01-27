@@ -15,7 +15,7 @@ protocol ToggleViewDelegate:AnyObject {
     func goToPlaylist(_ toggleView: ToggleView)
 }
 
-class ToggleView:UIView{
+class ToggleView:UIView {
     
     weak var delegate:ToggleViewDelegate?
     
@@ -31,16 +31,36 @@ class ToggleView:UIView{
         createStyle ()
         
     }
-    
-    
+
     @objc func tapLikes (_ sender:UIButton) {
         
         delegate?.goToLikes(self)
+      
+            buttonLike.backgroundColor = .black
+            buttonPlaylist.backgroundColor = .systemGray2
+            
+//        }
+//        else {
+//            sender.isSelected = true
+//            buttonLike.backgroundColor = .systemGray2
+//            buttonPlaylist.backgroundColor = .black
+//        }
     }
     
     @objc func tapPlylist (_ sender:UIButton) {
         
         delegate?.goToPlaylist(self)
+//        if sender.isSelected {
+//            sender.isSelected = false
+            buttonPlaylist.backgroundColor = .black
+            buttonLike.backgroundColor = .systemGray2
+            
+//        }
+//        else {
+//            sender.isSelected = true
+//            buttonPlaylist.backgroundColor = .systemGray2
+//            buttonLike.backgroundColor = .black
+//        }
     }
     
     func  createStyle () {
@@ -73,9 +93,8 @@ class ToggleView:UIView{
             make.width.equalTo(150)
             make.height.equalTo(40)
         }
-        
-        
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class CellForSettings: UITableViewCell {
-
+    
     static let id = "CellForSettings"
     
     let labelTitle = UILabel()
@@ -19,7 +19,7 @@ class CellForSettings: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(labelTitle)
         contentView.addSubview(labelSubTitle)
-   
+        
         createConstraints()
         createStyleLabels()
     }
@@ -55,8 +55,8 @@ class CellForSettings: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         
     }
-
+    
 }

@@ -288,7 +288,7 @@ final class ApiCaller {
                     
                     do {
                         var audioPlaylist = try JSONDecoder().decode(PlaylistDetails.self, from: data)
-                        print(audioPlaylist)
+//                        print(audioPlaylist)
                         comletion(.success(audioPlaylist))
                     }
                     catch let error {

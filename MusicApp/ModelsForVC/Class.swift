@@ -13,20 +13,20 @@ class ModelHomeVC{
     
     var albums:[Album] = [] {
         didSet {
-                self.model?.collectionView.reloadData()
+            self.model?.collectionView.reloadData()
         }
     }
     
     var playlist:[Item] = [] {
         didSet {
-                self.model?.collectionView.reloadData()
+            self.model?.collectionView.reloadData()
         }
     }
     
     var tracksRecomendation:[AudioTrack] = [] {
         didSet {
-
-                self.model?.collectionView.reloadData()
+            
+            self.model?.collectionView.reloadData()
         }
     }
     

@@ -14,7 +14,6 @@ class UIVieww:UIView {
     override init(frame:CGRect){
         super.init(frame:frame)
         
-        
         let color1 = UIColor(red: 89/255, green: 89/255, blue: 89/255, alpha: 1)
         let color2 = UIColor(red: 69/255, green: 69/255, blue: 69/255, alpha: 1)
         let color3 = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1)
@@ -22,8 +21,8 @@ class UIVieww:UIView {
         gradientLayer.shouldRasterize = true
         gradientLayer.frame = bounds
         layer.addSublayer(gradientLayer)
-                
-       
+        
+        
     }
     override func layoutSubviews() {
         super.layoutSubviews()

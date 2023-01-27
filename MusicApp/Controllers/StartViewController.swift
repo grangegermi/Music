@@ -17,12 +17,10 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backround = UIImageView(frame: UIScreen.main.bounds)
-        backround.image = UIImage(named: "spotify")
-        backround.contentMode = UIView.ContentMode.scaleAspectFit
+        
         
         view.addSubview(imageView)
-        imageView.addSubview(buttonStart)
+        view.addSubview(buttonStart)
      
         imageView.image = UIImage(named: "spotify")
         imageView.contentMode = .scaleAspectFill
@@ -33,14 +31,14 @@ class StartViewController: UIViewController {
         buttonStart.backgroundColor = .systemGreen
         buttonStart.setTitleColor(.white, for: .normal)
         buttonStart.titleLabel?.font = UIFont(name: "Noto Sans Kannada Bold", size: 20)
-        buttonStart.titleLabel?.textAlignment = .center
+//        buttonStart.titleLabel?.textAlignment = .center
         buttonStart.layer.cornerRadius = 10
         buttonStart.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
         createConstraints()
     }
     
     @objc func buttonTap(_ sender:UIButton){
-        
+        print("go")
         let vc = AuthViewController()
         
         vc.completionHandler = { [weak self] success in
@@ -68,7 +66,7 @@ class StartViewController: UIViewController {
         buttonStart.snp.makeConstraints { make in
             make.height.equalTo(60)
             make.width.equalTo(300)
-            make.bottom.equalToSuperview().inset(60)
+            make.bottom.equalTo(view.snp.bottom).inset(100)
             make.centerX.equalTo(view.snp.centerX)
         }
         

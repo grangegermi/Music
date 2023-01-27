@@ -10,21 +10,21 @@ import UIKit
 class TrackCell: UICollectionViewCell {
     
     static let id = "TrackCell"
- 
+    
     let imageView = UIImageView()
     let nameDescription = UILabel()
     let nameArtist = UILabel()
-   
-  
+    
+    
     override init(frame:CGRect){
         super.init(frame:frame)
-    
+        
         contentView.addSubview(imageView)
         contentView.addSubview(nameDescription)
         contentView.addSubview(nameArtist)
         nameArtist.textColor = .white
         nameDescription.textColor = .white
-
+        
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 6
         imageView.layer.masksToBounds = true
@@ -60,7 +60,7 @@ class TrackCell: UICollectionViewCell {
             make.width.equalTo(contentView.snp.width)
         }
         
-       
+        
     }
     
 }

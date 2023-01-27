@@ -9,25 +9,25 @@ import UIKit
 import SnapKit
 
 class AlbumCellDetails: UICollectionViewCell {
- 
+    
     static let id = "AlbumCellDetails"
-
+    
     let label = UILabel()
     let imageView = UIImageView()
     let labelDescription = UILabel()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.addSubview(label)
-      
+        
         contentView.addSubview(imageView)
         contentView.addSubview(labelDescription)
-       
+        
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 6
         imageView.layer.masksToBounds = true
-  
+        
         label.font = UIFont(name: "Noto Sans Kannada Bold", size: 16)
         label.textColor = .white
         labelDescription.font = UIFont(name: "Noto Sans Kannada Regular", size: 14)
@@ -37,7 +37,7 @@ class AlbumCellDetails: UICollectionViewCell {
         createConstraints()
         
     }
-
+    
     func createConstraints() {
         
         imageView.snp.makeConstraints { make in

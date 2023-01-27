@@ -14,7 +14,7 @@ class CategoryCell: UICollectionViewCell {
     let view = UIView()
     let label = UILabel()
     let imageView = UIImageView()
-      
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
