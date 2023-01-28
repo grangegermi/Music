@@ -60,7 +60,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.model.viewController = self
         
     }
-    //CreateAlert
+//CreateAlert for unavailable albums
     func  createAlert(){
         var vc = UIAlertController(title: "Сообщение", message: "Альбом недоступен", preferredStyle: .alert)
         vc.view.tintColor = .gray
@@ -68,7 +68,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         vc.addAction(action)
         self.present(vc, animated: true)
     }
-    //MARK: - Data Source
+    
+//MARK: - Data Source
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         return 2
@@ -141,7 +142,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         return cell
     }
-
+//Add To Like
     @objc func addToLike (_ sender:UIButton){
         
         var index = 0
@@ -200,7 +201,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
         }
     }
-    
+ //Add track to playlistLibrary
     @objc func addTrackToPlaylist(_ sender:UIButton){
         
         var alert = UIAlertController(title: "Добавить в плейлист?" ,
@@ -228,7 +229,6 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         present(alert, animated: true)
         
     }
-    //MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let vc = PlayerViewController()
@@ -241,7 +241,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         
     }
     
-    //MARK: - CreateLayot
+//MARK: - CreateLayot
     static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
         let supplementaryViews = [
             NSCollectionLayoutBoundarySupplementaryItem(
@@ -258,16 +258,16 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
         case 0:
             
-            //MARK: Item
+    //MARK: Item
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             
-            //MARK: Group
+    //MARK: Group
             
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7),heightDimension:.fractionalHeight(0.2)),subitems: [item])
             groupItem.interItemSpacing = .fixed(100)
             
             
-            //MARK: Section
+    //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem )
             section.orthogonalScrollingBehavior = .paging
@@ -277,16 +277,16 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
         case 1 :
             
-            //MARK: Item
-            
+    //MARK: Item
+        
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.96), heightDimension: .fractionalHeight(0.13)))
             item.edgeSpacing = .init(leading: .fixed(10), top: .fixed(10), trailing: .fixed(0), bottom: .fixed(5))
-            //MARK: Group
+    //MARK: Group
             
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.8)),subitems: [item])
             groupItem.interItemSpacing = .fixed(5)
             
-            //MARK: Section
+    //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem)
             section.orthogonalScrollingBehavior = .continuous
@@ -298,11 +298,11 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1)))
             item.edgeSpacing = .init(leading: .fixed(5), top: .fixed(5), trailing: .fixed(5), bottom: .fixed(5))
-            //MARK:  Group
+    //MARK:  Group
             
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.3)),subitems: [item])
             
-            //MARK: Section
+    //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem )
             section.orthogonalScrollingBehavior = .paging

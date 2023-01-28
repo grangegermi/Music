@@ -80,7 +80,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         vc.modalPresentationStyle = .fullScreen
     }
     
-    //MARK: - DataSource
+//MARK: - DataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -108,7 +108,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return section
     }
     
-    //MARK: - Create Cell
+//MARK: - Create Cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = UICollectionViewCell()
@@ -266,7 +266,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
       
-    //MARK: - Create Header
+//MARK: - Create Header
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -387,7 +387,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return section
         }
     }
-    
+//MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.section == 0 {

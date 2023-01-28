@@ -17,21 +17,19 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+  
         view.addSubview(imageView)
         view.addSubview(buttonStart)
      
         imageView.image = UIImage(named: "spotify")
         imageView.contentMode = .scaleAspectFill
         imageView.frame = view.bounds
-       
-//        view.backgroundColor = .black
+
         buttonStart.setTitle("Начать", for: .normal)
         buttonStart.backgroundColor = .systemGreen
         buttonStart.setTitleColor(.white, for: .normal)
         buttonStart.titleLabel?.font = UIFont(name: "Noto Sans Kannada Bold", size: 20)
-//        buttonStart.titleLabel?.textAlignment = .center
+
         buttonStart.layer.cornerRadius = 10
         buttonStart.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
         createConstraints()
@@ -69,13 +67,5 @@ class StartViewController: UIViewController {
             make.bottom.equalTo(view.snp.bottom).inset(100)
             make.centerX.equalTo(view.snp.centerX)
         }
-        
-//        imageView.snp.makeConstraints { make in
-//            make.centerX.equalTo(view.snp.centerX)
-////            make.centerY.equalTo(view.snp.centerY)
-//            make.top.equalTo(view.snp.top).inset(100)
-//            make.width.equalTo(200)
-//            make.height.equalTo(200)
-//        }
     }
 }

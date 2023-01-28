@@ -45,7 +45,7 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
         navigationController?.navigationBar.tintColor = .white
         
     }
-    
+ //MARK: - DataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -72,7 +72,7 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
         vc.modalPresentationStyle = .fullScreen
         
     }
-    
+  //MARK: - CreateLayot
     static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
         let supplementaryViews = [
             NSCollectionLayoutBoundarySupplementaryItem(
@@ -88,13 +88,13 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
         switch section {
             
         case 0:
-            //MARK: -  item
+    //MARK:  Item
             
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1)))
             item.contentInsets = .init(top:10, leading: 5, bottom: 2, trailing: 5)
           
             
-            //MARK: -  group
+    //MARK: Group
             
             let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.35)), subitems: [item])
 
@@ -102,7 +102,7 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(1)),subitems: [horizontalGroup])
             groupItem.contentInsets = .init(top: 5, leading: 0, bottom: 2, trailing: 0)
             
-            //MARK: -  Section
+    //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem )
             section.orthogonalScrollingBehavior = .paging
@@ -112,22 +112,22 @@ class CategoryController: UIViewController, UICollectionViewDataSource, UICollec
             
       
         default:
-            //MARK: -  Item
+    //MARK: Item
             
             let item = NSCollectionLayoutItem(layoutSize: (NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(1))))
             item.edgeSpacing = .init(leading: .flexible(5), top:.flexible(0), trailing: .flexible(5), bottom: .flexible(0))
             
-            //MARK: - Group
+    //MARK: Group
             
             let groupItem = NSCollectionLayoutGroup.horizontal(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.25)),subitems: [item])
             
-            //MARK: -  Section
+    //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem)
             section.orthogonalScrollingBehavior = .continuous
             section.contentInsets = .init(top: 10, leading:0, bottom: 10, trailing: 0 )
             
-            //MARK: - Header
+    //MARK: Header
             
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(30))
             

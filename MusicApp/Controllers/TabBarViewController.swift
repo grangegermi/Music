@@ -33,29 +33,9 @@ class TabBarViewController:UITabBarController  {
         
         self.tabBar.tintColor = .white
         self.tabBar.barStyle = .black
-//        self.tabBar.backgroundColor = .black
-        
-        self.setViewControllers([homeVC, searchVC, libraryVC], animated: false)
-     
-        
-       
+        self.setViewControllers([homeVC, searchVC, libraryVC], animated: false)  
     }
- 
-    
 }
-       
-       
-        
-        
-//        ApiCaller.sharedCaller.getFeaturedPlaylists(items: ApiCaller.sharedCaller.item)
-//        DispatchQueue.main.async {
-//            ApiCaller.sharedCaller.getPlaylists()
-//        }
-       
-//        DispatchQueue.main.async {
-//            ApiCaller.sharedCaller.createRequest(playlist: ApiCaller.sharedCaller.playlistAudio!)
-//
-//        }
      
         
 

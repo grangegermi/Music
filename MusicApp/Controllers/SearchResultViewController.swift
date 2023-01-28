@@ -32,13 +32,12 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         navigationController?.navigationBar.tintColor = .white
         
     }
-    
+//MARK: - Data Source
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 4
     }
-    
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if section == 0 {
@@ -91,9 +90,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         
         return section
     }
-    
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell = UITableViewCell()

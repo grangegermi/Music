@@ -80,7 +80,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
         print(query)
         resultSearch.tableView.reloadData()
     }
-    
+//MARK: - Data Source
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if section == 0 {
@@ -121,12 +121,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
         cell.imageView.sd_setImage(with: ( model.category[indexPath.row].icons.first?.url))
         return cell
     }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        
-    }
-    
+    //MARK: - Create Layout
     static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
         let supplementaryViews = [
             NSCollectionLayoutBoundarySupplementaryItem(
@@ -138,25 +133,22 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
                 alignment: .top
             )
         ]
-        
         switch section {
             
         case 0:
             
-            //MARK: Item
+    //MARK: Item
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1)))
             item.contentInsets = .init(top:10, leading: 5, bottom: 5, trailing: 5)
-            
-            
-            //MARK: Group
+
+    //MARK: Group
             
             let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2)), subitems: [item])
-            
-            
+
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(1)),subitems: [horizontalGroup])
             groupItem.contentInsets = .init(top: 5, leading: 0, bottom: 20, trailing: 0)
             
-            //MARK:  Section
+    //MARK:  Section
             
             let section = NSCollectionLayoutSection(group: groupItem )
             section.orthogonalScrollingBehavior = .paging
@@ -166,14 +158,14 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
             
             
         default:
-            
+    //MARK: Item
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1)))
             item.edgeSpacing = .init(leading: .fixed(5), top: .fixed(5), trailing: .fixed(5), bottom: .fixed(5))
-            //MARK: Group
+    //MARK: Group
             
             let groupItem = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .fractionalHeight(0.3)),subitems: [item])
             
-            //MARK: Section
+    //MARK: Section
             
             let section = NSCollectionLayoutSection(group: groupItem )
             section.orthogonalScrollingBehavior = .paging
@@ -186,7 +178,6 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = CategoryController()
         vc.model.category = model.category[indexPath.row].self
-        
         navigationController?.pushViewController(vc, animated: true)
     }
 }
