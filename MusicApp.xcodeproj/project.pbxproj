@@ -172,7 +172,6 @@
 				DB2DBC12297564570059FF2D /* LikesViewController.swift */,
 				DB5F39C429844D0B0063D0EC /* Extension+PlaylistLibraryTableView.swift */,
 				DB2DBC19297564F20059FF2D /* ToggleView.swift */,
-				DB2DBC1D2975C2270059FF2D /* LikeCell.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -236,6 +235,7 @@
 		DB39C2A929543BA40076F780 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				DB2DBC1D2975C2270059FF2D /* LikeCell.swift */,
 				DB78C5CF298112DD002089D9 /* CategoryCellDetails.swift */,
 				DB2992812967690C009B497A /* CategoryCell.swift */,
 				DB769009296C725F009E548A /* ColorsView.swift */,

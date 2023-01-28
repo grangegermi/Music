@@ -133,7 +133,6 @@ class PlayerViewController: UIViewController {
                 self?.isSeeking = false
             }
         })
-        
     }
     
     @objc func tapToBack(_ sender:UIButton){

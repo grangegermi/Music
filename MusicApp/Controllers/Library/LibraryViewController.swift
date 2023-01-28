@@ -23,14 +23,12 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let contentSize = CGSize(width: view.frame.width*2, height:view.frame.height)
 
         view = UIVieww()
-        navigationController?.navigationBar.topItem?.title = "Библиотека"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createPlaylist))
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
-        navigationController?.navigationBar.tintColor = .white
+        
+        
         
         view.addSubview(scrollView)
         view.addSubview(toggleView)
@@ -53,9 +51,10 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
 
         addChildren()
         createConstraintsScrollView()
+        createNavigation()
     
     }
-    
+// CreateUserPlaylist
     @objc func createPlaylist(_ sender:UIBarButtonItem){
         
         let alert = UIAlertController(title: "Создать",
@@ -88,6 +87,15 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, ToggleViewD
     present(alert, animated: true)
     }
 
+    func createNavigation() {
+        
+        navigationController?.navigationBar.topItem?.title = "Библиотека"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createPlaylist))
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
     func createConstraintsScrollView() {
    
         scrollView.snp.makeConstraints { make in

@@ -19,14 +19,13 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
     )
     
     let activityIndicator = UIActivityIndicatorView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(PlaylistCell.self, forCellWithReuseIdentifier: PlaylistCell.id)
         collectionView.register(PlaylistTrackCellDetails.self, forCellWithReuseIdentifier: PlaylistTrackCellDetails.id)
-        
-        
+    
         view.addSubview(collectionView)
         view.addSubview(activityIndicator)
        
@@ -56,6 +55,33 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
         model.networkData()
 
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("select")
+        let trackToDelete = model.playlistDetails[indexPath.row].track
+        
+        let alert = UIAlertController(title: "Удалить трек?",
+                                      message: "Вы хотите удалить трек из плейлиста?",
+                                      preferredStyle: .actionSheet)
+        alert.view.tintColor = .gray
+        
+        alert.addAction(UIAlertAction(title:"Отменить",
+                                      style: .cancel))
+        alert.addAction(UIAlertAction(title:  "Удалить", style: .default, handler: { [weak self] _ in
+            ApiCaller.sharedCaller.deleteTrackFromPlaylist(track: trackToDelete, playlist: (self?.model.playlist)!) { success in
+                DispatchQueue.main.async {
+                    if success{
+                        self?.model.playlistDetails.remove(at: indexPath.row)
+                    }
+                    else {
+                        print("error")
+                    }
+                }
+            }
+        }))
+        
+        present(alert, animated: true)
+    }
+    
 //MARK: - Data Source
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -102,7 +128,7 @@ class PlaylistController: UIViewController, UICollectionViewDelegate, UICollecti
             cell.buttonAdd.addTarget(self, action: #selector(addTrackToPlaylist), for: .touchUpInside)
             cell.buttonLike.addTarget(self, action: #selector(addToLike), for: .touchUpInside)
             
-//Selected Button
+        //Selected Button
             let vc = LibraryLikeVC()
             let bool = vc.model.likesTracks.contains{$0 == model.playlistDetails[indexPath.row].track.name}
             cell.buttonLike.isSelected = bool

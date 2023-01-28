@@ -11,7 +11,7 @@ import SnapKit
 import SDWebImage
 
 class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResultsUpdating, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
     var model = ModelSearch()
     var search = UISearchController(searchResultsController: SearchResultViewController())
     
@@ -80,6 +80,11 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
         print(query)
         resultSearch.tableView.reloadData()
     }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
 //MARK: - Data Source
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
