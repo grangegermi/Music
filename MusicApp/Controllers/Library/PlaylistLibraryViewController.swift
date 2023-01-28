@@ -79,21 +79,6 @@ class LibraryPlaylistVC: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.backgroundColor = .systemGray
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-                if editingStyle == .delete {
-                    print("Deleted")
-          
-               
-        ApiCaller.sharedCaller.deletePlaylist(name:self.model.playlist[indexPath.row].name) { succsses in
-                  print("deleted playlist")
-              }
-          }
-            print("aa")
-        
-            self.model.playlist.remove(at: indexPath.row)
-            tableView.reloadData()
-//            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-      }
 }
 
 

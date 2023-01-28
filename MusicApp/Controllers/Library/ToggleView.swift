@@ -38,34 +38,20 @@ class ToggleView:UIView {
       
             buttonLike.backgroundColor = .black
             buttonPlaylist.backgroundColor = .systemGray2
-            
-//        }
-//        else {
-//            sender.isSelected = true
-//            buttonLike.backgroundColor = .systemGray2
-//            buttonPlaylist.backgroundColor = .black
-//        }
     }
     
     @objc func tapPlylist (_ sender:UIButton) {
         
         delegate?.goToPlaylist(self)
-//        if sender.isSelected {
-//            sender.isSelected = false
+
             buttonPlaylist.backgroundColor = .black
             buttonLike.backgroundColor = .systemGray2
-            
-//        }
-//        else {
-//            sender.isSelected = true
-//            buttonPlaylist.backgroundColor = .systemGray2
-//            buttonLike.backgroundColor = .black
-//        }
+
     }
     
     func  createStyle () {
         
-        buttonLike.backgroundColor = .systemGray2
+        buttonLike.backgroundColor = .black
         buttonLike.setTitle("Лайки", for: .normal)
         buttonLike.layer.cornerRadius = 10
         buttonLike.setTitleColor(.white, for: .normal)
