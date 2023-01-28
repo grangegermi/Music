@@ -7,14 +7,16 @@
 
 import UIKit
 import SnapKit
-class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDataSource{
     
+    var model = UserProfile()
     var tableView = UITableView()
-    
-    var userModel = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.model.viewController = self
+        model.getUserProfile()
         
         title = "Settings"
         
@@ -26,30 +28,43 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         
         tableView.register(CellForSettings.self, forCellReuseIdentifier: CellForSettings.id)
         
+        navigationItem.rightBarButtonItems =  [UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
+                                                               style: .plain,
+                                                               target: self,
+                                                               action: #selector(buttonTap))]
+        navigationController?.navigationBar.topItem?.titleView?.tintColor = .white
         createConstraints()
-       
-        some()
     }
-    func some() {
-        ApiCaller.sharedCaller.getUser { [weak self] result in
-            DispatchQueue.main.async {
-                
-                switch result{
-                    
-                case .success(let model):
-                    self?.userModel.append("UserName: \(model.display_name)")
-                    self?.userModel.append("ID: \(model.id)")
-                    self?.userModel.append("Email: \(model.email)")
-                    self?.userModel.append("Product: \(model.product)")
-                    self?.tableView.reloadData()
-                case .failure(let error):
-                    print(error)
-                default: break
-                    
+    
+    @objc func buttonTap(_ sender:UIButton ) {
+        
+        let alert = UIAlertController(title: "Выход",
+                                      message: "Вы уверены, что хотите выйти?",
+                                      preferredStyle: .alert)
+        alert.view.tintColor = .gray
+        
+        alert.addAction(UIAlertAction(title: "Отмена",
+                                      style: .cancel,
+                                      handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Выход",
+                                      style: .destructive,
+                                      handler: { _ in
+            AuthManager.shared.singOut { [weak self] exit in
+                if exit {
+                    DispatchQueue.main.async {
+                        let navVC = UINavigationController(rootViewController: StartViewController())
+                        
+                        navVC.modalPresentationStyle = .fullScreen
+                        self?.present(navVC, animated: true, completion: {
+                            self?.navigationController?.popToRootViewController(animated: false)
+                        })
+                    }
                 }
-
             }
-        }
+        }))
+        
+        present(alert, animated: true)
     }
     
     func createConstraints() {
@@ -61,25 +76,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         }
     }
     
+    //MARK: -DataSource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userModel.count
+        return model.userModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: CellForSettings.id, for: indexPath) as!  CellForSettings
-       
-        cell.labelTitle.text = userModel[indexPath.row]
-         return cell
+        
+        cell.labelTitle.text = model.description[indexPath.row]
+        
+        cell.labelSubTitle.text = model.userModel[indexPath.row]
+        
+        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundView = UIVieww()
-       
+        
     }
-    
 }
 

@@ -18,6 +18,7 @@ final class ApiCaller {
         static let basicURlApi = "https://api.spotify.com/v1"
         
     }
+    
     func getUser(completion:@escaping((Result<User, Error>)) -> Void) {
         
         AuthManager.shared.getRefreshToken { token in
@@ -43,11 +44,13 @@ final class ApiCaller {
                     }
                     
                     catch let error {
+                        print(error)
                         completion(.failure(error))
                     }
                 }
                 task.resume()
             case .failure( let error):
+                print(error)
                 completion(.failure(error))
             }
         }
@@ -86,7 +89,7 @@ final class ApiCaller {
             }
         }
     }
-
+    
     func getAlbumsDetail (album: Album, completion :@escaping((Result<AlbumDetail,Error>))-> Void){
         
         AuthManager.shared.getRefreshToken { token in
@@ -157,7 +160,7 @@ final class ApiCaller {
             }
         }
     }
-
+    
     func getRecommendations(completion:@escaping((Result<TracksRecomendation, Error>)) -> Void) {
         
         AuthManager.shared.getRefreshToken { token in
@@ -288,7 +291,7 @@ final class ApiCaller {
                     
                     do {
                         var audioPlaylist = try JSONDecoder().decode(PlaylistDetails.self, from: data)
-//                        print(audioPlaylist)
+                        //                        print(audioPlaylist)
                         comletion(.success(audioPlaylist))
                     }
                     catch let error {
@@ -303,7 +306,7 @@ final class ApiCaller {
             }
         }
     }
-
+    
     func getCategory(completion:@escaping ((Result<Categories,Error>)) -> Void) {
         
         AuthManager.shared.getRefreshToken { token in

@@ -35,15 +35,15 @@ class CellForSettings: UITableViewCell {
         
         labelSubTitle.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(10)
-            make.top.equalTo(labelTitle.snp.bottom).inset(30)
-            make.width.equalTo(200)
+            make.top.equalTo(labelTitle.snp.bottom).inset(5)
+            make.width.equalTo(300)
             make.height.equalTo(30)
             
         }
     }
     
     func createStyleLabels() {
-        labelTitle.font = UIFont(name: "Noto Sans Kannada Regular", size: 16)
+        labelTitle.font = UIFont(name: "Noto Sans Kannada Bold", size: 18)
         labelTitle.textColor = .white
         labelSubTitle.font = UIFont(name: "Noto Sans Kannada Regular", size: 16)
         labelSubTitle.textColor = .white

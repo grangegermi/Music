@@ -172,7 +172,7 @@ final class AuthManager {
       KeychainWrapper.standard.remove(forKey: "refresh_token")
       KeychainWrapper.standard.remove(forKey: "expires_in")
       
-        completion(true)
+    completion(true)
     }
     
 }

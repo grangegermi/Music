@@ -81,6 +81,30 @@ class SearchViewController: UIViewController,UISearchBarDelegate, UISearchResult
         resultSearch.tableView.reloadData()
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if section == 0 {
+            
+             return "Альбомы"
+        }
+        
+        if section == 1 {
+           
+            return "Плейлисты"
+            
+        }
+        
+        if section == 2 {
+            
+            return "Артисты"
+        }
+        if section == 3 {
+            
+            return "Треки"
+        }
+        
+        return nil
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

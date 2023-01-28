@@ -9,14 +9,14 @@ import Foundation
 
 struct User:Decodable {
     
-        var country: String
-        var display_name: String
-        var email: String
-        var id: String
-        var product: String
-        var images: [APIImage] 
-    }
-    
+    var country: String
+    var display_name: String
+    var email: String
+    var id: String
+    var product: String
+    var images: [APIImage]
+}
+
 struct APIImage: Decodable {
     var url:URL
 }

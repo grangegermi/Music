@@ -10,7 +10,7 @@ import SnapKit
 import SafariServices
 
 class SearchResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-  
+    
     var model = ModelSearchResult()
     
     let tableView = UITableView()
@@ -22,7 +22,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         
         view.addSubview(tableView)
         tableView.backgroundView = UIVieww()
-      
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
@@ -43,11 +43,11 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         
         if section == 0 {
             
-             return "Альбомы"
+            return "Альбомы"
         }
         
         if section == 1 {
-           
+            
             return "Плейлисты"
             
         }
@@ -61,7 +61,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
             return "Треки"
         }
         
-        return String()
+        return nil
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,29 +110,29 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
             
             let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as! SearchCell
             cell.label.text =  model.searchPlaylist[indexPath.row].name
-                
+            
             return cell
             
         }
         
         else if indexPath.section == 2 {
             
-           let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as! SearchCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as! SearchCell
             cell.label.text =  model.searchAlbums[indexPath.row].name
-                    
-           return cell
+            
+            return cell
             
         }
-
-         else if indexPath.section == 3 {
-    
-             let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as! SearchCell
-             cell.label.text =  model.searchTracks[indexPath.row].name
-             
-             return cell
-             
+        
+        else if indexPath.section == 3 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as! SearchCell
+            cell.label.text =  model.searchTracks[indexPath.row].name
+            
+            return cell
+            
         }
-
+        
         return cell
     }
     
@@ -142,7 +142,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
             
             let vc = AlbumViewController()
             vc.model.album =  model.searchAlbums[indexPath.row]
-        
+            
             vc.modalPresentationStyle = .overFullScreen
             navigationController?.pushViewController(vc, animated: true)
             
@@ -159,7 +159,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         if indexPath.section == 2 {
             let vc = SFSafariViewController(url: URL(string:  model.searchArtist[indexPath.row].external_urls["spotify"] ?? "")!)
             present(vc, animated: true)
-
+            
         }
         
         if indexPath.section == 3 {
@@ -171,24 +171,24 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
             
             vc.modalPresentationStyle = .overFullScreen
             navigationController?.pushViewController(vc, animated: true)
-
+            
         }
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundView = UIVieww()
-       
+        
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-
-            let header = view as! UITableViewHeaderFooterView
-            header.textLabel!.font = UIFont(name: "Noto Sans Kannada Bold", size: 16)!
-            header.textLabel!.textColor = .white
-            header.textLabel?.frame = CGRect(x: 5, y: 0, width: 200, height: 30)
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel!.font = UIFont(name: "Noto Sans Kannada Bold", size: 16)!
+        header.textLabel!.textColor = .white
+        header.textLabel?.frame = CGRect(x: 5, y: 0, width: 200, height: 30)
     }
 }
