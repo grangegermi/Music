@@ -71,8 +71,7 @@ class LibraryLikeVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
             self.model.likesTracks.remove(at: indexPath.row)
             UserDefaults.standard.removeObject(forKey: "names")
-
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+     
             tableView.reloadData()
             
         }
