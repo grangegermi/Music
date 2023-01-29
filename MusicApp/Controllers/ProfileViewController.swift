@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.model.viewController = self
         model.getUserProfile()
         
-        title = "Settings"
+        title = "Настройки"
         
         view.addSubview(tableView)
         
