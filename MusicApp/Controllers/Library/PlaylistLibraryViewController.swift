@@ -36,7 +36,7 @@ class LibraryPlaylistVC: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if model.playlist.count == 0 {
             
-            tableView.emptyView(title: "Создай свой первый плэйлист", message: "Зайдите в раздел Библиотека и  нажми на  +  , чтобы создать новый, или просто нажмите на + , если Вы уже здесь")
+            tableView.emptyView(title: "Создай свой первый плейлист", message: "Зайдите в раздел Библиотека и  нажми на  +  , чтобы создать новый, или просто нажмите на + , если Вы уже здесь")
         } else {
             
             tableView.restore()
